@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexTech Electronics | Premium Device Showcase & Enquiries</title>
+  
+  <!-- Google Fonts: Space Grotesk & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-deal-bar">
+    <div class="container deal-flex">
+      <span>🔥 <strong>Special Corporate Discount:</strong> Up to 15% off on bulk educational & corporate hardware orders.</span>
+      <span>Toll-Free: 1800-420-NEXTECH</span>
+    </div>
+  </div>
+
+  <!-- Semantic Header -->
+  <header class="header">
+    <div class="container header-wrap">
+      <div class="brand">
+        <!-- Inline SVG Tech Logo -->
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="3" width="20" height="14" rx="2" stroke="#6366f1" stroke-width="2"/>
+          <path d="M8 21H16M12 17V21" stroke="#a855f7" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="12" cy="10" r="3" fill="#6366f1"/>
+        </svg>
+        <span>NexTech<strong>Retail</strong></span>
+      </div>
+
+      <nav class="nav">
+        <ul>
+          <li><a href="#categories">Product Categories</a></li>
+          <li><a href="#showcase">Featured Devices</a></li>
+          <li><a href="#specs">Specifications Table</a></li>
+          <li><a href="#cascade-demo">CSS Cascade Demo</a></li>
+          <li><a href="#enquiry" class="btn btn-sm btn-primary">Purchase Enquiry</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Banner with CSS3 Text Shadow & Gradient Background -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <span class="tech-tag">Next-Generation Consumer Electronics</span>
+        <h1 class="hero-title text-glow">High-Performance Hardware Engineered for Tomorrow</h1>
+        <p class="hero-desc">
+          Explore our flagship lineup of ultrabooks, acoustic noise-canceling headphones, AMOLED tablets, and biometric smartwatches with enterprise-tier warranty.
+        </p>
+        <div class="hero-actions">
+          <a href="#showcase" class="btn btn-primary">Browse Showcase</a>
+          <a href="#specs" class="btn btn-secondary">Compare Specs</a>
+        </div>
+      </div>
+
+      <div class="hero-preview">
+        <!-- Inline SVG Device Trio Graphic -->
+        <svg viewBox="0 0 450 320" class="hero-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Laptop Body -->
+          <rect x="75" y="60" width="300" height="180" rx="12" fill="#0f172a" stroke="#6366f1" stroke-width="3"/>
+          <rect x="90" y="75" width="270" height="150" rx="4" fill="#1e1b4b"/>
+          <circle cx="225" cy="150" r="35" fill="#a855f7" fill-opacity="0.3"/>
+          <text x="145" y="155" fill="#ffffff" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="16">NexBook Pro 16</text>
+          <!-- Base -->
+          <path d="M40 240H410L390 260H60L40 240Z" fill="#334155"/>
+          <!-- Tablet Floating -->
+          <rect x="290" y="120" width="130" height="160" rx="10" fill="#020617" stroke="#38bdf8" stroke-width="2"/>
+          <circle cx="355" cy="265" r="4" fill="#64748b"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- Product Categories Organized Using Lists -->
+    <section class="section container" id="categories">
+      <div class="section-heading-wrap">
+        <h2 class="section-heading">Catalog Product Categories</h2>
+        <p class="section-sub">Browse through our structured retail departments and hardware classifications</p>
+      </div>
+
+      <div class="category-lists-grid">
+        <article class="cat-list-card">
+          <div class="cat-badge">💻 Computing & Workstations</div>
+          <p>Laptops, mini-desktops, and creator peripherals designed for intensive workflows.</p>
+          <ul class="cat-list">
+            <li><strong>Ultrabooks:</strong> Thin & light fanless magnesium designs</li>
+            <li><strong>Creator Laptops:</strong> Color-calibrated 4K OLED HDR displays</li>
+            <li><strong>Enterprise Workstations:</strong> ECC memory, dual NVMe storage</li>
+            <li><strong>Accessories:</strong> Thunderbolt 4 docks, mechanical keyboards</li>
+          </ul>
+        </article>
+
+        <article class="cat-list-card">
+          <div class="cat-badge">🎧 Audio & Wearable Gadgets</div>
+          <p>High-fidelity spatial audio systems and continuous biometric health monitors.</p>
+          <ol class="cat-list">
+            <li><strong>Over-Ear ANC:</strong> 40mm beryllium drivers, 45dB noise suppression</li>
+            <li><strong>True Wireless Earbuds:</strong> Dual-transducer wireless charging case</li>
+            <li><strong>Smartwatches:</strong> Titanium casing, optical PPG, GPS tracking</li>
+            <li><strong>Smart Rings:</strong> Sleep architecture and temperature telemetry</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <!-- Product Showcase Cards (HTML5 Cards with Transitions & Animations) -->
+    <section class="section container" id="showcase">
+      <div class="section-heading-wrap">
+        <h2 class="section-heading">Featured Electronics Showcase</h2>
+        <p class="section-sub">Hover over product cards to inspect smooth CSS3 transitions, zoom, and shadows</p>
+      </div>
+
+      <div class="product-grid">
+        <!-- Product Card 1 -->
+        <article class="product-card">
+          <div class="card-media">
+            <!-- Inline SVG Laptop -->
+            <svg viewBox="0 0 300 180" class="product-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="30" y="20" width="240" height="130" rx="8" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
+              <rect x="42" y="32" width="216" height="106" rx="4" fill="#0f172a"/>
+              <path d="M10 150H290L275 165H25L10 150Z" fill="#475569"/>
+              <circle cx="150" cy="85" r="24" fill="#6366f1" fill-opacity="0.3"/>
+            </svg>
+            <span class="ribbon-tag">Flagship</span>
+          </div>
+          <div class="card-body">
+            <div class="card-category">Computing</div>
+            <h3 class="product-name">NexBook Pro 16 Ultrabook</h3>
+            <p class="product-summary">Liquid Retina XDR display, 14-core high-speed CPU, 32GB Unified Memory, and 22-hour battery life.</p>
+            <div class="product-rating">★★★★★ <span>(4.9/5 from 184 reviews)</span></div>
+            <div class="product-price">
+              <span class="price-val">₹1,49,990</span>
+              <span class="price-mrp">₹1,69,990</span>
+            </div>
+            <div class="card-actions">
+              <a href="#enquiry" class="btn btn-card" onclick="preselectProduct('NexBook Pro 16')">Enquire Now</a>
+              <a href="#specs" class="btn btn-outline-sm">Full Specs</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product Card 2 -->
+        <article class="product-card">
+          <div class="card-media">
+            <!-- Inline SVG Headphones -->
+            <svg viewBox="0 0 300 180" class="product-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="150" cy="80" r="50" stroke="#a855f7" stroke-width="6" fill="none"/>
+              <rect x="85" y="70" width="26" height="50" rx="10" fill="#38bdf8"/>
+              <rect x="189" y="70" width="26" height="50" rx="10" fill="#38bdf8"/>
+              <path d="M100 80H120M180 80H200" stroke="#ffffff" stroke-width="2"/>
+            </svg>
+            <span class="ribbon-tag tag-blue">Hot Pick</span>
+          </div>
+          <div class="card-body">
+            <div class="card-category">Audio Hardware</div>
+            <h3 class="product-name">SonicPulse ANC Headphones</h3>
+            <p class="product-summary">Hybrid Active Noise Cancellation with transparency mode, 40mm biocellulose drivers, and 45h playtime.</p>
+            <div class="product-rating">★★★★☆ <span>(4.7/5 from 320 reviews)</span></div>
+            <div class="product-price">
+              <span class="price-val">₹24,999</span>
+              <span class="price-mrp">₹29,999</span>
+            </div>
+            <div class="card-actions">
+              <a href="#enquiry" class="btn btn-card" onclick="preselectProduct('SonicPulse ANC Headphones')">Enquire Now</a>
+              <a href="#specs" class="btn btn-outline-sm">Full Specs</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product Card 3 -->
+        <article class="product-card">
+          <div class="card-media">
+            <!-- Inline SVG Tablet -->
+            <svg viewBox="0 0 300 180" class="product-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="70" y="20" width="160" height="140" rx="12" fill="#0f172a" stroke="#10b981" stroke-width="2"/>
+              <rect x="80" y="30" width="140" height="120" rx="6" fill="#1e293b"/>
+              <circle cx="150" cy="90" r="20" fill="#10b981" fill-opacity="0.2"/>
+              <!-- Stylus Pen -->
+              <line x1="240" y1="30" x2="260" y2="150" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+            <span class="ribbon-tag tag-green">New Release</span>
+          </div>
+          <div class="card-body">
+            <div class="card-category">Tablets & Displays</div>
+            <h3 class="product-name">QuantumPad Ultra 13" Tablet</h3>
+            <p class="product-summary">120Hz 3K AMOLED display with pressure-sensitive magnetic stylus, Snapdragon 8 Gen 3, and 5G connectivity.</p>
+            <div class="product-rating">★★★★★ <span>(4.8/5 from 95 reviews)</span></div>
+            <div class="product-price">
+              <span class="price-val">₹68,990</span>
+              <span class="price-mrp">₹74,990</span>
+            </div>
+            <div class="card-actions">
+              <a href="#enquiry" class="btn btn-card" onclick="preselectProduct('QuantumPad Ultra Tablet')">Enquire Now</a>
+              <a href="#specs" class="btn btn-outline-sm">Full Specs</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product Card 4 -->
+        <article class="product-card">
+          <div class="card-media">
+            <!-- Inline SVG Smartwatch -->
+            <svg viewBox="0 0 300 180" class="product-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="135" y="10" width="30" height="160" rx="6" fill="#475569"/>
+              <circle cx="150" cy="90" r="45" fill="#0f172a" stroke="#ec4899" stroke-width="3"/>
+              <circle cx="150" cy="90" r="35" fill="#1e1b4b"/>
+              <text x="135" y="95" fill="#ec4899" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="14">10:45</text>
+            </svg>
+            <span class="ribbon-tag tag-pink">Wearables</span>
+          </div>
+          <div class="card-body">
+            <div class="card-category">Smart Wearables</div>
+            <h3 class="product-name">NovaWatch Sport Titanium</h3>
+            <p class="product-summary">Grade-5 aerospace titanium casing, sapphire crystal glass, continuous ECG, SpO2 sensor, and 100m water resistance.</p>
+            <div class="product-rating">★★★★☆ <span>(4.6/5 from 210 reviews)</span></div>
+            <div class="product-price">
+              <span class="price-val">₹32,490</span>
+              <span class="price-mrp">₹37,990</span>
+            </div>
+            <div class="card-actions">
+              <a href="#enquiry" class="btn btn-card" onclick="preselectProduct('NovaWatch Sport')">Enquire Now</a>
+              <a href="#specs" class="btn btn-outline-sm">Full Specs</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Product Specifications Matrix (HTML5 Table with Caption, Header, Body, Footer) -->
+    <section class="section container" id="specs">
+      <div class="section-heading-wrap">
+        <h2 class="section-heading">Detailed Technical Specifications Matrix</h2>
+        <p class="section-sub">Comprehensive hardware comparison table across all featured showcase devices</p>
+      </div>
+
+      <div class="specs-table-card">
+        <table class="specs-table">
+          <caption>Hardware Architecture, Performance & Warranty Matrix</caption>
+          <thead>
+            <tr>
+              <th scope="col">Specification Feature</th>
+              <th scope="col">NexBook Pro 16</th>
+              <th scope="col">SonicPulse ANC</th>
+              <th scope="col">QuantumPad Ultra</th>
+              <th scope="col">NovaWatch Sport</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Device Category</th>
+              <td>High-Performance Laptop</td>
+              <td>Over-Ear Audio Headset</td>
+              <td>Pro Productivity Tablet</td>
+              <td>Biometric Smartwatch</td>
+            </tr>
+            <tr>
+              <th scope="row">Processor / SoC</th>
+              <td>14-Core High-Throughput SoC</td>
+              <td>Dual Audio DSP Chips</td>
+              <td>Snapdragon 8 Gen 3</td>
+              <td>Dual-Core S8 Ultra SiP</td>
+            </tr>
+            <tr>
+              <th scope="row">Display / Acoustics</th>
+              <td>16.2" Mini-LED (3456x2234)</td>
+              <td>40mm Beryllium Transducers</td>
+              <td>13.0" AMOLED 120Hz HDR</td>
+              <td>1.9" Sapphire LTPO OLED</td>
+            </tr>
+            <tr>
+              <th scope="row">Memory & Storage</th>
+              <td>32GB Unified | 1TB NVMe</td>
+              <td>Onboard EQ Memory</td>
+              <td>16GB LPDDR5X | 512GB UFS</td>
+              <td>32GB Internal Audio Storage</td>
+            </tr>
+            <tr>
+              <th scope="row">Battery Runtime</th>
+              <td>Up to 22 Hours Web Browsing</td>
+              <td>45 Hours (ANC ON)</td>
+              <td>14 Hours Continuous Use</td>
+              <td>36 Hours (Normal Usage)</td>
+            </tr>
+            <tr>
+              <th scope="row">Wireless Connectivity</th>
+              <td>Wi-Fi 7, Bluetooth 5.4</td>
+              <td>Bluetooth 5.3 (LDAC, AAC)</td>
+              <td>5G Sub-6GHz, Wi-Fi 7</td>
+              <td>LTE Cellular, Dual GPS</td>
+            </tr>
+            <tr>
+              <th scope="row">Chassis Material</th>
+              <td>100% Recycled Aluminum</td>
+              <td>Memory Foam & Protein Leather</td>
+              <td>Anodized Aluminum Unibody</td>
+              <td>Aerospace Grade 5 Titanium</td>
+            </tr>
+            <tr>
+              <th scope="row">Standard Warranty</th>
+              <td>2-Year Manufacturer Warranty</td>
+              <td>1-Year Replacement Warranty</td>
+              <td>2-Year Limited Hardware</td>
+              <td>1-Year Comprehensive</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th scope="row">Showcase Price</th>
+              <td><strong>₹1,49,990</strong></td>
+              <td><strong>₹24,999</strong></td>
+              <td><strong>₹68,990</strong></td>
+              <td><strong>₹32,490</strong></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+
+    <!-- Demonstration of CSS Cascading & Inheritance Section -->
+    <section class="section container" id="cascade-demo">
+      <div class="cascade-box">
+        <h2 class="section-heading">Demonstration of CSS Cascading & Inheritance</h2>
+        <p class="section-sub">
+          Academic demonstration verifying CSS inheritance rules, the <code>inherit</code> keyword, and the CSS cascade specificity hierarchy.
+        </p>
+
+        <div class="cascade-grid">
+          <div class="cascade-demo-card">
+            <h4>1. Inherited Properties Demonstration</h4>
+            <p class="demo-parent-style">
+              Parent Container styles applied: <code>color: #4f46e5</code> and <code>font-family: 'Space Grotesk'</code>.
+              <span class="demo-child-style">
+                This child element automatically inherits font and color from the parent without explicit redeclaration.
+              </span>
+            </p>
+          </div>
+
+          <div class="cascade-demo-card">
+            <h4>2. Non-Inherited Property with <code>inherit</code></h4>
+            <div class="parent-bordered">
+              Parent has a custom border: <code>border: 2px dashed #a855f7</code>.
+              <div class="child-inherit-border">
+                Child uses <code>border: inherit;</code> to explicitly inherit a property that defaults to <code>none</code>.
+              </div>
+            </div>
+          </div>
+
+          <div class="cascade-demo-card">
+            <h4>3. Specificity Order Conflict Resolution</h4>
+            <p id="uniqueSpecificityId" class="general-class-specificity" style="color: #059669; font-weight: 700;">
+              Inline Style (Score: 1,0,0,0) overrides ID selector (0,1,0,0) and Class selector (0,0,1,0)!
+            </p>
+            <small style="color: #64748b; display: block; margin-top: 6px;">
+              Cascade Calculation: <code>style=""</code> (1000) &gt; <code>#uniqueSpecificityId</code> (100) &gt; <code>.general-class-specificity</code> (10)
+            </small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Customer Purchase Enquiry Form -->
+    <section class="section container" id="enquiry">
+      <div class="enquiry-card">
+        <div class="section-heading-wrap">
+          <h2 class="section-heading">Customer Purchase Enquiry Requisition</h2>
+          <p class="section-sub">Submit your hardware procurement inquiry to our sales engineering team</p>
+        </div>
+
+        <form action="enquire.php" method="POST" id="enquiryForm" class="enquiry-form">
+          <div class="form-row grid-2">
+            <div class="form-group">
+              <label for="clientName">Full Name / Company Name <span class="req">*</span></label>
+              <input type="text" id="clientName" name="clientName" placeholder="Mithun Raj" required minlength="3">
+            </div>
+
+            <div class="form-group">
+              <label for="clientEmail">Email Address <span class="req">*</span></label>
+              <input type="email" id="clientEmail" name="clientEmail" placeholder="client@domain.com" required>
+            </div>
+          </div>
+
+          <div class="form-row grid-3">
+            <div class="form-group">
+              <label for="clientPhone">Contact Phone Number <span class="req">*</span></label>
+              <input type="tel" id="clientPhone" name="clientPhone" placeholder="9876543210" pattern="[0-9]{10}" required>
+            </div>
+
+            <div class="form-group">
+              <label for="productSelect">Select Product <span class="req">*</span></label>
+              <select id="productSelect" name="productSelect" required>
+                <option value="" disabled selected>-- Choose Product --</option>
+                <option value="NexBook Pro 16">NexBook Pro 16 (₹1,49,990)</option>
+                <option value="SonicPulse ANC Headphones">SonicPulse ANC Headphones (₹24,999)</option>
+                <option value="QuantumPad Ultra Tablet">QuantumPad Ultra Tablet (₹68,990)</option>
+                <option value="NovaWatch Sport">NovaWatch Sport Titanium (₹32,490)</option>
+                <option value="Bulk Multi-Device Package">Bulk / Enterprise Mixed Package</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="orderQuantity">Required Quantity <span class="req">*</span></label>
+              <input type="number" id="orderQuantity" name="orderQuantity" min="1" max="100" value="1" required>
+            </div>
+          </div>
+
+          <div class="form-row grid-2">
+            <div class="form-group">
+              <label>Purchase Category</label>
+              <div class="radio-flex">
+                <label><input type="radio" name="buyerType" value="Individual Consumer" checked> Individual Retail</label>
+                <label><input type="radio" name="buyerType" value="Academic Institution"> Academic / University</label>
+                <label><input type="radio" name="buyerType" value="Corporate Enterprise"> Corporate Bulk</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Preferred Communication Channel</label>
+              <div class="radio-flex">
+                <label><input type="radio" name="contactChannel" value="Official Email" checked> Email</label>
+                <label><input type="radio" name="contactChannel" value="Phone Call"> Phone</label>
+                <label><input type="radio" name="contactChannel" value="WhatsApp"> WhatsApp</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="enquiryMessage">Specific Customizations / Inquiries</label>
+            <textarea id="enquiryMessage" name="enquiryMessage" rows="3" placeholder="Specify requirements for custom RAM/SSD configurations, delivery timelines, or bulk quotation..."></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Dispatch Customer Enquiry (HTTP POST)</button>
+            <button type="reset" class="btn btn-outline-dark">Reset</button>
+          </div>
+
+          <div id="enquiryFeedback" class="enquiry-feedback" style="display: none;"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>&copy; 2026 NexTech Electronics Retail. Internet Programming Assignment 1 (CO1).</p>
+      <p>Configured for WAMP/LAMP Web Servers with CSS3 Border Images, Shadows & Cascading Demonstration.</p>
+    </div>
+  </footer>
+
+  <!-- Script for Pre-selecting Product and Standalone Browser Simulation -->
+  <script>
+    function preselectProduct(productName) {
+      const select = document.getElementById('productSelect');
+      for (let i = 0; i < select.options.length; i++) {
+        if (select.options[i].value.includes(productName)) {
+          select.selectedIndex = i;
+          break;
+        }
+      }
+    }
+
+    document.getElementById('enquiryForm').addEventListener('submit', function(e) {
+      if (window.location.protocol === 'file:') {
+        e.preventDefault();
+        const client = document.getElementById('clientName').value;
+        const prod = document.getElementById('productSelect').value;
+        const qty = document.getElementById('orderQuantity').value;
+
+        const fb = document.getElementById('enquiryFeedback');
+        fb.style.display = 'block';
+        fb.innerHTML = `
+          <h4>✓ Enquiry Received (Client-Side Preview)</h4>
+          <p><strong>Customer:</strong> ${client} | <strong>Product:</strong> ${prod} (Qty: ${qty})</p>
+          <p style="color: #059669; font-size: 0.9rem;">HTTP POST payload prepared. In WAMP/LAMP environment, this routes to <code>enquire.php</code> for processing.</p>
+        `;
+        fb.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,624 @@
+/* ==========================================================================
+   Question 5: Online Travel & Tourism Website - CSS3 Stylesheet
+   Demonstrates: CSS3 background gradients/images, text-shadows,
+   border-image, hover zoom effects, animations, tables, and responsive forms.
+   ========================================================================== */
+
+:root {
+  --primary: #0284c7;
+  --primary-hover: #0369a1;
+  --secondary: #f59e0b;
+  --dark: #0f172a;
+  --text-main: #334155;
+  --text-muted: #64748b;
+  --bg-page: #f8fafc;
+  --bg-card: #ffffff;
+  --border-light: #e2e8f0;
+  --radius: 14px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--text-main);
+  background-color: var(--bg-page);
+  line-height: 1.6;
+}
+
+.container {
+  width: 92%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Advisory Bar */
+.top-advisory-bar {
+  background: linear-gradient(90deg, #075985, #0c4a6e);
+  color: #e0f2fe;
+  font-size: 0.84rem;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.advisory-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Header */
+.header {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-light);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--dark);
+}
+
+.brand strong {
+  color: var(--primary);
+}
+
+.nav ul {
+  display: flex;
+  list-style: none;
+  gap: 24px;
+  align-items: center;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--text-main);
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: var(--transition);
+}
+
+.nav a:hover {
+  color: var(--primary);
+}
+
+/* ==========================================================================
+   CSS3 Background Images, Gradients & Text Shadows
+   ========================================================================== */
+.hero {
+  /* Layered CSS3 Background Gradient with Radial Ambient Glow */
+  background: radial-gradient(circle at 80% 30%, rgba(2, 132, 199, 0.25), transparent 45%),
+              linear-gradient(135deg, #0369a1 0%, #0f172a 100%);
+  color: #ffffff;
+  padding: 80px 0 64px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+.hero-badge {
+  display: inline-block;
+  background-color: rgba(245, 158, 11, 0.2);
+  color: #fef08a;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  padding: 6px 16px;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 20px;
+  animation: floatSun 3s ease-in-out infinite alternate;
+}
+
+/* CSS3 Text Shadow Effect */
+.text-shadow-glow {
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.6), 0 0 30px rgba(56, 189, 248, 0.3);
+}
+
+.hero-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+
+.hero-subtitle {
+  font-size: 1.15rem;
+  color: #e2e8f0;
+  margin-bottom: 32px;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  transition: var(--transition);
+}
+
+.btn-sm {
+  padding: 8px 16px;
+  font-size: 0.85rem;
+}
+
+.btn-primary {
+  background-color: var(--secondary);
+  color: #0f172a;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+}
+
+.btn-primary:hover {
+  background-color: #d97706;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.45);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: #ffffff;
+}
+
+.btn-outline-dark {
+  background: transparent;
+  border: 1.5px solid var(--border-light);
+  color: var(--text-muted);
+}
+
+/* Sections */
+.section {
+  padding: 64px 0;
+}
+
+.section-title-wrap {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--dark);
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  margin-top: 6px;
+}
+
+/* ==========================================================================
+   Destinations Cards with CSS3 Hover Zoom Effects
+   ========================================================================== */
+.destinations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 26px;
+}
+
+.destination-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1),
+              box-shadow 0.35s ease;
+}
+
+/* Hover Zoom & Elevation Effect */
+.destination-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 30px -10px rgba(2, 132, 199, 0.25);
+  border-color: var(--primary);
+}
+
+.dest-media {
+  position: relative;
+  overflow: hidden;
+}
+
+.dest-svg {
+  width: 100%;
+  height: 190px;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.destination-card:hover .dest-svg {
+  transform: scale(1.08);
+}
+
+.dest-tag {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(15, 23, 42, 0.85);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tag-tropical { background: rgba(22, 101, 52, 0.85); }
+.tag-japan { background: rgba(185, 28, 28, 0.85); }
+.tag-med { background: rgba(29, 78, 216, 0.85); }
+
+.dest-body {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.hotel-info {
+  margin-bottom: 6px;
+}
+
+.hotel-stars {
+  color: #f59e0b;
+  font-size: 0.85rem;
+}
+
+.hotel-name {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.dest-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+
+.dest-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.dest-footer {
+  border-top: 1px solid var(--border-light);
+  padding-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.dest-duration {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.dest-price {
+  color: var(--primary);
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   CSS3 Border Image & Package Comparison Table
+   ========================================================================== */
+.package-table-wrapper {
+  background: #ffffff;
+  border-radius: var(--radius);
+  overflow-x: auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  /* CSS3 Border Image */
+  border: 4px solid transparent;
+  border-image: linear-gradient(to bottom right, #0284c7, #f59e0b) 1;
+}
+
+.package-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.package-table caption {
+  background: #f1f5f9;
+  padding: 16px;
+  font-weight: 700;
+  color: var(--dark);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.package-table th, .package-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.package-table thead th {
+  background-color: var(--dark);
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.highlight-col {
+  background-color: rgba(2, 132, 199, 0.05);
+  font-weight: 600;
+}
+
+.package-table thead th.highlight-col {
+  background-color: #0369a1;
+  color: #fef08a;
+}
+
+.package-table tfoot th, .package-table tfoot td {
+  background-color: #f8fafc;
+  font-size: 1.05rem;
+  color: var(--primary);
+}
+
+/* Attractions Grid */
+.attractions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 28px;
+}
+
+.attr-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.attr-card h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.25rem;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+
+.styled-travel-list {
+  margin-top: 16px;
+  padding-left: 24px;
+}
+
+.styled-travel-list li {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+
+/* Booking Card */
+.booking-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--dark);
+  margin-bottom: 6px;
+}
+
+.req { color: #ef4444; }
+
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+input, select, textarea {
+  width: 100%;
+  padding: 11px 14px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  border: 1.5px solid var(--border-light);
+  border-radius: 8px;
+  color: var(--dark);
+  transition: var(--transition);
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
+}
+
+.pref-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.cb-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.cb-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+}
+
+.form-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.booking-feedback {
+  margin-top: 20px;
+  padding: 18px;
+  background: #ecfdf5;
+  border: 1px solid #10b981;
+  border-radius: 8px;
+  color: #065f46;
+}
+
+/* HTTP Educational Section */
+.http-card {
+  background: #ffffff;
+  border-left: 5px solid var(--primary);
+  border-radius: var(--radius);
+  padding: 36px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+
+.http-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 32px;
+  margin-top: 24px;
+}
+
+.http-col h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.15rem;
+  color: var(--dark);
+  margin-bottom: 12px;
+}
+
+.http-list {
+  padding-left: 20px;
+  margin-bottom: 16px;
+}
+
+.http-list li {
+  margin-bottom: 8px;
+  font-size: 0.92rem;
+}
+
+code {
+  display: block;
+  background: #0f172a;
+  color: #38bdf8;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  font-family: Consolas, monospace;
+}
+
+.status-category {
+  background: #f8fafc;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+}
+
+.sc-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  margin-bottom: 4px;
+}
+
+.sc-1xx { background: #e0e7ff; color: #4338ca; }
+.sc-2xx { background: #dcfce7; color: #15803d; }
+.sc-3xx { background: #fef3c7; color: #b45309; }
+.sc-4xx { background: #fee2e2; color: #b91c1c; }
+.sc-5xx { background: #f3e8ff; color: #7e22ce; }
+
+.status-category p {
+  font-size: 0.84rem;
+  color: #475569;
+  margin: 0;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--dark);
+  color: #94a3b8;
+  padding: 32px 0;
+  text-align: center;
+  font-size: 0.88rem;
+  margin-top: 60px;
+}
+
+.footer-content p { margin-bottom: 6px; }
+
+/* Keyframe Animations */
+@keyframes floatSun {
+  from { transform: translateY(0); }
+  to { transform: translateY(-4px); }
+}
+
+@media (max-width: 900px) {
+  .hero-title { font-size: 2.2rem; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}

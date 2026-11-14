@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SpeedWheels Bike Showroom</title>
+</head>
+<!-- Main frameset dividing the window into Top Row (20%) and Bottom Section (80%) -->
+<frameset rows="20%, 80%" border="2" frameborder="1" framespacing="2">
+    <!-- Frame 1: Top row for Showroom Name and Header -->
+    <frame src="header.html" name="headerFrame" scrolling="no" noresize>
+
+    <!-- Nested frameset dividing the bottom area into Left Column (25%) and Right Column (75%) -->
+    <frameset cols="25%, 75%" border="2" frameborder="1" framespacing="2">
+        <!-- Frame 2: Left column for Bike Brands navigation -->
+        <frame src="nav.html" name="navFrame" scrolling="auto">
+        <!-- Frame 3: Right column for Bike Models & Specifications display -->
+        <frame src="home.html" name="mainFrame" scrolling="auto">
+    </frameset>
+
+    <!-- Fallback message for browsers that do not support frames -->
+    <noframes>
+        <body>
+            <h2>Browser Not Supported</h2>
+            <p>Your browser does not support HTML frames. Please use a compatible browser to view this showroom website.</p>
+        </body>
+    </noframes>
+</frameset>
+</html>

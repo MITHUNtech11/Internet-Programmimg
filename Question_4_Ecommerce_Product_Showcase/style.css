@@ -1,0 +1,650 @@
+/* ==========================================================================
+   Question 4: E-Commerce Product Showcase - CSS3 Stylesheet
+   Demonstrates: CSS3 border-image, background gradients, text-shadows,
+   card transitions, box-shadow elevations, and CSS cascading & inheritance.
+   ========================================================================== */
+
+:root {
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --secondary: #a855f7;
+  --cyan: #06b6d4;
+  --dark: #0f172a;
+  --dark-surface: #1e293b;
+  --text-main: #334155;
+  --text-muted: #64748b;
+  --bg-page: #f8fafc;
+  --bg-card: #ffffff;
+  --border-light: #e2e8f0;
+  --radius: 14px;
+  --transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--text-main);
+  background-color: var(--bg-page);
+  line-height: 1.6;
+}
+
+.container {
+  width: 92%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Top Deal Bar */
+.top-deal-bar {
+  background: linear-gradient(90deg, #1e1b4b, #312e81);
+  color: #c7d2fe;
+  font-size: 0.84rem;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.deal-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Header */
+.header {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-light);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--dark);
+}
+
+.brand strong {
+  color: var(--primary);
+}
+
+.nav ul {
+  display: flex;
+  list-style: none;
+  gap: 22px;
+  align-items: center;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--text-main);
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: var(--transition);
+}
+
+.nav a:hover {
+  color: var(--primary);
+}
+
+/* ==========================================================================
+   CSS3 Text Effects & Gradient Backgrounds
+   ========================================================================== */
+.hero {
+  background: radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.15), transparent 40%),
+              linear-gradient(180deg, #f1f5f9 0%, #f8fafc 100%);
+  padding: 64px 0 54px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.tech-tag {
+  display: inline-block;
+  background-color: rgba(99, 102, 241, 0.1);
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  margin-bottom: 16px;
+}
+
+/* CSS3 Text Shadow Effect */
+.text-glow {
+  text-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+}
+
+.hero-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--dark);
+  line-height: 1.18;
+  margin-bottom: 16px;
+}
+
+.hero-desc {
+  font-size: 1.08rem;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+  max-width: 600px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.hero-svg {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.1));
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  transition: var(--transition);
+}
+
+.btn-sm {
+  padding: 8px 16px;
+  font-size: 0.85rem;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
+}
+
+.btn-secondary {
+  background: #ffffff;
+  color: var(--dark);
+  border: 1.5px solid var(--border-light);
+}
+
+.btn-secondary:hover {
+  border-color: #94a3b8;
+  background-color: #f1f5f9;
+}
+
+.btn-card {
+  background-color: var(--primary);
+  color: #ffffff;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+}
+
+.btn-card:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-outline-sm {
+  background: transparent;
+  border: 1.5px solid var(--border-light);
+  color: var(--text-muted);
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+}
+
+.btn-outline-sm:hover {
+  border-color: var(--dark);
+  color: var(--dark);
+}
+
+.btn-outline-dark {
+  background: transparent;
+  border: 1.5px solid var(--border-light);
+  color: var(--text-muted);
+}
+
+/* Sections */
+.section {
+  padding: 64px 0;
+}
+
+.section-heading-wrap {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-heading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--dark);
+}
+
+.section-sub {
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  margin-top: 6px;
+}
+
+/* Categories List */
+.category-lists-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 28px;
+}
+
+.cat-list-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.cat-badge {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+
+.cat-list {
+  margin-top: 16px;
+  padding-left: 24px;
+}
+
+.cat-list li {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   Product Cards with CSS3 Transitions & Hover Animations
+   ========================================================================== */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 26px;
+}
+
+.product-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+}
+
+/* CSS3 Card Hover Animation */
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 30px -10px rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+.card-media {
+  position: relative;
+  background-color: #0f172a;
+  padding: 20px;
+}
+
+.product-svg {
+  width: 100%;
+  height: 160px;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.product-card:hover .product-svg {
+  transform: scale(1.05);
+}
+
+.ribbon-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--primary);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.tag-blue { background: #0284c7; }
+.tag-green { background: #059669; }
+.tag-pink { background: #db2777; }
+
+.card-body {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-category {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--secondary);
+  text-transform: uppercase;
+}
+
+.product-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin: 6px 0 8px;
+}
+
+.product-summary {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  flex-grow: 1;
+}
+
+.product-rating {
+  color: #f59e0b;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.product-rating span {
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+.product-price {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.price-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--dark);
+}
+
+.price-mrp {
+  text-decoration: line-through;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.card-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Specifications Table */
+.specs-table-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  overflow-x: auto;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+}
+
+.specs-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.92rem;
+}
+
+.specs-table caption {
+  background: #f1f5f9;
+  padding: 16px;
+  font-weight: 700;
+  color: var(--dark);
+  border-bottom: 1px solid var(--border-light);
+  font-size: 1rem;
+}
+
+.specs-table th, .specs-table td {
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.specs-table thead th {
+  background-color: var(--dark);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.specs-table tbody th {
+  background-color: #f8fafc;
+  color: var(--dark);
+  font-weight: 700;
+  width: 22%;
+}
+
+.specs-table tfoot th, .specs-table tfoot td {
+  background-color: #f1f5f9;
+  font-size: 1rem;
+  color: var(--primary);
+}
+
+/* ==========================================================================
+   CSS3 Border Image & CSS Cascading / Inheritance Demonstration
+   ========================================================================== */
+.cascade-box {
+  background: #ffffff;
+  border-radius: var(--radius);
+  padding: 36px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  /* CSS3 Border Image with Linear Gradient */
+  border: 4px solid transparent;
+  border-image: linear-gradient(to right, #6366f1, #a855f7, #ec4899) 1;
+}
+
+.cascade-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.cascade-demo-card {
+  background: #f8fafc;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.cascade-demo-card h4 {
+  color: var(--dark);
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+/* Inherited Property Demo */
+.demo-parent-style {
+  color: #4f46e5;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+}
+
+.demo-child-style {
+  display: block;
+  margin-top: 8px;
+  font-style: italic;
+  /* Automatically inherits color and font-family from parent */
+}
+
+/* Non-inherited property with 'inherit' */
+.parent-bordered {
+  border: 2px dashed #a855f7;
+  padding: 12px;
+  border-radius: 6px;
+}
+
+.child-inherit-border {
+  /* Border does NOT inherit by default; 'inherit' forces it */
+  border: inherit;
+  margin-top: 8px;
+  padding: 8px;
+  background: #ffffff;
+  font-size: 0.85rem;
+}
+
+/* Specificity conflict demo classes */
+.general-class-specificity {
+  color: #ef4444; /* Specificity (0,0,1,0) */
+}
+
+#uniqueSpecificityId {
+  color: #3b82f6; /* Specificity (0,1,0,0) - overriden by inline style */
+}
+
+/* Enquiry Form */
+.enquiry-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--dark);
+  margin-bottom: 6px;
+}
+
+.req { color: #ef4444; }
+
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+input, select, textarea {
+  width: 100%;
+  padding: 11px 14px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  border: 1.5px solid var(--border-light);
+  border-radius: 8px;
+  color: var(--dark);
+  transition: var(--transition);
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.radio-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.radio-flex label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.radio-flex input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+}
+
+.form-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.enquiry-feedback {
+  margin-top: 20px;
+  padding: 18px;
+  background: #ecfdf5;
+  border: 1px solid #10b981;
+  border-radius: 8px;
+  color: #065f46;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--dark);
+  color: #94a3b8;
+  padding: 32px 0;
+  text-align: center;
+  font-size: 0.88rem;
+  margin-top: 60px;
+}
+
+.footer-content p { margin-bottom: 6px; }
+
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; text-align: center; }
+  .hero-desc, .hero-actions { margin-left: auto; margin-right: auto; justify-content: center; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,150 @@
+/* Shared CSS Stylesheet for SpeedWheels Bike Showroom */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 15px;
+    background-color: #f7f9fa;
+    color: #333333;
+}
+
+/* Header Frame Styles */
+.header-container {
+    background-color: #1a252f;
+    color: #ffffff;
+    text-align: center;
+    padding: 15px 10px;
+    border-radius: 6px;
+}
+
+.header-container h1 {
+    margin: 0 0 5px 0;
+    font-size: 26px;
+    letter-spacing: 1px;
+    color: #e74c3c;
+}
+
+.header-container p {
+    margin: 0;
+    font-size: 14px;
+    color: #bdc3c7;
+}
+
+/* Navigation Frame Styles */
+.nav-container {
+    background-color: #ffffff;
+    padding: 15px;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+}
+
+.nav-container h3 {
+    margin-top: 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e74c3c;
+    color: #2c3e50;
+    font-size: 18px;
+}
+
+.nav-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-list li {
+    margin-bottom: 10px;
+}
+
+.nav-list a {
+    display: block;
+    text-decoration: none;
+    color: #2c3e50;
+    background-color: #ecf0f1;
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 15px;
+    border-left: 4px solid #3498db;
+    transition: 0.2s ease;
+}
+
+.nav-list a:hover {
+    background-color: #3498db;
+    color: #ffffff;
+    border-left: 4px solid #e74c3c;
+}
+
+/* Content Frame (Right Column) Styles */
+.content-card {
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.brand-title {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 8px;
+    margin-top: 0;
+}
+
+.model-title {
+    color: #e74c3c;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+
+.model-desc {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    color: #555555;
+}
+
+/* Specifications Table */
+table.spec-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+table.spec-table th, table.spec-table td {
+    border: 1px solid #dddddd;
+    padding: 9px 12px;
+    text-align: left;
+}
+
+table.spec-table th {
+    background-color: #2c3e50;
+    color: #ffffff;
+    width: 35%;
+}
+
+table.spec-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Welcome Box on Home Page */
+.welcome-box {
+    text-align: center;
+    padding: 30px 15px;
+}
+
+.welcome-box h2 {
+    color: #2c3e50;
+    font-size: 24px;
+}
+
+.welcome-box p {
+    font-size: 15px;
+    color: #666666;
+    max-width: 650px;
+    margin: 10px auto;
+    line-height: 1.6;
+}

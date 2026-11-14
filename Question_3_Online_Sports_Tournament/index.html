@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olympus 2026 | Inter-Collegiate Sports Tournament Portal</title>
+  
+  <!-- Google Fonts: Space Grotesk & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Tournament Ticker Bar -->
+  <div class="ticker-bar">
+    <div class="container ticker-flex">
+      <span class="ticker-live">🔴 LIVE TOURNAMENT</span>
+      <span class="ticker-text">Men's Basketball Semi-Final: Titan Strikers 58 - 54 Cyber Hawks (Q4 02:15)</span>
+      <span class="ticker-date">March 28 - April 02, 2026</span>
+    </div>
+  </div>
+
+  <!-- Semantic Header -->
+  <header class="header">
+    <div class="container header-wrap">
+      <div class="brand">
+        <!-- Inline SVG Trophy Logo -->
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 9V2H18V9C18 12.3137 15.3137 15 12 15C8.68629 15 6 12.3137 6 9Z" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 5H2V7C2 9.20914 3.79086 11 6 11V5Z" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M18 5H22V7C22 9.20914 20.2091 11 18 11V5Z" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 15V19M8 22H16" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Olympus<strong>Cup</strong> 2026</span>
+      </div>
+
+      <nav class="nav">
+        <ul>
+          <li><a href="#categories">Sports Disciplines</a></li>
+          <li><a href="#teams">Participating Teams</a></li>
+          <li><a href="#schedules">Fixtures & Schedules</a></li>
+          <li><a href="#register" class="btn btn-sm btn-gold">Register Team</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Banner with CSS3 Transformations and Dynamic Background -->
+  <section class="hero">
+    <div class="container hero-layout">
+      <div class="hero-text">
+        <span class="badge-sports">Annual Inter-Collegiate Athletic Meet</span>
+        <h1 class="hero-heading">Unleash Your Athletic Excellence</h1>
+        <p class="hero-description">
+          Over 32 colleges, 8 competitive disciplines, and 1200+ student athletes competing for the coveted Olympus Championship Trophy. View live fixtures and register your squad.
+        </p>
+        <div class="hero-cta">
+          <a href="#register" class="btn btn-gold">Submit Team Entry</a>
+          <a href="#schedules" class="btn btn-outline-light">Match Timelines</a>
+        </div>
+      </div>
+
+      <div class="hero-graphic">
+        <!-- Inline SVG Sports Illustration -->
+        <svg viewBox="0 0 420 300" class="hero-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="210" cy="150" r="130" fill="#1e293b" stroke="#f59e0b" stroke-width="2" stroke-dasharray="8 6"/>
+          <!-- Basketball -->
+          <circle cx="130" cy="120" r="45" fill="#ea580c"/>
+          <path d="M130 75V165M85 120H175" stroke="#ffffff" stroke-width="2"/>
+          <path d="M98 88C115 105 115 135 98 152M162 88C145 105 145 135 162 152" stroke="#ffffff" stroke-width="2"/>
+          <!-- Football -->
+          <circle cx="270" cy="170" r="45" fill="#f8fafc" stroke="#0f172a" stroke-width="2"/>
+          <polygon points="270,150 255,160 260,178 280,178 285,160" fill="#0f172a"/>
+          <!-- Badminton Shuttlecock SVG -->
+          <circle cx="220" cy="80" r="12" fill="#e2e8f0"/>
+          <path d="M220 92L200 125H240L220 92Z" fill="#38bdf8" fill-opacity="0.8"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- Sports Categories Hierarchy (Semantic HTML5 Lists) -->
+    <section class="section container" id="categories">
+      <div class="section-title-wrap">
+        <h2 class="section-title">Tournament Sports Categories</h2>
+        <p class="section-subtitle">Disciplines governed under All India University (AIU) competition standards</p>
+      </div>
+
+      <div class="categories-grid">
+        <article class="cat-card">
+          <div class="cat-header">
+            <span class="cat-icon">☀️</span>
+            <h3>Outdoor Athletics & Games</h3>
+          </div>
+          <p>Full-field high-endurance team tournaments played on natural turf and synthetic courts.</p>
+          <ul class="sports-list">
+            <li><strong>Cricket:</strong> T20 Championship (16 overs per side)</li>
+            <li><strong>Football:</strong> 11-a-side knockouts with golden goal</li>
+            <li><strong>Basketball:</strong> FIBA regulation 4-quarter games</li>
+            <li><strong>Volleyball:</strong> Best of 5 sets league format</li>
+            <li><strong>Track & Field:</strong> 100m, 400m, 4x100m Relay</li>
+          </ul>
+        </article>
+
+        <article class="cat-card">
+          <div class="cat-header">
+            <span class="cat-icon">🏛️</span>
+            <h3>Indoor & Racquet Sports</h3>
+          </div>
+          <p>Precision and rapid-reflex disciplines hosted in the air-conditioned indoor sports complex.</p>
+          <ol class="sports-list">
+            <li><strong>Badminton:</strong> Singles & Doubles (Yonex BWF shuttlecock)</li>
+            <li><strong>Table Tennis:</strong> ITTF 11-point sets</li>
+            <li><strong>Chess:</strong> FIDE classical 90-minute time control</li>
+            <li><strong>Carrom:</strong> Federation standard board singles/doubles</li>
+            <li><strong>Squash:</strong> Best of 5 games individual bracket</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <!-- Participating Teams (CSS3 3D Transformations & Team Logos) -->
+    <section class="section container" id="teams">
+      <div class="section-title-wrap">
+        <h2 class="section-title">Featured Championship Contenders</h2>
+        <p class="section-subtitle">
+          Hover to inspect CSS3 3D perspective transforms, team logos, and squad ratings
+        </p>
+      </div>
+
+      <div class="teams-grid">
+        <!-- Team 1 -->
+        <div class="team-card-3d">
+          <div class="team-inner">
+            <div class="team-logo-wrap">
+              <!-- SVG Team Logo: Lions -->
+              <svg viewBox="0 0 100 100" class="team-logo-svg">
+                <circle cx="50" cy="50" r="45" fill="#1e293b" stroke="#f59e0b" stroke-width="4"/>
+                <path d="M30 65C30 50 40 35 50 30C60 35 70 50 70 65C65 72 35 72 30 65Z" fill="#f59e0b"/>
+                <circle cx="42" cy="48" r="4" fill="#0f172a"/>
+                <circle cx="58" cy="48" r="4" fill="#0f172a"/>
+              </svg>
+            </div>
+            <h4>Royal Lions FC</h4>
+            <span class="team-dept">Dept. of Computer Science</span>
+            <div class="team-specs">
+              <div><strong>Captain:</strong> Rohit Sharma</div>
+              <div><strong>Discipline:</strong> Football & Cricket</div>
+              <div><strong>Seed:</strong> #1 Ranked</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Team 2 -->
+        <div class="team-card-3d">
+          <div class="team-inner">
+            <div class="team-logo-wrap">
+              <!-- SVG Team Logo: Titan Strikers -->
+              <svg viewBox="0 0 100 100" class="team-logo-svg">
+                <circle cx="50" cy="50" r="45" fill="#1e293b" stroke="#38bdf8" stroke-width="4"/>
+                <path d="M50 20L75 75H25L50 20Z" fill="#38bdf8"/>
+                <circle cx="50" cy="55" r="10" fill="#0f172a"/>
+              </svg>
+            </div>
+            <h4>Titan Strikers</h4>
+            <span class="team-dept">Mechanical Engineering</span>
+            <div class="team-specs">
+              <div><strong>Captain:</strong> Arjun Nair</div>
+              <div><strong>Discipline:</strong> Basketball</div>
+              <div><strong>Seed:</strong> #2 Ranked</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Team 3 -->
+        <div class="team-card-3d">
+          <div class="team-inner">
+            <div class="team-logo-wrap">
+              <!-- SVG Team Logo: Cyber Hawks -->
+              <svg viewBox="0 0 100 100" class="team-logo-svg">
+                <circle cx="50" cy="50" r="45" fill="#1e293b" stroke="#10b981" stroke-width="4"/>
+                <path d="M25 45L50 25L75 45L50 75L25 45Z" fill="#10b981"/>
+              </svg>
+            </div>
+            <h4>Cyber Hawks</h4>
+            <span class="team-dept">Information Technology</span>
+            <div class="team-specs">
+              <div><strong>Captain:</strong> Vikram Reddy</div>
+              <div><strong>Discipline:</strong> Badminton & Tennis</div>
+              <div><strong>Seed:</strong> #3 Ranked</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Team 4 -->
+        <div class="team-card-3d">
+          <div class="team-inner">
+            <div class="team-logo-wrap">
+              <!-- SVG Team Logo: Thunderbolts -->
+              <svg viewBox="0 0 100 100" class="team-logo-svg">
+                <circle cx="50" cy="50" r="45" fill="#1e293b" stroke="#ec4899" stroke-width="4"/>
+                <path d="M55 20L30 52H52L45 80L70 48H48L55 20Z" fill="#ec4899"/>
+              </svg>
+            </div>
+            <h4>Thunderbolts</h4>
+            <span class="team-dept">Electronics & Communication</span>
+            <div class="team-specs">
+              <div><strong>Captain:</strong> Priya Varman</div>
+              <div><strong>Discipline:</strong> Volleyball & Athletics</div>
+              <div><strong>Seed:</strong> #4 Ranked</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tournament Schedules & Results (HTML5 Tables & Filter) -->
+    <section class="section container" id="schedules">
+      <div class="section-title-wrap">
+        <h2 class="section-title">Tournament Schedule & Results</h2>
+        <p class="section-subtitle">Filter by sport discipline or inspect full championship fixtures</p>
+      </div>
+
+      <!-- Category Filter Controls -->
+      <div class="filter-controls">
+        <button class="filter-btn active" data-sport="all">All Sports</button>
+        <button class="filter-btn" data-sport="Football">Football</button>
+        <button class="filter-btn" data-sport="Cricket">Cricket</button>
+        <button class="filter-btn" data-sport="Basketball">Basketball</button>
+        <button class="filter-btn" data-sport="Badminton">Badminton</button>
+      </div>
+
+      <div class="table-card">
+        <table class="sports-table" id="fixturesTable">
+          <thead>
+            <tr>
+              <th>Match ID</th>
+              <th>Sport</th>
+              <th>Matchup (Team A vs Team B)</th>
+              <th>Date & Time</th>
+              <th>Venue / Court</th>
+              <th>Match Status / Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-sport="Basketball">
+              <td><strong>M-101</strong></td>
+              <td><span class="sport-tag tag-bb">Basketball</span></td>
+              <td>Titan Strikers vs Cyber Hawks</td>
+              <td>March 28, 09:30 AM</td>
+              <td>Indoor Court 1</td>
+              <td><span class="live-pulse">LIVE (58 - 54)</span></td>
+            </tr>
+            <tr data-sport="Football">
+              <td><strong>M-102</strong></td>
+              <td><span class="sport-tag tag-fb">Football</span></td>
+              <td>Royal Lions FC vs Thunderbolts</td>
+              <td>March 28, 02:00 PM</td>
+              <td>College Main Turf</td>
+              <td><span class="badge-upcoming">Scheduled</span></td>
+            </tr>
+            <tr data-sport="Cricket">
+              <td><strong>M-103</strong></td>
+              <td><span class="sport-tag tag-cr">Cricket</span></td>
+              <td>Mech Warriors vs CS Gladiators</td>
+              <td>March 29, 09:00 AM</td>
+              <td>Oval Cricket Ground</td>
+              <td><span class="badge-upcoming">Scheduled</span></td>
+            </tr>
+            <tr data-sport="Badminton">
+              <td><strong>M-104</strong></td>
+              <td><span class="sport-tag tag-bm">Badminton</span></td>
+              <td>Vikram Reddy vs Kevin Paul</td>
+              <td>March 27, 04:00 PM</td>
+              <td>Wooden Court 3</td>
+              <td><span class="badge-done">Completed (21-18, 21-16)</span></td>
+            </tr>
+            <tr data-sport="Football">
+              <td><strong>M-105</strong></td>
+              <td><span class="sport-tag tag-fb">Football</span></td>
+              <td>MBA Titans vs Civil United</td>
+              <td>March 27, 10:00 AM</td>
+              <td>College Main Turf</td>
+              <td><span class="badge-done">Completed (2 - 1)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Team Registration Form -->
+    <section class="section container" id="register">
+      <div class="sports-form-card">
+        <div class="section-title-wrap">
+          <h2 class="section-title">Official Team Registration Form</h2>
+          <p class="section-subtitle">Register your institutional squad before the entries deadline</p>
+        </div>
+
+        <form action="register.php" method="POST" id="tournamentForm" class="sports-form">
+          <div class="form-row grid-2">
+            <div class="form-group">
+              <label for="teamName">Official Team Name <span class="req">*</span></label>
+              <input type="text" id="teamName" name="teamName" placeholder="e.g. Royal Lions" required minlength="3">
+            </div>
+
+            <div class="form-group">
+              <label for="college">College / University Name <span class="req">*</span></label>
+              <input type="text" id="college" name="college" placeholder="e.g. National Institute of Tech" required>
+            </div>
+          </div>
+
+          <div class="form-row grid-3">
+            <div class="form-group">
+              <label for="sportCategory">Sports Discipline <span class="req">*</span></label>
+              <select id="sportCategory" name="sportCategory" required>
+                <option value="" disabled selected>-- Select Sport --</option>
+                <option value="Football">Football (11 vs 11)</option>
+                <option value="Cricket">Cricket (T20 League)</option>
+                <option value="Basketball">Basketball (5 vs 5)</option>
+                <option value="Badminton">Badminton (Singles/Doubles)</option>
+                <option value="Volleyball">Volleyball (6 vs 6)</option>
+                <option value="Chess">Chess (FIDE Rapid)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="genderDivision">Division <span class="req">*</span></label>
+              <select id="genderDivision" name="genderDivision" required>
+                <option value="Men's Championship">Men's Championship</option>
+                <option value="Women's Championship">Women's Championship</option>
+                <option value="Mixed Doubles">Mixed Doubles</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="squadCount">Squad Member Count <span class="req">*</span></label>
+              <input type="number" id="squadCount" name="squadCount" min="2" max="18" value="11" required>
+            </div>
+          </div>
+
+          <div class="form-row grid-2">
+            <div class="form-group">
+              <label for="captainName">Team Captain Name <span class="req">*</span></label>
+              <input type="text" id="captainName" name="captainName" placeholder="Rohit Sharma" required>
+            </div>
+
+            <div class="form-group">
+              <label for="captainPhone">Captain Contact Number <span class="req">*</span></label>
+              <input type="tel" id="captainPhone" name="captainPhone" placeholder="9876543210" pattern="[0-9]{10}" required>
+            </div>
+          </div>
+
+          <div class="form-row grid-2">
+            <div class="form-group">
+              <label for="captainEmail">Captain Email ID <span class="req">*</span></label>
+              <input type="email" id="captainEmail" name="captainEmail" placeholder="captain@college.edu" required>
+            </div>
+
+            <div class="form-group">
+              <label for="jerseyColor">Team Jersey Primary Color</label>
+              <input type="color" id="jerseyColor" name="jerseyColor" value="#f59e0b" style="height: 46px; padding: 4px;">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="roster">Squad Roster & Player Names <span class="req">*</span></label>
+            <textarea id="roster" name="roster" rows="4" placeholder="Enter list of players (Jersey #, Name, Student Roll No)..." required></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-gold">Confirm Team Registration (HTTP POST)</button>
+            <button type="reset" class="btn btn-outline-dark">Reset</button>
+          </div>
+
+          <div id="sportsFeedback" class="sports-feedback" style="display: none;"></div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Client-Server Architecture Breakdown Card -->
+    <section class="section container">
+      <div class="architecture-box">
+        <h3>Client-Server Communication Architecture in Sports Web Systems</h3>
+        <p>How real-time match data and team registration travel through the network stack:</p>
+        
+        <div class="arch-steps">
+          <div class="arch-step">
+            <strong>1. URL & DNS Resolution</strong>
+            <p>Browser parses <code>http://localhost/register.php</code>, queries local DNS cache to resolve hostname into IP address <code>127.0.0.1</code>.</p>
+          </div>
+          <div class="arch-step">
+            <strong>2. TCP 3-Way Handshake</strong>
+            <p>Reliable connection established over port 80/443 via SYN ➔ SYN-ACK ➔ ACK packets before application data begins flowing.</p>
+          </div>
+          <div class="arch-step">
+            <strong>3. HTTP Request Dispatch</strong>
+            <p>Client serializes team payload into body of an HTTP POST request along with <code>User-Agent</code>, <code>Host</code>, and MIME headers.</p>
+          </div>
+          <div class="arch-step">
+            <strong>4. Web Server Execution & DOM</strong>
+            <p>Apache receives packet, executes PHP worker to log entry, and streams <code>HTTP 200 OK</code>. Browser constructs DOM & CSSOM trees.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Olympus Sports Championship. Internet Programming Assignment 1 (CO1).</p>
+      <p>Configured for WAMP/LAMP Web Server Environments with CSS3 3D Transformations.</p>
+    </div>
+  </footer>
+
+  <!-- Include App Script -->
+  <script src="app.js"></script>
+</body>
+</html>

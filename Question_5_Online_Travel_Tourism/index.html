@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WanderLust Global | Curated Destinations, Packages & Tour Bookings</title>
+  
+  <!-- Google Fonts: Space Grotesk & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Travel Advisory Bar -->
+  <aside class="top-advisory-bar">
+    <div class="container advisory-flex">
+      <span>✈️ <strong>Summer 2026 Early Bird Special:</strong> Book before April 30 and receive complimentary business-class airport transfers.</span>
+      <span>24/7 Global Concierge: +1 (800) 555-WANDER</span>
+    </div>
+  </aside>
+
+  <!-- Semantic Header -->
+  <header class="header">
+    <div class="container header-wrap">
+      <div class="brand">
+        <!-- Inline SVG Travel Compass Logo -->
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="10" stroke="#0284c7" stroke-width="2"/>
+          <polygon points="12,4 15,10 20,12 15,14 12,20 9,14 4,12 9,10" fill="#f59e0b"/>
+          <circle cx="12" cy="12" r="2" fill="#0f172a"/>
+        </svg>
+        <span>Wander<strong>Lust</strong> Journeys</span>
+      </div>
+
+      <nav class="nav" aria-label="Main Navigation">
+        <ul>
+          <li><a href="#destinations">Destinations</a></li>
+          <li><a href="#packages">Tour Packages</a></li>
+          <li><a href="#attractions">Attractions & Amenities</a></li>
+          <li><a href="#http-architecture">HTTP Architecture</a></li>
+          <li><a href="#booking" class="btn btn-sm btn-primary">Book Now</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Banner with CSS3 Backgrounds, Gradients & Text Shadow -->
+  <section class="hero">
+    <div class="container hero-content">
+      <span class="hero-badge">Bespoke International Expeditions</span>
+      <h1 class="hero-title text-shadow-glow">Discover Unforgettable Horizons Across the Globe</h1>
+      <p class="hero-subtitle">
+        Immerse yourself in world heritage wonders, alpine luxury retreats, tropical island sanctuaries, and private guided cultural odysseys.
+      </p>
+      <div class="hero-actions">
+        <a href="#packages" class="btn btn-primary">Explore Travel Packages</a>
+        <a href="#booking" class="btn btn-secondary">Reserve Tour Slot</a>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- Tourist Destinations Showcase (Inline SVG Scenery & Hotel Info) -->
+    <section class="section container" id="destinations">
+      <div class="section-title-wrap">
+        <h2 class="section-title">Iconic Global Destinations</h2>
+        <p class="section-subtitle">Handpicked luxury hotels, scenic landscapes, and cultural landmarks</p>
+      </div>
+
+      <div class="destinations-grid">
+        <!-- Destination 1: Swiss Alps -->
+        <article class="destination-card">
+          <div class="dest-media">
+            <!-- Inline SVG Swiss Alps -->
+            <svg viewBox="0 0 400 220" class="dest-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="220" fill="#0284c7"/>
+              <circle cx="330" cy="50" r="28" fill="#fef08a"/>
+              <!-- Mountains -->
+              <polygon points="40,220 160,70 280,220" fill="#334155"/>
+              <polygon points="120,120 160,70 200,120" fill="#f8fafc"/>
+              <polygon points="180,220 280,50 380,220" fill="#1e293b"/>
+              <polygon points="240,110 280,50 320,110" fill="#f8fafc"/>
+              <!-- Pine Trees -->
+              <polygon points="70,220 85,180 100,220" fill="#065f46"/>
+              <polygon points="90,220 105,175 120,220" fill="#047857"/>
+            </svg>
+            <span class="dest-tag">Switzerland</span>
+          </div>
+          <div class="dest-body">
+            <div class="hotel-info">
+              <span class="hotel-stars">★★★★★</span>
+              <span class="hotel-name">Grand Hotel Zermatterhof (Zermatt)</span>
+            </div>
+            <h3 class="dest-name">Swiss Alpine Odyssey</h3>
+            <p class="dest-desc">Panoramic Matterhorn Glacier rides, pristine alpine lakes, cogwheel scenic railways, and Michelin-starred dining.</p>
+            <div class="dest-footer">
+              <span class="dest-duration">⏱ 7 Days / 6 Nights</span>
+              <span class="dest-price">From ₹2,45,000</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Destination 2: Bali -->
+        <article class="destination-card">
+          <div class="dest-media">
+            <!-- Inline SVG Bali -->
+            <svg viewBox="0 0 400 220" class="dest-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="220" fill="#0369a1"/>
+              <circle cx="200" cy="140" r="60" fill="#ea580c"/>
+              <path d="M0 160 Q 100 150 200 165 T 400 160 L 400 220 L 0 220 Z" fill="#0c4a6e"/>
+              <!-- Palm Tree -->
+              <path d="M80 220 Q 95 140 120 90" stroke="#78350f" stroke-width="6"/>
+              <path d="M120 90 Q 70 80 50 110M120 90 Q 110 50 100 30M120 90 Q 160 70 180 95" stroke="#15803d" stroke-width="4"/>
+            </svg>
+            <span class="dest-tag tag-tropical">Indonesia</span>
+          </div>
+          <div class="dest-body">
+            <div class="hotel-info">
+              <span class="hotel-stars">★★★★★</span>
+              <span class="hotel-name">Four Seasons Resort Sayan (Ubud)</span>
+            </div>
+            <h3 class="dest-name">Bali Tropical Sanctuary</h3>
+            <p class="dest-desc">Emerald rice terrace walks, private infinity plunge pools, spiritual water temples, and sunset catamaran cruises.</p>
+            <div class="dest-footer">
+              <span class="dest-duration">⏱ 6 Days / 5 Nights</span>
+              <span class="dest-price">From ₹1,15,000</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Destination 3: Kyoto -->
+        <article class="destination-card">
+          <div class="dest-media">
+            <!-- Inline SVG Kyoto -->
+            <svg viewBox="0 0 400 220" class="dest-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="220" fill="#475569"/>
+              <circle cx="320" cy="70" r="40" fill="#dc2626"/>
+              <!-- Torii Gate -->
+              <rect x="130" y="80" width="140" height="12" fill="#ef4444"/>
+              <rect x="140" y="98" width="120" height="8" fill="#ef4444"/>
+              <rect x="155" y="98" width="14" height="122" fill="#ef4444"/>
+              <rect x="231" y="98" width="14" height="122" fill="#ef4444"/>
+              <path d="M120 75 Q 200 85 280 75 L 285 82 Q 200 92 115 82 Z" fill="#0f172a"/>
+            </svg>
+            <span class="dest-tag tag-japan">Japan</span>
+          </div>
+          <div class="dest-body">
+            <div class="hotel-info">
+              <span class="hotel-stars">★★★★★</span>
+              <span class="hotel-name">The Ritz-Carlton Kyoto (Kamogawa)</span>
+            </div>
+            <h3 class="dest-name">Kyoto Heritage Journey</h3>
+            <p class="dest-desc">Arashiyama bamboo groves, golden Kinkaku-ji pavilion, authentic Uji matcha ceremonies, and Shinkansen bullet train rides.</p>
+            <div class="dest-footer">
+              <span class="dest-duration">⏱ 8 Days / 7 Nights</span>
+              <span class="dest-price">From ₹2,85,000</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Destination 4: Santorini -->
+        <article class="destination-card">
+          <div class="dest-media">
+            <!-- Inline SVG Santorini -->
+            <svg viewBox="0 0 400 220" class="dest-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="220" fill="#0284c7"/>
+              <circle cx="80" cy="60" r="26" fill="#fef08a"/>
+              <rect x="140" y="100" width="120" height="120" fill="#f8fafc"/>
+              <path d="M140 100 Q 200 40 260 100 Z" fill="#1d4ed8"/>
+              <rect x="180" y="140" width="30" height="50" rx="15" fill="#1d4ed8"/>
+              <!-- Cliff -->
+              <polygon points="0,220 140,150 400,180 400,220" fill="#78350f"/>
+            </svg>
+            <span class="dest-tag tag-med">Greece</span>
+          </div>
+          <div class="dest-body">
+            <div class="hotel-info">
+              <span class="hotel-stars">★★★★★</span>
+              <span class="hotel-name">Canaves Oia Suites (Caldera View)</span>
+            </div>
+            <h3 class="dest-name">Santorini Cycladic Escape</h3>
+            <p class="dest-desc">Whitewashed clifftop suites, Aegean caldera yacht excursions, volcanic vineyard tastings, and world-famous Oia sunsets.</p>
+            <div class="dest-footer">
+              <span class="dest-duration">⏱ 5 Days / 4 Nights</span>
+              <span class="dest-price">From ₹1,95,000</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Travel Package Comparison Matrix (HTML5 Table with Full Semantics) -->
+    <section class="section container" id="packages">
+      <div class="section-title-wrap">
+        <h2 class="section-title">Comparative Travel Package Matrix</h2>
+        <p class="section-subtitle">Select the tier that aligns with your preferred level of comfort and exclusivity</p>
+      </div>
+
+      <div class="package-table-wrapper">
+        <table class="package-table">
+          <caption>Comprehensive Feature Matrix Across WanderLust Tiers</caption>
+          <thead>
+            <tr>
+              <th scope="col">Inclusion Feature</th>
+              <th scope="col">Backpacker Discovery</th>
+              <th scope="col" class="highlight-col">Explorer Premium</th>
+              <th scope="col">Royal VIP Signature</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Accommodation Standard</th>
+              <td>3-Star Boutique Hotels</td>
+              <td class="highlight-col">4-Star Deluxe Resorts</td>
+              <td>5-Star Luxury / Clifftop Villas</td>
+            </tr>
+            <tr>
+              <th scope="row">Daily Meal Plan</th>
+              <td>Complimentary Breakfast</td>
+              <td class="highlight-col">Full Board (Breakfast & Dinner)</td>
+              <td>All-Inclusive Fine Dining & Wine</td>
+            </tr>
+            <tr>
+              <th scope="row">Guided Sightseeing</th>
+              <td>Group Guided Walking Tours</td>
+              <td class="highlight-col">Semi-Private Small Group Excursions</td>
+              <td>Dedicated Private Chauffeur & Historian</td>
+            </tr>
+            <tr>
+              <th scope="row">Airport Ground Transfers</th>
+              <td>Scheduled Shared Coach</td>
+              <td class="highlight-col">Private Executive Sedan</td>
+              <td>Luxury Chauffeur / Helicopter Transfer</td>
+            </tr>
+            <tr>
+              <th scope="row">Luggage & Baggage Porterage</th>
+              <td>Self Managed</td>
+              <td class="highlight-col">Hotel Bellboy Service Included</td>
+              <td>Full Door-to-Door Luggage Transit</td>
+            </tr>
+            <tr>
+              <th scope="row">Emergency Medical Insurance</th>
+              <td>Basic Coverage ($50,000)</td>
+              <td class="highlight-col">Comprehensive ($250,000)</td>
+              <td>Unlimited Elite Global Coverage</td>
+            </tr>
+            <tr>
+              <th scope="row">Concierge & Booking Flexibility</th>
+              <td>Standard Email Support</td>
+              <td class="highlight-col">24/7 WhatsApp Travel Assistant</td>
+              <td>Personal Dedicated Travel Butler</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th scope="row">Base Price per Traveler</th>
+              <td><strong>₹75,000</strong></td>
+              <td class="highlight-col"><strong>₹1,65,000</strong></td>
+              <td><strong>₹3,20,000</strong></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+
+    <!-- Attractions and Facilities (Semantic Lists) -->
+    <section class="section container" id="attractions">
+      <div class="section-title-wrap">
+        <h2 class="section-title">Attractions, Facilities & Inclusions</h2>
+        <p class="section-subtitle">Every itinerary is enriched with world-class amenities and cultural activities</p>
+      </div>
+
+      <div class="attractions-grid">
+        <article class="attr-card">
+          <h3>🏛️ Key Attractions Included</h3>
+          <p>Must-see monuments and natural reserves included in all tour passes:</p>
+          <ul class="styled-travel-list">
+            <li><strong>UNESCO World Heritage Sites:</strong> Priority skip-the-line VIP passes</li>
+            <li><strong>Glacier & Mountain Railways:</strong> Reserved first-class panoramic car seating</li>
+            <li><strong>Volcanic Hot Springs & Spas:</strong> Rejuvenating thermal mineral baths</li>
+            <li><strong>Private Vineyard Tours:</strong> Sommelier-led wine and artisan cheese tasting</li>
+          </ul>
+        </article>
+
+        <article class="attr-card">
+          <h3>💎 Premium Guest Facilities</h3>
+          <p>Standard amenities available at all partnering hospitality properties:</p>
+          <ol class="styled-travel-list">
+            <li><strong>High-Speed Wi-Fi & eSIM:</strong> Unlimited international 5G roaming data</li>
+            <li><strong>Infinity Pools & Spas:</strong> Heated indoor and rooftop infinity pool access</li>
+            <li><strong>24/7 Multilingual Support:</strong> On-call translators and concierge support</li>
+            <li><strong>Flexible Cancellation:</strong> 100% refund up to 72 hours prior to departure</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <!-- Tour Booking Form Section -->
+    <section class="section container" id="booking">
+      <div class="booking-card">
+        <div class="section-title-wrap">
+          <h2 class="section-title">International Tour Booking Requisition</h2>
+          <p class="section-subtitle">Secure your itinerary and reserve customized travel arrangements</p>
+        </div>
+
+        <form action="booking.php" method="POST" id="travelForm" class="travel-form">
+          <div class="form-row grid-2">
+            <div class="form-group">
+              <label for="travelerName">Lead Traveler Name <span class="req">*</span></label>
+              <input type="text" id="travelerName" name="travelerName" placeholder="Mithun Raj" required minlength="3">
+            </div>
+
+            <div class="form-group">
+              <label for="travelerEmail">Email Address <span class="req">*</span></label>
+              <input type="email" id="travelerEmail" name="travelerEmail" placeholder="mithun@example.com" required>
+            </div>
+          </div>
+
+          <div class="form-row grid-3">
+            <div class="form-group">
+              <label for="phone">Phone / WhatsApp Number <span class="req">*</span></label>
+              <input type="tel" id="phone" name="phone" placeholder="9876543210" pattern="[0-9]{10}" required>
+            </div>
+
+            <div class="form-group">
+              <label for="destination">Target Destination <span class="req">*</span></label>
+              <select id="destination" name="destination" required>
+                <option value="" disabled selected>-- Select Destination --</option>
+                <option value="Swiss Alpine Odyssey">Swiss Alpine Odyssey (Switzerland)</option>
+                <option value="Bali Tropical Sanctuary">Bali Tropical Sanctuary (Indonesia)</option>
+                <option value="Kyoto Heritage Journey">Kyoto Heritage Journey (Japan)</option>
+                <option value="Santorini Cycladic Escape">Santorini Cycladic Escape (Greece)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="packageTier">Package Tier <span class="req">*</span></label>
+              <select id="packageTier" name="packageTier" required>
+                <option value="Explorer Premium Tier" selected>Explorer Premium (Recommended)</option>
+                <option value="Backpacker Discovery Tier">Backpacker Discovery</option>
+                <option value="Royal VIP Signature Tier">Royal VIP Signature</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row grid-2">
+            <div class="form-group">
+              <label for="depDate">Departure Date <span class="req">*</span></label>
+              <input type="date" id="depDate" name="depDate" min="2026-04-01" required>
+            </div>
+
+            <div class="form-group">
+              <label for="returnDate">Return Date <span class="req">*</span></label>
+              <input type="date" id="returnDate" name="returnDate" min="2026-04-05" required>
+            </div>
+          </div>
+
+          <div class="form-row grid-2">
+            <div class="form-group">
+              <label for="adults">Number of Adults (12+ yrs) <span class="req">*</span></label>
+              <input type="number" id="adults" name="adults" min="1" max="10" value="2" required>
+            </div>
+
+            <div class="form-group">
+              <label for="children">Number of Children (Under 12 yrs)</label>
+              <input type="number" id="children" name="children" min="0" max="6" value="0">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Custom Travel Preferences</label>
+            <div class="pref-grid">
+              <label class="cb-label"><input type="checkbox" name="preferences[]" value="Sea / Mountain View Room" checked> Scenic View Room</label>
+              <label class="cb-label"><input type="checkbox" name="preferences[]" value="Vegetarian / Vegan Cuisine"> Vegetarian / Vegan Meals</label>
+              <label class="cb-label"><input type="checkbox" name="preferences[]" value="Private Airport Chauffeur" checked> Private Airport Chauffeur</label>
+              <label class="cb-label"><input type="checkbox" name="preferences[]" value="Travel & Medical Insurance"> Medical Insurance Add-on</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="specialRequests">Special Dietary, Anniversary or Medical Notes</label>
+            <textarea id="specialRequests" name="specialRequests" rows="3" placeholder="Let us know if you require wheelchair assistance, celebratory arrangements, or specific flight timings..."></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Submit Travel Booking (HTTP POST)</button>
+            <button type="reset" class="btn btn-outline-dark">Reset</button>
+          </div>
+
+          <div id="bookingFeedback" class="booking-feedback" style="display: none;"></div>
+        </form>
+      </div>
+    </section>
+
+    <!-- In-Depth Technical Section: How Web Clients Communicate With Web Servers Using HTTP -->
+    <section class="section container" id="http-architecture">
+      <div class="http-card">
+        <h2 class="section-title">Technical Deep-Dive: HTTP Client-Server Communication</h2>
+        <p class="section-subtitle">
+          How modern web browsers exchange structured requests and responses with web servers over HTTP/1.1 and HTTP/2
+        </p>
+
+        <div class="http-grid">
+          <!-- Column 1: Methods & Anatomy -->
+          <div class="http-col">
+            <h3>1. HTTP Request Methods</h3>
+            <ul class="http-list">
+              <li><strong>GET:</strong> Retrieves resources (e.g. fetching destination photos). Must be idempotent and safe without payload.</li>
+              <li><strong>POST:</strong> Submits data to be processed (e.g., booking form submission). Carries data in the message body.</li>
+              <li><strong>PUT:</strong> Replaces entire target resource with uploaded payload.</li>
+              <li><strong>DELETE:</strong> Removes specified resource from the server.</li>
+              <li><strong>HEAD:</strong> Same as GET, but retrieves only headers without response body.</li>
+            </ul>
+
+            <h3 style="margin-top: 20px;">2. Request & Response Headers</h3>
+            <p><strong>Client Request Headers:</strong></p>
+            <code>
+              POST /booking.php HTTP/1.1<br>
+              Host: localhost<br>
+              User-Agent: Mozilla/5.0 (Windows NT 10.0)<br>
+              Content-Type: application/x-www-form-urlencoded<br>
+              Accept: text/html,application/xhtml+xml
+            </code>
+            <p style="margin-top: 10px;"><strong>Server Response Headers:</strong></p>
+            <code>
+              HTTP/1.1 200 OK<br>
+              Date: Sat, 14 Nov 2026 13:00:00 GMT<br>
+              Server: Apache/2.4.58 (Win64) OpenSSL/3.1.3 PHP/8.2.13<br>
+              Content-Type: text/html; charset=UTF-8<br>
+              Connection: keep-alive
+            </code>
+          </div>
+
+          <!-- Column 2: Status Codes & Statelessness -->
+          <div class="http-col">
+            <h3>3. HTTP Status Code Taxonomy</h3>
+            <div class="status-category">
+              <span class="sc-badge sc-1xx">1xx Informational</span>
+              <p>Request received, continuing process (e.g. <code>101 Switching Protocols</code>).</p>
+            </div>
+            <div class="status-category">
+              <span class="sc-badge sc-2xx">2xx Success</span>
+              <p>Action successfully received and accepted (e.g. <code>200 OK</code>, <code>201 Created</code>).</p>
+            </div>
+            <div class="status-category">
+              <span class="sc-badge sc-3xx">3xx Redirection</span>
+              <p>Further action required to fulfill request (e.g. <code>301 Moved Permanently</code>, <code>304 Not Modified</code>).</p>
+            </div>
+            <div class="status-category">
+              <span class="sc-badge sc-4xx">4xx Client Error</span>
+              <p>Request contains bad syntax or unauthorized access (e.g. <code>400 Bad Request</code>, <code>404 Not Found</code>).</p>
+            </div>
+            <div class="status-category">
+              <span class="sc-badge sc-5xx">5xx Server Error</span>
+              <p>Server failed to fulfill a valid request (e.g. <code>500 Internal Server Error</code>, <code>502 Bad Gateway</code>).</p>
+            </div>
+
+            <h3 style="margin-top: 20px;">4. Statelessness & Session Handling</h3>
+            <p style="font-size: 0.9rem; color: #475569;">
+              HTTP is fundamentally <strong>stateless</strong>: the server retains no memory of previous requests from the same client. To maintain booking sessions, web applications utilize <code>Set-Cookie</code> headers containing session IDs, which the client re-transmits in subsequent <code>Cookie: PHPSESSID=...</code> headers.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>&copy; 2026 WanderLust Global Journeys. Internet Programming Assignment 1 (CO1).</p>
+      <p>Configured for WAMP and LAMP Web Servers with CSS3 Border Images, Gradients & Animations.</p>
+    </div>
+  </footer>
+
+  <!-- Client-Side Preview Script -->
+  <script>
+    document.getElementById('travelForm').addEventListener('submit', function(e) {
+      if (window.location.protocol === 'file:') {
+        e.preventDefault();
+        const traveler = document.getElementById('travelerName').value;
+        const dest = document.getElementById('destination').value;
+        const tier = document.getElementById('packageTier').value;
+        const date = document.getElementById('depDate').value;
+
+        const fb = document.getElementById('bookingFeedback');
+        fb.style.display = 'block';
+        fb.innerHTML = `
+          <h4>✓ Tour Booking Logged (Client-Side Simulation)</h4>
+          <p><strong>Lead Traveler:</strong> ${traveler} | <strong>Destination:</strong> ${dest}</p>
+          <p><strong>Package Tier:</strong> ${tier} | <strong>Departure:</strong> ${date}</p>
+          <p style="color: #059669; font-size: 0.9rem;">HTTP POST payload validated. In WAMP/LAMP environment, this routes to <code>booking.php</code>.</p>
+        `;
+        fb.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  </script>
+</body>
+</html>
