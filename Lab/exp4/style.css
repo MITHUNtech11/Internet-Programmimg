@@ -1,0 +1,485 @@
+/* ========================================================
+   CSS Styling: HTTP Inspector & Snowflake OLAP Console (exp4)
+   ======================================================== */
+
+:root {
+    --bg-page: #0f172a;
+    --bg-card: #1e293b;
+    --bg-inner: #0f172a;
+    --text-primary: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    --primary: #38bdf8;
+    --primary-hover: #0284c7;
+    --accent: #818cf8;
+    --success: #34d399;
+    --warning: #fbbf24;
+    --error: #f87171;
+    --radius: 8px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding: 24px 16px;
+}
+
+.app-container {
+    max-width: 1040px;
+    margin: 0 auto;
+}
+
+/* Header */
+.app-header {
+    text-align: center;
+    margin-bottom: 24px;
+    padding: 16px;
+}
+
+.header-badge {
+    display: inline-block;
+    background-color: rgba(56, 189, 248, 0.15);
+    color: var(--primary);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 4px 14px;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.app-header h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.app-header p {
+    color: var(--text-muted);
+    font-size: 15px;
+    max-width: 740px;
+    margin: 0 auto;
+}
+
+/* Module Switcher */
+.module-switch {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.switch-btn {
+    flex: 1;
+    padding: 12px 16px;
+    background-color: var(--bg-card);
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.switch-btn:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.switch-btn.active {
+    background-color: var(--primary);
+    color: #0f172a;
+    border-color: var(--primary);
+}
+
+/* Module Sections */
+.module-section {
+    display: none;
+    animation: fadeIn 0.25s ease-out;
+}
+
+.module-section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Cards */
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 26px;
+    margin-bottom: 24px;
+}
+
+.card h2 {
+    font-size: 20px;
+    margin-bottom: 6px;
+    color: #ffffff;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+/* HTTP Control Grid */
+.http-control-grid {
+    display: grid;
+    grid-template-columns: 180px 1fr 240px 180px;
+    gap: 12px;
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.select-control,
+.text-control {
+    width: 100%;
+    padding: 9px 12px;
+    font-size: 13px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-inner);
+    color: #ffffff;
+    outline: none;
+    font-family: inherit;
+}
+
+.select-control:focus,
+.text-control:focus {
+    border-color: var(--primary);
+}
+
+.btn {
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: #0f172a;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    color: #ffffff;
+}
+
+/* Split View for HTTP Messages */
+.split-view {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.message-box {
+    background-color: #0b1120;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.box-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1a2234;
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.box-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.box-tag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background-color: rgba(56, 189, 248, 0.2);
+    color: var(--primary);
+}
+
+.raw-output {
+    padding: 14px;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #a5f3fc;
+    min-height: 220px;
+    max-height: 320px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+/* Status Code Guide */
+.status-guide h3 {
+    font-size: 15px;
+    color: #ffffff;
+    margin-bottom: 12px;
+}
+
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.status-card {
+    background-color: #0b1120;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 11px;
+}
+
+.status-card strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 12px;
+}
+
+.status-card p {
+    color: var(--text-muted);
+    font-size: 11px;
+    line-height: 1.3;
+}
+
+.status-card.c1xx strong { color: #94a3b8; }
+.status-card.c2xx strong { color: var(--success); }
+.status-card.c3xx strong { color: #38bdf8; }
+.status-card.c4xx strong { color: var(--warning); }
+.status-card.c5xx strong { color: var(--error); }
+
+/* Schema Diagram */
+.schema-diagram-box {
+    background-color: #0b1120;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 16px;
+    overflow-x: auto;
+}
+
+.ascii-schema {
+    font-family: "Consolas", monospace;
+    font-size: 11px;
+    color: #7dd3fc;
+    line-height: 1.4;
+    white-space: pre;
+}
+
+/* ETL Grid */
+.etl-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.etl-card {
+    background-color: #0b1120;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 16px;
+}
+
+.etl-step-num {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background-color: rgba(129, 140, 248, 0.2);
+    color: var(--accent);
+    margin-bottom: 8px;
+}
+
+.etl-card h3 {
+    font-size: 16px;
+    color: #ffffff;
+    margin-bottom: 6px;
+}
+
+.etl-card p {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* OLAP Operations */
+.olap-op-box {
+    background-color: #0b1120;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 18px;
+    margin-bottom: 20px;
+}
+
+.op-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.op-header h3 {
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.op-badge {
+    font-size: 11px;
+    font-weight: 600;
+    background-color: rgba(56, 189, 248, 0.15);
+    color: var(--primary);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.op-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+
+.code-block {
+    background-color: #070a13;
+    border: 1px solid #1a2234;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+}
+
+.code-title {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #94a3b8;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+}
+
+.code-block code {
+    font-family: "Consolas", monospace;
+    font-size: 12px;
+    color: #38bdf8;
+    line-height: 1.4;
+}
+
+/* OLAP Table */
+.olap-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+.olap-table th,
+.olap-table td {
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.olap-table th {
+    background-color: #1a2234;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.olap-table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.bar-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rev-bar {
+    height: 12px;
+    background: linear-gradient(90deg, #38bdf8, #818cf8);
+    border-radius: 3px;
+}
+
+/* Strategic Insights */
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.insight-item {
+    background-color: #0b1120;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 16px;
+}
+
+.insight-item h4 {
+    font-size: 14px;
+    color: var(--primary);
+    margin-bottom: 6px;
+}
+
+.insight-item p {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* Footer */
+.app-footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    padding-top: 16px;
+}
+
+@media (max-width: 840px) {
+    .http-control-grid {
+        grid-template-columns: 1fr;
+    }
+    .split-view, .status-grid, .etl-steps-grid, .insights-grid {
+        grid-template-columns: 1fr;
+    }
+}

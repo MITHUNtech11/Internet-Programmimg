@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP Client-Server Protocol & Retail Data Warehouse OLAP Console</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Main Header -->
+        <header class="app-header">
+            <div class="header-badge">Internet Programming & Data Analytics</div>
+            <h1>HTTP Protocol Inspector & Snowflake Warehouse OLAP Console</h1>
+            <p>Interactive platform demonstrating HTTP request/response lifecycles alongside dimensional snowflake data modeling, ETL pipelines, and multi-dimensional OLAP analytics.</p>
+        </header>
+
+        <!-- Top Navigation Mode Switcher -->
+        <div class="module-switch">
+            <button class="switch-btn active" id="btnShowHttp">🌐 Module 1: HTTP Request/Response Inspector</button>
+            <button class="switch-btn" id="btnShowOlap">📊 Module 2: Snowflake Schema & OLAP Analytics</button>
+        </div>
+
+        <!-- ==================== MODULE 1: HTTP INSPECTOR ==================== -->
+        <main id="httpModule" class="module-section active">
+            <div class="card">
+                <h2>1. HTTP Request & Response Anatomy and Status Code Handler</h2>
+                <p class="subtitle">Select an HTTP method, endpoint, and test scenario to inspect raw HTTP message headers, payload framing, and status code semantics.</p>
+
+                <div class="http-control-grid">
+                    <div class="input-group">
+                        <label for="httpMethod">HTTP Method</label>
+                        <select id="httpMethod" class="select-control">
+                            <option value="GET">GET (Retrieve Resource)</option>
+                            <option value="POST">POST (Submit / Create Resource)</option>
+                            <option value="PUT">PUT (Replace / Update Resource)</option>
+                            <option value="DELETE">DELETE (Remove Resource)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group endpoint-group">
+                        <label for="httpEndpoint">Target Endpoint URI</label>
+                        <input type="text" id="httpEndpoint" class="text-control" value="/api/v1/sales/reports/regional?quarter=Q3">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="simulateScenario">Test Response Scenario</label>
+                        <select id="simulateScenario" class="select-control">
+                            <option value="200">200 OK (Successful Retrieval)</option>
+                            <option value="201">201 Created (New Resource Created)</option>
+                            <option value="400">400 Bad Request (Malformed Client Syntax)</option>
+                            <option value="401">401 Unauthorized (Missing JWT Auth Token)</option>
+                            <option value="404">404 Not Found (Resource Does Not Exist)</option>
+                            <option value="500">500 Internal Server Error (Database Crash)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group button-group">
+                        <label>&nbsp;</label>
+                        <button id="btnSendHttp" class="btn btn-primary">Dispatch HTTP Request</button>
+                    </div>
+                </div>
+
+                <!-- Raw Message Split View -->
+                <div class="split-view">
+                    <!-- Request Message Box -->
+                    <div class="message-box">
+                        <div class="box-header">
+                            <span class="box-title">HTTP Request Message</span>
+                            <span class="box-tag">Client -&gt; Server</span>
+                        </div>
+                        <pre class="raw-output" id="rawRequestOutput"></pre>
+                    </div>
+
+                    <!-- Response Message Box -->
+                    <div class="message-box">
+                        <div class="box-header">
+                            <span class="box-title">HTTP Response Message</span>
+                            <span class="box-tag" id="statusTag">Server -&gt; Client</span>
+                        </div>
+                        <pre class="raw-output" id="rawResponseOutput"></pre>
+                    </div>
+                </div>
+
+                <!-- Status Code Reference Grid -->
+                <div class="status-guide">
+                    <h3>HTTP Status Code Categorization & Troubleshooting</h3>
+                    <div class="status-grid">
+                        <div class="status-card c1xx">
+                            <strong>1xx Informational</strong>
+                            <p>Request received, continuing process. (e.g. 101 Switching Protocols).</p>
+                        </div>
+                        <div class="status-card c2xx">
+                            <strong>2xx Success</strong>
+                            <p>Action successfully received, understood, and accepted. (200 OK, 201 Created, 204 No Content).</p>
+                        </div>
+                        <div class="status-card c3xx">
+                            <strong>3xx Redirection</strong>
+                            <p>Further action needed to complete request. (301 Moved Permanently, 304 Not Modified).</p>
+                        </div>
+                        <div class="status-card c4xx">
+                            <strong>4xx Client Errors</strong>
+                            <p>Client request error. (400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found).</p>
+                        </div>
+                        <div class="status-card c5xx">
+                            <strong>5xx Server Errors</strong>
+                            <p>Server failed to fulfill valid request. (500 Internal Server Error, 502 Bad Gateway, 503 Service Unavailable).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- ==================== MODULE 2: SNOWFLAKE & OLAP ==================== -->
+        <main id="olapModule" class="module-section">
+            <!-- Snowflake Schema Card -->
+            <div class="card">
+                <h2>2. Snowflake Dimensional Schema Architecture</h2>
+                <p class="subtitle">Normalized multi-tier dimensional model for retail sales analytics, eliminating redundancy through sub-dimension hierarchies.</p>
+
+                <div class="schema-diagram-box">
+                    <pre class="ascii-schema">
+ [Dim_Category]                      [Dim_Region]                    [Dim_Year]
+ (CategoryID, CatName)               (RegionID, RegionName)          (YearID, CalendarYear)
+          ^                                   ^                               ^
+          | 1:N                               | 1:N                           | 1:N
+ [Dim_SubCategory]                   [Dim_City]                      [Dim_Quarter]
+ (SubCatID, SubName, CategoryID)     (CityID, CityName, RegionID)    (QuarterID, QtrName, YearID)
+          ^                                   ^                               ^
+          | 1:N                               | 1:N                           | 1:N
+ [Dim_Product]                       [Dim_Store]                     [Dim_Time]
+ (ProductID, Name, SubCatID, Price)  (StoreID, StoreName, CityID)    (TimeKey, FullDate, QuarterID)
+          \                                   |                               /
+           \                                  |                              /
+            \                                 v                             /
+             +--------------------> [FACT_SALES] <-------------------------+
+                                    * SalesID (PK)
+                                    * ProductID (FK)
+                                    * StoreID (FK)
+                                    * CustomerID (FK)
+                                    * TimeKey (FK)
+                                    * QuantitySold (Measure)
+                                    * UnitPrice (Measure)
+                                    * TotalRevenue (Measure)
+                                              ^
+                                              |
+                                     [Dim_Customer]
+                                     (CustID, Name, DemographicsID)
+                                              | 1:N
+                                              v
+                                     [Dim_Demographics]
+                                     (DemographicsID, AgeGroup, IncomeTier)
+                    </pre>
+                </div>
+            </div>
+
+            <!-- ETL Pipeline Card -->
+            <div class="card">
+                <h2>3. Three-Tier ETL Pipeline Architecture</h2>
+                <div class="etl-steps-grid">
+                    <div class="etl-card">
+                        <div class="etl-step-num">Step 1</div>
+                        <h3>Extract (E)</h3>
+                        <p>Ingest high-frequency transactional sales records from distributed POS point-of-sale registers, e-commerce web storefronts, and inventory Kafka queues.</p>
+                    </div>
+                    <div class="etl-card">
+                        <div class="etl-step-num">Step 2</div>
+                        <h3>Transform (T)</h3>
+                        <p>Deduplicate records, sanitize null values, convert currencies to USD, normalize product subcategories, map customer age groups (18-25, 26-40, 41-60, 60+), and calculate derived metrics.</p>
+                    </div>
+                    <div class="etl-card">
+                        <div class="etl-step-num">Step 3</div>
+                        <h3>Load (L)</h3>
+                        <p>Execute atomic bulk staging and upserts into target Snowflake data warehouse tables (Slowly Changing Dimensions Type 2 for customers, append-only partitioning for Fact_Sales).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive OLAP Operations Card -->
+            <div class="card">
+                <h2>4. Interactive OLAP Operations (Roll-Up & Dice)</h2>
+                <p class="subtitle">Execute live analytical queries against the warehouse data cube.</p>
+
+                <!-- Operation A: Roll-up -->
+                <div class="olap-op-box">
+                    <div class="op-header">
+                        <h3>Operation (i): Roll-Up (Total Sales Revenue by Region)</h3>
+                        <span class="op-badge">Concept Hierarchy Climbing: Store -&gt; City -&gt; Region</span>
+                    </div>
+                    <p class="op-desc">Roll-up performs aggregation by climbing up geographic hierarchy levels, summarizing granular store receipts into high-level continental regions.</p>
+
+                    <div class="code-block">
+                        <span class="code-title">SQL Query Implementation:</span>
+                        <code>
+SELECT r.RegionName, SUM(f.TotalRevenue) AS TotalRevenue, SUM(f.QuantitySold) AS UnitsSold<br>
+FROM Fact_Sales f<br>
+JOIN Dim_Store s ON f.StoreID = s.StoreID<br>
+JOIN Dim_City c ON s.CityID = c.CityID<br>
+JOIN Dim_Region r ON c.RegionID = r.RegionID<br>
+GROUP BY r.RegionName ORDER BY TotalRevenue DESC;
+                        </code>
+                    </div>
+
+                    <div class="olap-table-wrapper" id="rollupContainer"></div>
+                </div>
+
+                <!-- Operation B: Dice -->
+                <div class="olap-op-box">
+                    <div class="op-header">
+                        <h3>Operation (ii): Dice (Age Groups vs. Product Categories)</h3>
+                        <span class="op-badge">Multi-Dimensional Sub-Cube Slice</span>
+                    </div>
+                    <p class="op-desc">Dice defines a specific sub-cube by filtering across 2 or more dimension criteria: Age Groups (Young Adults 18-25, Mid-Career 26-40, Prime 41-60) across Product Categories (Electronics, Apparel, Home & Kitchen).</p>
+
+                    <div class="code-block">
+                        <span class="code-title">SQL Query Implementation:</span>
+                        <code>
+SELECT d.AgeGroup, cat.CatName AS ProductCategory, SUM(f.TotalRevenue) AS SegmentRevenue<br>
+FROM Fact_Sales f<br>
+JOIN Dim_Customer cust ON f.CustomerID = cust.CustID<br>
+JOIN Dim_Demographics d ON cust.DemographicsID = d.DemographicsID<br>
+JOIN Dim_Product p ON f.ProductID = p.ProductID<br>
+JOIN Dim_SubCategory sub ON p.SubCatID = sub.SubCatID<br>
+JOIN Dim_Category cat ON sub.CategoryID = cat.CategoryID<br>
+WHERE d.AgeGroup IN ('18-25', '26-40', '41-60')<br>
+  AND cat.CatName IN ('Electronics', 'Apparel', 'Home Goods')<br>
+GROUP BY d.AgeGroup, cat.CatName;
+                        </code>
+                    </div>
+
+                    <div class="olap-table-wrapper" id="diceContainer"></div>
+                </div>
+            </div>
+
+            <!-- Retail Strategy Card -->
+            <div class="card">
+                <h2>5. Strategic Marketing & Inventory Decision Insights</h2>
+                <div class="insights-grid">
+                    <div class="insight-item">
+                        <h4>1. Regional Inventory Reallocation</h4>
+                        <p>Roll-up reveals North and West regions generate 68% of total revenue. Recommended Action: Establish regional distribution hubs in high-velocity sectors to reduce shipping delivery transit from 3 days to under 24 hours.</p>
+                    </div>
+                    <div class="insight-item">
+                        <h4>2. Targeted Demographic Marketing Campaigns</h4>
+                        <p>Dice analysis confirms 18-25 age demographics drive 74% of Electronics sales, while the 41-60 group dominates Home Goods. Action: Direct digital social ads (TikTok/Instagram) for electronics to Gen-Z, while investing in lifestyle catalogs and email marketing for home improvements to ages 41-60.</p>
+                    </div>
+                    <div class="insight-item">
+                        <h4>3. Predictive Stock Replenishment</h4>
+                        <p>Identify seasonal sales spikes across cross-dimensional segments to automate supplier re-order points, preventing costly stockouts during peak retail quarters.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>&copy; 2026 Internet Programming Lab Curriculum | Experiment 4: HTTP Protocol & Dimensional OLAP Warehouse</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

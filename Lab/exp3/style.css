@@ -1,0 +1,436 @@
+/* ========================================================
+   CSS Styling: LAMP vs WAMP Stack Environment Guide (exp3)
+   ======================================================== */
+
+:root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-light: #334155;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    --primary: #38bdf8;
+    --primary-hover: #0284c7;
+    --accent: #a855f7;
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --lamp-color: #e06c75;
+    --wamp-color: #61afef;
+    --radius: 8px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.6;
+    padding: 24px 16px;
+}
+
+.dashboard-container {
+    max-width: 1040px;
+    margin: 0 auto;
+}
+
+/* Header */
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 24px;
+    padding: 16px;
+}
+
+.badge {
+    display: inline-block;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--primary);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.dashboard-header h1 {
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.dashboard-header p {
+    color: var(--text-muted);
+    font-size: 15px;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+/* Tab Navigation */
+.tab-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    background-color: var(--bg-card);
+    padding: 8px;
+    border-radius: var(--radius);
+    margin-bottom: 24px;
+    border: 1px solid var(--border-color);
+}
+
+.tab-btn {
+    flex: 1;
+    min-width: 140px;
+    background: transparent;
+    color: var(--text-muted);
+    border: none;
+    padding: 10px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+    color: var(--text-main);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.tab-btn.active {
+    background-color: var(--primary);
+    color: #0f172a;
+    font-weight: 700;
+}
+
+/* Tab Pane */
+.tab-pane {
+    display: none;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-bottom: 24px;
+    animation: fadeIn 0.25s ease-out;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-pane h2 {
+    font-size: 22px;
+    margin-bottom: 6px;
+    color: #ffffff;
+}
+
+.section-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+/* Grids */
+.grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.grid-3col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 20px;
+}
+
+/* Stack Cards */
+.stack-card {
+    background-color: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 20px;
+}
+
+.card-header {
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
+}
+
+.stack-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+}
+
+.tag-lamp {
+    background-color: rgba(224, 108, 117, 0.2);
+    color: var(--lamp-color);
+    border: 1px solid var(--lamp-color);
+}
+
+.tag-wamp {
+    background-color: rgba(97, 175, 239, 0.2);
+    color: var(--wamp-color);
+    border: 1px solid var(--wamp-color);
+}
+
+.stack-card h3 {
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.component-list {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 13px;
+    color: #cbd5e1;
+}
+
+.component-list strong {
+    color: var(--primary);
+    display: block;
+    margin-bottom: 2px;
+}
+
+/* Comparison Table */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 12px 14px;
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.comparison-table th {
+    background-color: rgba(15, 23, 42, 0.8);
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.comparison-table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* Architecture Diagram */
+.architecture-diagram-box {
+    background-color: #0b1120;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 16px;
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+.ascii-diagram {
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 12px;
+    color: #38bdf8;
+    line-height: 1.4;
+    white-space: pre;
+}
+
+.mini-card {
+    background-color: rgba(15, 23, 42, 0.5);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 14px;
+}
+
+.mini-card h4 {
+    font-size: 14px;
+    color: var(--primary);
+    margin-bottom: 6px;
+}
+
+.mini-card p {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* Code Terminals */
+.install-box h3 {
+    font-size: 16px;
+    color: #ffffff;
+    margin-bottom: 12px;
+}
+
+.code-terminal {
+    background-color: #090d16;
+    border: 1px solid #1e293b;
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.terminal-bar {
+    background-color: #1e293b;
+    color: #94a3b8;
+    font-family: monospace;
+    font-size: 11px;
+    padding: 6px 12px;
+    border-bottom: 1px solid #334155;
+}
+
+.code-terminal code {
+    display: block;
+    padding: 14px;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 12px;
+    color: #a5f3fc;
+    line-height: 1.5;
+}
+
+/* Interactive Simulator */
+.sim-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    padding: 9px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background-color: #0284c7;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #0369a1;
+}
+
+.btn-accent {
+    background-color: #9333ea;
+    color: #ffffff;
+}
+
+.btn-accent:hover {
+    background-color: #7e22ce;
+}
+
+.btn-secondary {
+    background-color: #475569;
+    color: #ffffff;
+}
+
+.btn-secondary:hover {
+    background-color: #334155;
+}
+
+.service-indicators {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.ind-card {
+    display: flex;
+    align-items: center;
+    background-color: #0b1120;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    font-size: 13px;
+}
+
+.status-light {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 12px;
+    display: inline-block;
+}
+
+.status-light.red {
+    background-color: var(--error);
+    box-shadow: 0 0 8px var(--error);
+}
+
+.status-light.green {
+    background-color: var(--success);
+    box-shadow: 0 0 8px var(--success);
+}
+
+.status-light.gray {
+    background-color: #64748b;
+}
+
+.status-light.amber {
+    background-color: var(--warning);
+    box-shadow: 0 0 8px var(--warning);
+}
+
+.terminal-output {
+    background-color: #000000;
+    border: 1px solid #1e293b;
+    border-radius: var(--radius);
+    padding: 14px;
+    font-family: "Consolas", monospace;
+    font-size: 12px;
+    min-height: 160px;
+    max-height: 240px;
+    overflow-y: auto;
+}
+
+.term-line {
+    margin-bottom: 4px;
+    line-height: 1.4;
+}
+
+.term-line.info { color: #94a3b8; }
+.term-line.success { color: #4ade80; }
+.term-line.warning { color: #facc15; }
+.term-line.error { color: #f87171; }
+
+/* Footer */
+.dashboard-footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    padding-top: 16px;
+}
+
+@media (max-width: 768px) {
+    .grid-2col, .grid-3col, .service-indicators {
+        grid-template-columns: 1fr;
+    }
+}

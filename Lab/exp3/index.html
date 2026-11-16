@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Environment Explorer: LAMP vs WAMP Stack</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="badge">System Architecture & Environment Deployment</div>
+            <h1>LAMP Stack vs. WAMP Stack Architecture Guide</h1>
+            <p>A comprehensive technical comparative analysis, deployment procedure, and Apache server integration reference for enterprise web application development.</p>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="tab-nav">
+            <button class="tab-btn active" data-tab="tab-overview">Overview & Components</button>
+            <button class="tab-btn" data-tab="tab-comparison">LAMP vs WAMP Comparison</button>
+            <button class="tab-btn" data-tab="tab-apache">Apache Role & Integration</button>
+            <button class="tab-btn" data-tab="tab-installation">Installation Procedures</button>
+            <button class="tab-btn" data-tab="tab-simulator">Interactive Diagnostics Simulator</button>
+        </nav>
+
+        <!-- Tab Content 1: Overview & Components -->
+        <section id="tab-overview" class="tab-pane active">
+            <h2>1. Essential Components of the Web Development Stacks</h2>
+            <p class="section-desc">Both LAMP and WAMP are time-tested, open-source software bundles that provide a complete runtime environment for dynamic web applications.</p>
+
+            <div class="grid-2col">
+                <!-- LAMP Stack Card -->
+                <div class="stack-card lamp-card">
+                    <div class="card-header">
+                        <span class="stack-tag tag-lamp">LAMP STACK</span>
+                        <h3>Linux, Apache, MySQL, PHP</h3>
+                    </div>
+                    <ul class="component-list">
+                        <li>
+                            <strong>L - Linux Operating System:</strong>
+                            Provides the open-source, POSIX-compliant foundational operating system kernel. Renowned for stability, security, process isolation, and native daemon service management (via systemd).
+                        </li>
+                        <li>
+                            <strong>A - Apache HTTP Web Server:</strong>
+                            High-performance, modular HTTP server. Listens on TCP ports 80/443, handles incoming client connections, serves static assets, and delegates PHP execution via <code>mod_php</code> or PHP-FPM.
+                        </li>
+                        <li>
+                            <strong>M - MySQL Relational Database:</strong>
+                            Relational Database Management System (RDBMS) for persistent structured data storage. Uses SQL, InnoDB storage engine, ACID transaction compliance, and indexed querying.
+                        </li>
+                        <li>
+                            <strong>P - PHP Hypertext Preprocessor:</strong>
+                            Server-side scripting engine. Interprets backend business logic, interacts with MySQL via PDO or MySQLi drivers, and dynamically renders HTML output to the client.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- WAMP Stack Card -->
+                <div class="stack-card wamp-card">
+                    <div class="card-header">
+                        <span class="stack-tag tag-wamp">WAMP STACK</span>
+                        <h3>Windows, Apache, MySQL, PHP</h3>
+                    </div>
+                    <ul class="component-list">
+                        <li>
+                            <strong>W - Microsoft Windows OS:</strong>
+                            Provides the GUI-rich, NT-kernel operating system environment. Widely favored for local developer workstations, rapid visual setup, and seamless integration with Windows IDEs.
+                        </li>
+                        <li>
+                            <strong>A - Apache HTTP Web Server (Win32/x64):</strong>
+                            Compiled for the Windows NT subsystem. Operates as a Windows Background Service, using multithreaded MPM (Multi-Processing Module) to serve client requests.
+                        </li>
+                        <li>
+                            <strong>M - MySQL Relational Database:</strong>
+                            Windows-native service running as <code>mysqld.exe</code>. Stores application tables, handles query caching, and integrates with phpMyAdmin for graphical management.
+                        </li>
+                        <li>
+                            <strong>P - PHP (Windows Thread-Safe Build):</strong>
+                            Windows thread-safe (TS) binary distribution of the PHP interpreter, configured via <code>php.ini</code> with native extension DLLs.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab Content 2: Comparison -->
+        <section id="tab-comparison" class="tab-pane">
+            <h2>2. Comparative Evaluation: LAMP vs. WAMP</h2>
+            <p class="section-desc">While both stacks share Apache, MySQL, and PHP, their underlying operating systems lead to critical differences in development workflows and production suitability.</p>
+
+            <div class="table-responsive">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Evaluation Dimension</th>
+                            <th>LAMP Stack (Linux)</th>
+                            <th>WAMP Stack (Windows)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Target Primary Use</strong></td>
+                            <td>Production environments, high-concurrency cloud servers, enterprise hosting.</td>
+                            <td>Local development workstations, prototyping, staging on developer desktops.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Licensing & Cost</strong></td>
+                            <td>100% Free & Open Source (FOSS); zero OS licensing fees.</td>
+                            <td>Stack is free, but underlying Windows OS requires commercial Microsoft licenses.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>File System & Case Sensitivity</strong></td>
+                            <td>Case-sensitive (<code>App.php</code> is distinct from <code>app.php</code>). Matches production.</td>
+                            <td>Case-insensitive (<code>App.php</code> and <code>app.php</code> refer to the same file). Can mask bugs.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Concurrency & Process Model</strong></td>
+                            <td>POSIX fork/process-based MPM (Prefork/Worker/Event). Highly optimized kernel routing.</td>
+                            <td>Windows multi-threaded model (<code>mpm_winnt</code>). Simpler, but higher memory footprint.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Security & Permissions</strong></td>
+                            <td>Granular Unix permissions (<code>chmod</code>, <code>chown</code>), SELinux, AppArmor security modules.</td>
+                            <td>Windows NTFS ACLs and User Account Control (UAC).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Automation & Deployment</strong></td>
+                            <td>CLI-native, automated via Bash, Ansible, Docker, CI/CD pipelines.</td>
+                            <td>GUI-driven installers (WampServer, XAMPP), visual tray notification controls.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Tab Content 3: Apache Role -->
+        <section id="tab-apache" class="tab-pane">
+            <h2>3. Role of the Apache Web Server & Component Integration</h2>
+            <p class="section-desc">Apache acts as the central traffic controller, orchestrator, and security gateway connecting clients, scripts, and the database.</p>
+
+            <div class="architecture-diagram-box">
+                <pre class="ascii-diagram">
++-----------------------------------------------------------------------------------------+
+|                                CLIENT BROWSER (HTTP / HTTPS)                           |
++-----------------------------------------------------------------------------------------+
+                                           |  (1) HTTP GET /index.php
+                                           v
++-----------------------------------------------------------------------------------------+
+|                         APACHE HTTP SERVER (Port 80 / 443)                             |
+|  - Manages TCP Handshake & Connection Pool                                              |
+|  - URL Rewriting & Routing (.htaccess / mod_rewrite)                                   |
+|  - Static Content Dispatch (HTML, CSS, JS, Images directly served)                     |
+|  - Security & SSL/TLS Termination (mod_ssl)                                             |
++-----------------------------------------------------------------------------------------+
+                                           |  (2) Delegates .php scripts
+                                           v
++-----------------------------------------------------------------------------------------+
+|                        PHP INTERPRETER ENGINE (mod_php / PHP-FPM)                      |
+|  - Parses backend script syntax                                                         |
+|  - Reads session states, environment configs (php.ini)                                  |
+|  - Implements application business logic                                                |
++-----------------------------------------------------------------------------------------+
+                                           |  (3) SQL Query Execution (PDO/MySQLi)
+                                           v
++-----------------------------------------------------------------------------------------+
+|                        MYSQL DATABASE MANAGEMENT SYSTEM (Port 3306)                     |
+|  - Authenticates database user credentials                                              |
+|  - Executes queries, filters indexes, enforces ACID transactions                        |
+|  - Returns raw result sets / tabular records                                            |
++-----------------------------------------------------------------------------------------+
+                                           |  (4) Result Set returned to PHP
+                                           v
+                                   PHP compiles HTML Output
+                                           |  (5) Delivers generated HTML
+                                           v
+                                   Apache returns HTTP 200 OK
+                                           |  (6) Complete web response
+                                           v
++-----------------------------------------------------------------------------------------+
+|                                CLIENT BROWSER RENDERING                                 |
++-----------------------------------------------------------------------------------------+
+                </pre>
+            </div>
+
+            <div class="grid-3col">
+                <div class="mini-card">
+                    <h4>1. Static vs Dynamic Routing</h4>
+                    <p>Apache intercepts every URI request. If the resource is static (CSS/JS/images), Apache serves it directly from disk at maximum throughput. If it has a <code>.php</code> extension, it triggers the PHP execution handler.</p>
+                </div>
+                <div class="mini-card">
+                    <h4>2. Modular Architecture</h4>
+                    <p>Apache uses pluggable modules: <code>mod_rewrite</code> for clean search-engine friendly URLs, <code>mod_security</code> for WAF firewalls, <code>mod_deflate</code> for Gzip compression, and <code>mod_php</code> for script evaluation.</p>
+                </div>
+                <div class="mini-card">
+                    <h4>3. Database Isolation</h4>
+                    <p>MySQL is shielded from public Internet access. Apache and PHP communicate with MySQL locally over loopback socket (<code>localhost:3306</code>), protecting database credentials and schemas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab Content 4: Installation Procedures -->
+        <section id="tab-installation" class="tab-pane">
+            <h2>4. Step-by-Step Installation Procedures</h2>
+            <p class="section-desc">Clear, executable command procedures for establishing both environments.</p>
+
+            <div class="grid-2col">
+                <div class="install-box">
+                    <h3>Linux (Ubuntu/Debian) LAMP Stack Setup</h3>
+                    <div class="code-terminal">
+                        <div class="terminal-bar">bash - terminal</div>
+                        <code>
+# 1. Update system package repository<br>
+sudo apt update &amp;&amp; sudo apt upgrade -y<br><br>
+# 2. Install Apache web server<br>
+sudo apt install apache2 -y<br>
+sudo systemctl start apache2<br>
+sudo systemctl enable apache2<br><br>
+# 3. Install MySQL database server<br>
+sudo apt install mysql-server -y<br>
+sudo mysql_secure_installation<br><br>
+# 4. Install PHP and integration modules<br>
+sudo apt install php libapache2-mod-php php-mysql php-curl php-json php-mbstring -y<br><br>
+# 5. Restart Apache to load PHP module<br>
+sudo systemctl restart apache2<br><br>
+# 6. Verify setup by creating info.php<br>
+echo "&lt;?php phpinfo(); ?&gt;" | sudo tee /var/www/html/info.php
+                        </code>
+                    </div>
+                </div>
+
+                <div class="install-box">
+                    <h3>Windows WAMP Stack Setup</h3>
+                    <div class="code-terminal">
+                        <div class="terminal-bar">powershell - installation guide</div>
+                        <code>
+# 1. Download &amp; Install Visual C++ Redistributable Prerequisites<br>
+# Visual C++ Redistributable Packages 2012 to 2022 (x64/x86)<br><br>
+# 2. Download WampServer Official Installer<br>
+# https://www.wampserver.com/en/<br>
+# Run WampServer3.x_x64.exe as Administrator<br><br>
+# 3. Select Installation Path<br>
+# Default: C:\wamp64<br><br>
+# 4. Choose Default Browser &amp; Editor<br>
+# (e.g. Chrome.exe and VS Code)<br><br>
+# 5. Launch WampServer &amp; Verify Green Tray Icon<br>
+# Green icon confirms all services (Apache, MySQL) active.<br><br>
+# 6. Test in Web Browser:<br>
+# Navigate to: http://localhost<br>
+# phpMyAdmin:  http://localhost/phpmyadmin
+                        </code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab Content 5: Interactive Simulator -->
+        <section id="tab-simulator" class="tab-pane">
+            <h2>5. Interactive Development Environment Diagnostics Simulator</h2>
+            <p class="section-desc">Test server service lifecycle events, simulated port listening, and PHP-to-MySQL connection pipelines in real time.</p>
+
+            <div class="sim-wrapper">
+                <div class="sim-controls">
+                    <button id="btnStartApache" class="btn btn-primary">Start Apache Server</button>
+                    <button id="btnStartMysql" class="btn btn-primary">Start MySQL Service</button>
+                    <button id="btnTestPhp" class="btn btn-accent">Run PHP Script (test.php)</button>
+                    <button id="btnResetStack" class="btn btn-secondary">Stop All Services</button>
+                </div>
+
+                <div class="service-indicators">
+                    <div class="ind-card" id="indApache">
+                        <span class="status-light red"></span>
+                        <div><strong>Apache HTTP:</strong> <span class="state-text">Offline</span> (Port 80)</div>
+                    </div>
+                    <div class="ind-card" id="indMysql">
+                        <span class="status-light red"></span>
+                        <div><strong>MySQL DB:</strong> <span class="state-text">Offline</span> (Port 3306)</div>
+                    </div>
+                    <div class="ind-card" id="indPhp">
+                        <span class="status-light gray"></span>
+                        <div><strong>PHP Engine:</strong> <span class="state-text">Idle</span> (v8.2.x)</div>
+                    </div>
+                </div>
+
+                <div class="terminal-output" id="termOutput">
+                    <div class="term-line info">[System Console Initialized] Development environment simulator ready.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+            <p>&copy; 2026 Internet Programming Lab Curriculum | Experiment 3: Development Environment Configuration</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

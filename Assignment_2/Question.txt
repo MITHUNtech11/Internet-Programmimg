@@ -1,0 +1,74 @@
+1. Online Student Registration System
+Scenario: An engineering college wants to develop an online student
+registration system to collect student details and validate the information
+before submission.
+Questions:
+➢ Design a student registration form using HTML and JavaScript.
+➢ Use JavaScript DOM to dynamically display the entered student details.
+➢ Validate student name, email, mobile number, date of birth, and password
+using Regular Expressions.
+➢ Use JavaScript Date and Objects to calculate the student's age.
+➢ Implement exception handling using try, catch, and finally.
+➢ Use built-in objects such as String, Number, Date, and Math.
+➢ Implement event handling for form submission, input changes, and button
+clicks.
+
+2. Online Examination and Quiz Portal
+Scenario: A university wants to create an online examination portal that
+displays questions, tracks student responses, and calculates the final score.
+Questions:
+➢ Develop a dynamic quiz interface using JavaScript.
+➢ Use DOM manipulation to load questions and answer options dynamically.
+➢ Implement a countdown timer using the Date object.
+➢ Handle events such as selecting answers, navigating questions, and
+submitting the examination.
+➢ Validate that all mandatory questions are answered before submission.
+➢ Use JavaScript objects and arrays to store questions, options, and scores.
+➢ Display the final result dynamically using DHTML.
+➢ Handle exceptions when invalid or incomplete responses are submitted.
+
+3. Online Shopping Cart System
+Scenario: An e-commerce company wants to develop a shopping cart system
+that updates product quantities and prices dynamically without reloading the
+webpage.
+Questions:
+➢ Create a shopping cart interface using HTML, CSS, and JavaScript.
+➢ Use JavaScript DOM to add and remove products dynamically.
+➢ Implement event handling for quantity changes and product removal.
+➢ Use JavaScript objects to store product name, price, quantity, and discount.
+➢ Use built-in Math objects to calculate discounts and total amounts.
+➢ Validate product quantity using Regular Expressions.
+➢ Apply DHTML to update the cart total dynamically.
+➢ Implement AJAX to retrieve product details from a server.
+➢ Process the server response using JSON
+
+4. Hospital Appointment Booking System
+Scenario: A hospital requires an appointment booking application that allows
+patients to select doctors, dates, and available time slots.
+Questions:
+➢ Develop an appointment booking form using JavaScript.
+➢ Use the Date object to prevent patients from selecting past dates.
+➢ Validate patient name, email, phone number, and appointment date.
+➢ Use Regular Expressions to validate patient contact information.
+➢ Implement event handling for doctor selection and date selection.
+➢ Use AJAX to retrieve available appointment slots from the server.
+➢ Implement XMLHttpRequest to send and receive appointment details.
+➢ Use callback methods to process the server response.
+➢ Display appointment confirmation dynamically using DOM and JSON.
+
+5. Weather Information Dashboard
+Scenario: A weather forecasting organization wants to create a dashboard that
+retrieves real-time weather information for a city entered by the user.
+Questions:
+➢ Design a weather dashboard using JavaScript.
+➢ Use DOM manipulation to display temperature, humidity, wind speed, and
+weather conditions.
+➢ Validate the city name using Regular Expressions.
+➢ Implement AJAX client-server communication using XMLHttpRequest.
+➢ Use callback methods to handle server responses.
+➢ Parse JSON data received from the weather server.
+➢ Use JavaScript objects to organize weather information.
+➢ Implement exception handling for invalid city names and server errors.
+➢ Use DHTML to update weather details without refreshing the webpage.
+
+<<<<>>>>
