@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 17 - DHTML Show/Hide Text & Hover Color Restorer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body id="exp17Body">
+    <header class="app-header">
+        <div class="container header-inner">
+            <div class="logo-group">
+                <span class="badge">Experiment 17</span>
+                <h1>DHTML: Show/Hide Text & Color Restorer</h1>
+            </div>
+            <nav class="tab-nav">
+                <button class="tab-btn active" data-tab="demo">Interactive DHTML</button>
+                <button class="tab-btn" data-tab="theory">Questions & Theory</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <!-- TAB 1: DEMO -->
+        <section id="demo" class="tab-panel active">
+            <div class="grid-2">
+                <!-- FEATURE 1: SHOW / HIDE TEXT -->
+                <div class="card dhtml-card">
+                    <h3>1. Dynamic Show & Hide Text</h3>
+                    <p class="desc">Toggle visibility of secret confidential text using dedicated "Show" and "Hide" button handlers with smooth DOM transitions.</p>
+
+                    <div class="btn-group">
+                        <button id="btnShow" class="btn btn-primary">&#128065; Show Text</button>
+                        <button id="btnHide" class="btn btn-secondary">&#128584; Hide Text</button>
+                    </div>
+
+                    <div id="secretTextBox" class="secret-text-box is-hidden">
+                        <div class="secret-badge">&#128274; CONFIDENTIAL ACCESS GRANTED</div>
+                        <p><strong>Decrypted Payload:</strong> Dynamic HTML facilitates live manipulation of style attributes (<code>opacity</code>, <code>max-height</code>, <code>display</code>) without round-tripping to web servers.</p>
+                    </div>
+                </div>
+
+                <!-- FEATURE 2: 2 COLORED SQUARES WITH RESTORATION -->
+                <div class="card dhtml-card">
+                    <h3>2. Two Colored Squares (Hover & Restore)</h3>
+                    <p class="desc">Hovering over either square switches the page's background. Moving your cursor out instantly restores the clean default color.</p>
+
+                    <div class="squares-row">
+                        <div class="square-box sq-violet" data-color="#4c1d95" data-name="Deep Violet">
+                            <span>Deep Violet</span>
+                        </div>
+                        <div class="square-box sq-amber" data-color="#78350f" data-name="Amber Gold">
+                            <span>Amber Gold</span>
+                        </div>
+                    </div>
+
+                    <div class="status-hud">
+                        Active Body Color: <strong id="hudColor">#090e17 (Default Restored)</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: THEORY -->
+        <section id="theory" class="tab-panel">
+            <div class="section-header">
+                <h2>Answers to Questions (Marks Distribution: 10 Marks)</h2>
+            </div>
+
+            <article class="theory-card">
+                <h3>1. Describe the implementation of show/hide functionality with DHTML. (3 Marks)</h3>
+                <div class="theory-body">
+                    <p>Show/hide interactions are implemented by toggling the CSS display or opacity states via JavaScript listeners:</p>
+                    <ul>
+                        <li><strong>Display Property Approach:</strong> Toggling <code>element.style.display = 'block'</code> (Show) and <code>element.style.display = 'none'</code> (Hide). Completely removes the element from visual flow.</li>
+                        <li><strong>Class-Based Transition Approach (Modern):</strong> Toggling a CSS class <code>.is-hidden</code> that coordinates <code>opacity: 0</code> and <code>max-height: 0</code> with <code>transition: all 0.3s ease</code> for a smooth sliding fade.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>2. Explain hover-based color changes using CSS and JavaScript. (3 Marks)</h3>
+                <div class="theory-body">
+                    <p>While CSS <code>:hover</code> operates on the hovered element itself, modifying an external ancestor like <code>&lt;body&gt;</code> requires JavaScript event listening:</p>
+                    <ol>
+                        <li><code>mouseenter</code> fires when the cursor crosses into the square, setting <code>document.body.style.backgroundColor = targetColor</code>.</li>
+                        <li><code>mouseleave</code> fires when the cursor departs, restoring <code>document.body.style.backgroundColor = defaultColor</code>.</li>
+                        <li>A root CSS rule <code>transition: background-color 0.4s ease</code> delivers gradual chromatic fading.</li>
+                    </ol>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>3. Provide the code for both features. (4 Marks)</h3>
+                <div class="theory-body">
+                    <div class="code-box">
+                        <pre><code>// 1. Show / Hide Text Logic
+btnShow.onclick = () => secretBox.classList.remove('is-hidden');
+btnHide.onclick = () => secretBox.classList.add('is-hidden');
+
+// 2. Hover and Restore Background Color
+const defaultBg = '#090e17';
+squares.forEach(sq => {
+    sq.onmouseenter = () => document.body.style.backgroundColor = sq.dataset.color;
+    sq.onmouseleave = () => document.body.style.backgroundColor = defaultBg;
+});</code></pre>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <div class="container footer-content">
+            <p>Internet Programming Lab | CSA43 Experiment 17 &bull; DHTML Visibility & Dynamic Styling</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

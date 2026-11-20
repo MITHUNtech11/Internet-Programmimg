@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 13 - Comprehensive Registration Form Validation</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="app-header">
+        <div class="container header-inner">
+            <div class="logo-group">
+                <span class="badge">Experiment 13</span>
+                <h1>Full Registration Form Client-Side Validation</h1>
+            </div>
+            <nav class="tab-nav">
+                <button class="tab-btn active" data-tab="demo">Registration Form</button>
+                <button class="tab-btn" data-tab="theory">Questions & Theory</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <!-- TAB 1: DEMO -->
+        <section id="demo" class="tab-panel active">
+            <div class="section-header">
+                <h2>Multi-Field Registration & Validation Engine</h2>
+                <p>Validates Name, Age, Address, EmailID, Hobby (checkboxes), Gender (radio buttons), and Country (dropdown).</p>
+            </div>
+
+            <div class="form-wrapper card">
+                <form id="fullRegForm" novalidate>
+                    <!-- Row 1: Name and Age -->
+                    <div class="form-row">
+                        <div class="form-group" id="grp-name">
+                            <label for="txtName">Full Name <span class="req">*</span></label>
+                            <input type="text" id="txtName" placeholder="e.g. Mithun Kumar">
+                            <div class="err-msg">Name is required (min 3 alphabetic characters).</div>
+                        </div>
+
+                        <div class="form-group" id="grp-age">
+                            <label for="txtAge">Age (18 - 100) <span class="req">*</span></label>
+                            <input type="number" id="txtAge" placeholder="21" min="18" max="100">
+                            <div class="err-msg">Must be a valid integer between 18 and 100.</div>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Email and Country -->
+                    <div class="form-row">
+                        <div class="form-group" id="grp-email">
+                            <label for="txtEmail">Email ID <span class="req">*</span></label>
+                            <input type="email" id="txtEmail" placeholder="mithun@domain.com">
+                            <div class="err-msg">Valid email format required (e.g. user@domain.com).</div>
+                        </div>
+
+                        <div class="form-group" id="grp-country">
+                            <label for="selCountry">Country <span class="req">*</span></label>
+                            <select id="selCountry">
+                                <option value="">-- Select Country --</option>
+                                <option value="India">India</option>
+                                <option value="United States">United States</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                                <option value="Germany">Germany</option>
+                                <option value="Australia">Australia</option>
+                                <option value="Canada">Canada</option>
+                            </select>
+                            <div class="err-msg">Please select your country of residence.</div>
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Address -->
+                    <div class="form-group" id="grp-address">
+                        <label for="txtAddress">Permanent Address <span class="req">*</span></label>
+                        <textarea id="txtAddress" rows="3" placeholder="Enter physical street address and postal code..."></textarea>
+                        <div class="err-msg">Address is required (at least 10 characters).</div>
+                    </div>
+
+                    <!-- Row 4: Gender & Hobbies -->
+                    <div class="form-row">
+                        <div class="form-group" id="grp-gender">
+                            <label>Gender <span class="req">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-label"><input type="radio" name="gender" value="Male"> Male</label>
+                                <label class="radio-label"><input type="radio" name="gender" value="Female"> Female</label>
+                                <label class="radio-label"><input type="radio" name="gender" value="Other"> Other</label>
+                            </div>
+                            <div class="err-msg">Please select a gender option.</div>
+                        </div>
+
+                        <div class="form-group" id="grp-hobby">
+                            <label>Hobbies & Interests (Select at least one) <span class="req">*</span></label>
+                            <div class="checkbox-group">
+                                <label class="check-label"><input type="checkbox" name="hobby" value="Web Development"> Coding</label>
+                                <label class="check-label"><input type="checkbox" name="hobby" value="Cybersecurity"> Sports</label>
+                                <label class="check-label"><input type="checkbox" name="hobby" value="Music Production"> Music</label>
+                                <label class="check-label"><input type="checkbox" name="hobby" value="Literature"> Reading</label>
+                            </div>
+                            <div class="err-msg">Please select at least one hobby.</div>
+                        </div>
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-primary">Validate & Register</button>
+                        <button type="reset" id="btnFormReset" class="btn btn-secondary">Reset Form</button>
+                    </div>
+                </form>
+
+                <!-- Success Summary Card -->
+                <div id="successSummary" class="summary-card hidden">
+                    <div class="summary-header">
+                        &#10004; Registration Submitted Successfully
+                    </div>
+                    <div id="summaryBody" class="summary-body"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: THEORY -->
+        <section id="theory" class="tab-panel">
+            <div class="section-header">
+                <h2>Answers to Questions (Marks Distribution: 10 Marks)</h2>
+            </div>
+
+            <article class="theory-card">
+                <h3>1. Explain the structure of the registration form and required validations. (3 Marks)</h3>
+                <div class="theory-body">
+                    <p>The form captures diverse input primitives, each needing tailored validation rules:</p>
+                    <ul>
+                        <li><strong>Name (Text):</strong> String length >= 3, alphabetic characters and spaces only.</li>
+                        <li><strong>Age (Numeric):</strong> Integer parsing between 18 and 100 inclusive.</li>
+                        <li><strong>Address (Textarea):</strong> Minimum 10 characters to guarantee complete delivery information.</li>
+                        <li><strong>EmailID (Email):</strong> Syntactic validation against RFC 5322 regex pattern.</li>
+                        <li><strong>Hobby (Checkboxes):</strong> Requires at least one checked node across the checkbox node list.</li>
+                        <li><strong>Gender (Radio):</strong> Exactly one radio button must be active (`:checked`).</li>
+                        <li><strong>Country (Select):</strong> Value must not match default placeholder option (`value !== ""`).</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>2. Describe how to implement client-side validation using JavaScript. (3 Marks)</h3>
+                <div class="theory-body">
+                    <p>JavaScript intercepts the `submit` event via <code>e.preventDefault()</code>. A modular validation architecture checks each control independently:</p>
+                    <ol>
+                        <li>Query input references using <code>document.getElementById</code> or <code>document.querySelectorAll('input[name="..."]:checked')</code>.</li>
+                        <li>Evaluate business rules using regex, length checks, and boundary logic.</li>
+                        <li>On violation, attach <code>.has-error</code> classes and expose associated error messages.</li>
+                        <li>On success, compile all validated attributes into a structured JavaScript Object for API dispatch.</li>
+                    </ol>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>3. Provide the code to validate the form. (4 Marks)</h3>
+                <div class="theory-body">
+                    <div class="code-box">
+                        <pre><code>function validateForm() {
+    let isValid = true;
+    
+    // Checkbox validation
+    const checkedHobbies = document.querySelectorAll('input[name="hobby"]:checked');
+    if (checkedHobbies.length === 0) {
+        showError('grp-hobby');
+        isValid = false;
+    }
+    
+    // Radio button validation
+    const selectedGender = document.querySelector('input[name="gender"]:checked');
+    if (!selectedGender) {
+        showError('grp-gender');
+        isValid = false;
+    }
+    
+    // Dropdown validation
+    if (countrySelect.value === "") {
+        showError('grp-country');
+        isValid = false;
+    }
+    
+    return isValid;
+}</code></pre>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <div class="container footer-content">
+            <p>Internet Programming Lab | CSA43 Experiment 13 &bull; Comprehensive Form Validation Engine</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

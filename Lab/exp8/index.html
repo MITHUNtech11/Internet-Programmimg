@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 8 - Fixed, Fluid, & Responsive Layouts</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="app-header">
+        <div class="container header-inner">
+            <div class="logo-group">
+                <span class="badge">Experiment 08</span>
+                <h1>Fixed vs. Fluid vs. Responsive Layouts</h1>
+            </div>
+            <nav class="tab-nav">
+                <button class="tab-btn active" data-tab="demo">Interactive Layout Lab</button>
+                <button class="tab-btn" data-tab="theory">Questions & Theory</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <!-- TAB 1: DEMO -->
+        <section id="demo" class="tab-panel active">
+            <div class="section-header">
+                <h2>Layout Architecture Comparator</h2>
+                <p>Toggle between Fixed, Fluid, and Responsive layout systems and observe container behavior and reflow.</p>
+                <div class="layout-controls">
+                    <span class="ctrl-label">Active Mode:</span>
+                    <button class="mode-btn" data-mode="fixed">Fixed (960px)</button>
+                    <button class="mode-btn" data-mode="fluid">Fluid (100% Relative)</button>
+                    <button class="mode-btn active" data-mode="responsive">Responsive (Flexbox & CSS Grid)</button>
+                </div>
+            </div>
+
+            <!-- Viewport Sandbox -->
+            <div class="sandbox-container">
+                <div class="sandbox-header">
+                    <div class="window-dots"><span></span><span></span><span></span></div>
+                    <div class="mode-indicator">
+                        Current Layout: <span id="currentModeLabel">Responsive (Flexbox & CSS Grid)</span> |
+                        Simulated Width: <span id="simWidth">Auto (100%)</span>
+                    </div>
+                </div>
+
+                <div id="layoutSandbox" class="layout-sandbox mode-responsive">
+                    <nav class="mock-nav">
+                        <div class="mock-logo">BRAND.IO</div>
+                        <ul class="mock-links">
+                            <li>Home</li>
+                            <li>Products</li>
+                            <li>Pricing</li>
+                            <li>Contact</li>
+                        </ul>
+                    </nav>
+
+                    <div class="mock-hero">
+                        <h2>Modern Web Architecture</h2>
+                        <p>Adaptive grids and fluid elements ensure seamless presentation across all devices.</p>
+                    </div>
+
+                    <div class="mock-grid">
+                        <article class="mock-card">
+                            <div class="card-icon">⚡</div>
+                            <h3>High Performance</h3>
+                            <p>Optimized CSS containment and GPU accelerated transitions reduce layout thrashing.</p>
+                        </article>
+                        <article class="mock-card">
+                            <div class="card-icon">📱</div>
+                            <h3>Device Agnostic</h3>
+                            <p>CSS Grid auto-fit and minmax patterns deliver natural reflow without horizontal scrolling.</p>
+                        </article>
+                        <article class="mock-card">
+                            <div class="card-icon">🛠️</div>
+                            <h3>Modular Layout</h3>
+                            <p>Flexbox provides one-dimensional alignment and distributed spacing for navigation and cards.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: THEORY -->
+        <section id="theory" class="tab-panel">
+            <div class="section-header">
+                <h2>Layout Principles & Questions (Marks Distribution: 20 Marks)</h2>
+            </div>
+
+            <article class="theory-card">
+                <h3>1. Explain the differences between fixed, fluid, and responsive layouts. (6 Marks)</h3>
+                <div class="theory-body">
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Criteria</th>
+                                    <th>Fixed Layout</th>
+                                    <th>Fluid (Liquid) Layout</th>
+                                    <th>Responsive Layout</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Units Used</strong></td>
+                                    <td>Rigid pixel values (e.g. <code>width: 960px</code>).</td>
+                                    <td>Relative percentages (e.g. <code>width: 80%</code>).</td>
+                                    <td>Combination of <code>fr</code>, <code>%</code>, <code>rem</code>, <code>clamp()</code>.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Behavior on Mobile</strong></td>
+                                    <td>Causes clipping and horizontal scrollbars.</td>
+                                    <td>Shrinks proportionally; content becomes unreadably cramped.</td>
+                                    <td>Reflows columns into single vertical stacks via media queries.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Behavior on Ultra-wide</strong></td>
+                                    <td>Leaves massive empty margins on sides.</td>
+                                    <td>Stretches excessively; lines of text become too long to read.</td>
+                                    <td>Caps container with <code>max-width</code> while adapting grid columns.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>2. Describe the role of CSS (Flexbox and Grid) in creating adaptive layouts. (8 Marks)</h3>
+                <div class="theory-body">
+                    <ul>
+                        <li><strong>CSS Flexbox (One-Dimensional):</strong> Designed for laying out items in a single row or column. It dynamically distributes available space, handles baseline alignment, and manages wrapping via <code>flex-wrap: wrap</code>. Ideal for navigation bars, button toolbars, and centered components.</li>
+                        <li><strong>CSS Grid (Two-Dimensional):</strong> Designed for complex multi-row and multi-column page compositions. Features like <code>repeat(auto-fit, minmax(280px, 1fr))</code> calculate how many columns fit into the viewport dynamically without needing explicit media query declarations for every device size.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>3. Provide examples of layout designs and how they adapt to different screen sizes. (6 Marks)</h3>
+                <div class="theory-body">
+                    <pre class="code-block"><code>/* Responsive 3-Column to 1-Column Adaptation */
+.mock-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Flexbox Header Adaptability */
+.mock-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+    .mock-nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}</code></pre>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <div class="container footer-content">
+            <p>Internet Programming Lab | CSA43 Experiment 08 &bull; Modern CSS Layout Systems</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

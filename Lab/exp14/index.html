@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 14 - DHTML Hover Colors & Window Shake</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body id="pageBody">
+    <header class="app-header">
+        <div class="container header-inner">
+            <div class="logo-group">
+                <span class="badge">Experiment 14</span>
+                <h1>DHTML: Dynamic Background & Window Shake Effect</h1>
+            </div>
+            <nav class="tab-nav">
+                <button class="tab-btn active" data-tab="demo">Interactive DHTML</button>
+                <button class="tab-btn" data-tab="theory">Questions & Theory</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content" id="shakeWrapper">
+        <!-- TAB 1: DEMO -->
+        <section id="demo" class="tab-panel active">
+            <div class="grid-2">
+                <!-- FEATURE 1: 3 COLORED SQUARES -->
+                <div class="card dhtml-card">
+                    <h3>1. Hover Over 3 Distinct Coloured Squares</h3>
+                    <p class="desc">Hover your cursor over any colored square to transform the entire page's background tone dynamically via DHTML.</p>
+                    
+                    <div class="squares-container">
+                        <div class="color-square sq-emerald" data-color="#064e3b" data-label="Emerald Green">
+                            <span>Emerald Green</span>
+                        </div>
+                        <div class="color-square sq-royal" data-color="#1e3a8a" data-label="Royal Blue">
+                            <span>Royal Blue</span>
+                        </div>
+                        <div class="color-square sq-crimson" data-color="#881337" data-label="Crimson Red">
+                            <span>Crimson Red</span>
+                        </div>
+                    </div>
+
+                    <div class="status-indicator">
+                        Current Page Tone: <strong id="currentToneLabel">Default Dark (#090e17)</strong>
+                    </div>
+                </div>
+
+                <!-- FEATURE 2: WINDOW SHAKING -->
+                <div class="card dhtml-card">
+                    <h3>2. Window Shake & Haptic Vibration</h3>
+                    <p class="desc">Triggers rapid viewport oscillation with a dedicated cancel button to restore stability immediately.</p>
+                    
+                    <div class="shake-control-panel">
+                        <div class="shake-status-badge" id="shakeBadge">Status: STABLE</div>
+                        <div class="btn-group">
+                            <button id="btnShake" class="btn btn-danger">&#128266; Shake Window</button>
+                            <button id="btnStopShake" class="btn btn-secondary">&#9209; Stop Shaking</button>
+                        </div>
+                        <small class="hint">Simulates seismic vibration using CSS keyframe oscillations on the root container.</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: THEORY -->
+        <section id="theory" class="tab-panel">
+            <div class="section-header">
+                <h2>Answers to Questions (Marks Distribution: 10 Marks)</h2>
+            </div>
+
+            <article class="theory-card">
+                <h3>1. Explain how DHTML combines HTML, CSS, and JavaScript for interactivity. (3 Marks)</h3>
+                <div class="theory-body">
+                    <p>Dynamic HTML (DHTML) is not a standalone programming language; rather, it represents the synergistic convergence of three core technologies:</p>
+                    <ul>
+                        <li><strong>HTML:</strong> Provides the structural Document Object Model (DOM) tree.</li>
+                        <li><strong>CSS:</strong> Defines stylistic presentation, keyframe animations, and transitions.</li>
+                        <li><strong>JavaScript:</strong> Acts as the event-driven procedural engine that queries the DOM and dynamically mutates attributes, styles, and animation classes without reloading the page.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>2. Describe the implementation of hover-based background changes and window shake effect. (3 Marks)</h3>
+                <div class="theory-body">
+                    <ol>
+                        <li><strong>Hover Color Changes:</strong>
+                            <p>Event listeners for <code>mouseenter</code> on colored square containers read custom <code>data-color</code> attributes and assign them directly to <code>document.body.style.backgroundColor</code>, smoothed by a CSS <code>transition: background-color 0.4s ease</code> rule.</p>
+                        </li>
+                        <li><strong>Window Shake Effect:</strong>
+                            <p>Attaching a CSS <code>@keyframes shake</code> animation to the root container applies rapid alternating <code>translateX(-10px)</code> and <code>translateX(10px)</code> transforms. The "Stop Shaking" button removes the animation class.</p>
+                        </li>
+                    </ol>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>3. Provide the code to achieve these functionalities. (4 Marks)</h3>
+                <div class="theory-body">
+                    <div class="code-box">
+                        <pre><code>// 1. Hover color switcher
+squares.forEach(sq => {
+    sq.addEventListener('mouseenter', () => {
+        document.body.style.backgroundColor = sq.dataset.color;
+    });
+    sq.addEventListener('mouseleave', () => {
+        document.body.style.backgroundColor = '#090e17'; // default
+    });
+});
+
+// 2. Window shake toggling
+btnShake.addEventListener('click', () => {
+    shakeWrapper.classList.add('is-shaking');
+});
+btnStopShake.addEventListener('click', () => {
+    shakeWrapper.classList.remove('is-shaking');
+});</code></pre>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <div class="container footer-content">
+            <p>Internet Programming Lab | CSA43 Experiment 14 &bull; DHTML Interactive Effects</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

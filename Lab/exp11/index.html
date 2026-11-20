@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 11 - Dynamic Paragraph & Word Highlighting</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="app-header">
+        <div class="container header-inner">
+            <div class="logo-group">
+                <span class="badge">Experiment 11</span>
+                <h1>College Portal: DOM Styling & Word Highlighting</h1>
+            </div>
+            <nav class="tab-nav">
+                <button class="tab-btn active" data-tab="demo">Interactive Article</button>
+                <button class="tab-btn" data-tab="theory">Questions & Theory</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <!-- TAB 1: DEMO -->
+        <section id="demo" class="tab-panel active">
+            <div class="section-header">
+                <h2>Department of Computer Science & Engineering</h2>
+                <p>Interactive DOM styling modifiers and hover-activated keyword highlighting.</p>
+            </div>
+
+            <!-- Toolbar Controls -->
+            <div class="toolbar card">
+                <div class="toolbar-title">Paragraph Appearance Modifiers:</div>
+                <div class="toolbar-btns">
+                    <button id="btnTheme" class="btn btn-secondary">Toggle Theme Mode</button>
+                    <button id="btnFontSize" class="btn btn-secondary">Cycle Font Size</button>
+                    <button id="btnFontFamily" class="btn btn-secondary">Toggle Monospace / Serif</button>
+                    <button id="btnHighlightAll" class="btn btn-primary">Highlight All Core Terms</button>
+                    <button id="btnReset" class="btn btn-outline">Reset Styling</button>
+                </div>
+            </div>
+
+            <!-- Interactive Article Card -->
+            <div class="card article-card">
+                <div class="article-meta">
+                    <span class="meta-tag">Research Bulletin</span>
+                    <span class="meta-date">Academic Session 2026</span>
+                </div>
+                
+                <h3 class="article-title">Advances in Scalable Distributed Web Architecture</h3>
+
+                <p id="targetParagraph" class="target-para default-style">
+                    Modern <span class="highlight-word" data-definition="High-performance client-side scripting language">JavaScript</span> architectures empower web applications to achieve distributed <span class="highlight-word" data-definition="Handling multiple requests without thread blocking">asynchronous</span> concurrency across cloud nodes. By combining <span class="highlight-word" data-definition="Standardized markup for semantic structure">HTML5</span> with modern <span class="highlight-word" data-definition="Declarative stylesheet technology for styling and layouts">CSS3</span>, engineering teams construct <span class="highlight-word" data-definition="Layouts that adapt smoothly to mobile, tablet, and desktop">responsive</span> viewports that deliver seamless computational rendering. Hover over any underlined term to inspect its architectural definition in real-time, or use the toolbar above to modify the paragraph's typographic styles dynamically.
+                </p>
+
+                <!-- Floating Tooltip Box -->
+                <div id="wordTooltip" class="word-tooltip hidden">
+                    <strong id="tooltipTerm">Term</strong>
+                    <span id="tooltipDef">Definition text goes here.</span>
+                </div>
+            </div>
+
+            <!-- Active State HUD -->
+            <div class="card hud-card">
+                <h4>Active DOM Computed Style Properties:</h4>
+                <div class="hud-grid">
+                    <div class="hud-stat">Font Size: <strong id="statFontSize">16px</strong></div>
+                    <div class="hud-stat">Font Family: <strong id="statFontFamily">Inter, sans-serif</strong></div>
+                    <div class="hud-stat">Text Color: <strong id="statColor">#cbd5e1</strong></div>
+                    <div class="hud-stat">Background: <strong id="statBg">#131c2e</strong></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: THEORY -->
+        <section id="theory" class="tab-panel">
+            <div class="section-header">
+                <h2>Answers to Questions (Marks Distribution: 10 Marks)</h2>
+            </div>
+
+            <article class="theory-card">
+                <h3>1. Describe how to use JavaScript and CSS to change the appearance of a paragraph on a button click. (4 Marks)</h3>
+                <div class="theory-body">
+                    <p>There are two primary paradigms in web engineering for mutating element styles on user events:</p>
+                    <ul>
+                        <li><strong>Class Mutation (Recommended):</strong> Using JavaScript's <code>element.classList.toggle('class-name')</code> to attach pre-defined CSS rules. This maintains strict separation of concerns between logic and presentation:
+                            <pre><code>const para = document.getElementById('targetParagraph');
+btn.addEventListener('click', () => {
+    para.classList.toggle('high-contrast-mode');
+});</code></pre>
+                        </li>
+                        <li><strong>Direct Inline Style Manipulation:</strong> Writing directly to the DOM style object via <code>element.style.property = 'value'</code> (e.g. <code>para.style.fontSize = '20px'</code>).</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>2. Explain how to highlight specific words in a paragraph on hover using CSS or JavaScript. (3 Marks)</h3>
+                <div class="theory-body">
+                    <p>Specific words are wrapped inside inline <code>&lt;span class="highlight-word"&gt;</code> tags:</p>
+                    <ol>
+                        <li><strong>Pure CSS Pseudo-Class (`:hover`):</strong>
+                            <pre><code>.highlight-word:hover {
+    background: linear-gradient(120deg, #f59e0b, #ef4444);
+    color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+}</code></pre>
+                        </li>
+                        <li><strong>JavaScript Dynamic Tooltip:</strong> Listening to <code>mouseenter</code> and <code>mouseleave</code> events to dynamically position an informative tooltip over the hovered word based on <code>element.getBoundingClientRect()</code>.</li>
+                    </ol>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>3. Provide the code to implement these features. (3 Marks)</h3>
+                <div class="theory-body">
+                    <div class="code-box">
+                        <pre><code>// Word hover listener
+document.querySelectorAll('.highlight-word').forEach(word => {
+    word.addEventListener('mouseenter', (e) => {
+        const rect = e.target.getBoundingClientRect();
+        tooltip.style.left = `${rect.left + window.scrollX}px`;
+        tooltip.style.top = `${rect.top + window.scrollY - 35}px`;
+        tooltip.textContent = e.target.dataset.definition;
+        tooltip.classList.remove('hidden');
+    });
+    word.addEventListener('mouseleave', () => {
+        tooltip.classList.add('hidden');
+    });
+});</code></pre>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <div class="container footer-content">
+            <p>Internet Programming Lab | CSA43 Experiment 11 &bull; DOM Appearance & Hover Interactivity</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

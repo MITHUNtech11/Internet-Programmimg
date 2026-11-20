@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 18 - DHTML Image Toggle & Text Hover Styling</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="app-header">
+        <div class="container header-inner">
+            <div class="logo-group">
+                <span class="badge">Experiment 18</span>
+                <h1>DHTML: Image Toggling & Text Hover Effects</h1>
+            </div>
+            <nav class="tab-nav">
+                <button class="tab-btn active" data-tab="demo">Interactive Showcase</button>
+                <button class="tab-btn" data-tab="theory">Questions & Theory</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <!-- TAB 1: DEMO -->
+        <section id="demo" class="tab-panel active">
+            <div class="grid-2">
+                <!-- FEATURE 1: IMAGE TOGGLE -->
+                <div class="card dhtml-card">
+                    <h3>1. Image Click Toggle Engine</h3>
+                    <p class="desc">Click the image below to toggle smoothly between two visual representations (Day / Night Satellite Mode).</p>
+
+                    <div class="image-toggle-container" id="imageToggleCard">
+                        <!-- SVG Images rendered natively for flawless cross-device visual rendering -->
+                        <div id="imageStateA" class="toggle-img active">
+                            <svg viewBox="0 0 300 200" width="100%" height="auto">
+                                <rect width="300" height="200" rx="10" fill="#0284c7"/>
+                                <circle cx="230" cy="50" r="30" fill="#facc15"/>
+                                <path d="M0 160 L80 100 L160 170 L230 110 L300 180 L300 200 L0 200 Z" fill="#15803d"/>
+                                <text x="150" y="185" fill="white" font-family="'Inter', sans-serif" font-weight="700" text-anchor="middle" font-size="14">&#9728; Mode A: Daylight Horizon (Click to Toggle)</text>
+                            </svg>
+                        </div>
+                        <div id="imageStateB" class="toggle-img hidden">
+                            <svg viewBox="0 0 300 200" width="100%" height="auto">
+                                <rect width="300" height="200" rx="10" fill="#0f172a"/>
+                                <circle cx="230" cy="50" r="25" fill="#f1f5f9"/>
+                                <circle cx="220" cy="45" r="22" fill="#0f172a"/>
+                                <circle cx="50" cy="40" r="1.5" fill="white"/>
+                                <circle cx="120" cy="70" r="1.5" fill="white"/>
+                                <circle cx="80" cy="30" r="1.5" fill="white"/>
+                                <path d="M0 160 L80 100 L160 170 L230 110 L300 180 L300 200 L0 200 Z" fill="#1e293b"/>
+                                <text x="150" y="185" fill="#38bdf8" font-family="'Inter', sans-serif" font-weight="700" text-anchor="middle" font-size="14">&#127769; Mode B: Deep Space Night (Click to Toggle)</text>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="toggle-stats">
+                        Active State: <strong id="activeImgLabel">Mode A (Daylight)</strong> | 
+                        Toggle Count: <strong id="toggleCount">0</strong>
+                    </div>
+                </div>
+
+                <!-- FEATURE 2: HOVER TEXT STYLING -->
+                <div class="card dhtml-card">
+                    <h3>2. Dynamic Text Hover Transformations</h3>
+                    <p class="desc">Hover your cursor across the interactive text elements below to trigger dynamic shifts in color, typography, and shadow.</p>
+
+                    <div class="hover-text-deck">
+                        <div class="hover-text-item" id="hoverText1">
+                            <h4>Interactive Headline Glow</h4>
+                            <p>Hover here to activate a luminous neon gradient text shadow and font letter-spacing expansion.</p>
+                        </div>
+
+                        <div class="hover-text-item" id="hoverText2">
+                            <h4>Dynamic Font Transformation</h4>
+                            <p>Hover here to witness typographic weight scaling, color inversion, and italic oblique tilting.</p>
+                        </div>
+                    </div>
+
+                    <div class="hover-hud">
+                        Target Status: <span id="hoverStatus">Awaiting cursor hover event...</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: THEORY -->
+        <section id="theory" class="tab-panel">
+            <div class="section-header">
+                <h2>Answers to Questions (Marks Distribution: 10 Marks)</h2>
+            </div>
+
+            <article class="theory-card">
+                <h3>1. Explain the concept of image toggling using JavaScript. (3 Marks)</h3>
+                <div class="theory-body">
+                    <p>Image toggling in JavaScript is the stateful alternation of visual assets on user interaction:</p>
+                    <ul>
+                        <li><strong>State Boolean / Counter:</strong> A variable (e.g. <code>let isModeA = true</code>) preserves the active state across clicks.</li>
+                        <li><strong>Source Mutation:</strong> Directly altering the <code>element.src</code> attribute (e.g. <code>img.src = isModeA ? 'imgA.png' : 'imgB.png'</code>).</li>
+                        <li><strong>DOM Visibility Swapping (Modern):</strong> Keeping both image nodes preloaded in the DOM and toggling <code>.active</code> and <code>.hidden</code> CSS classes, which avoids network loading delays and layout flicker.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>2. Describe how to change text style dynamically on hover. (3 Marks)</h3>
+                <div class="theory-body">
+                    <p>Dynamic text alterations can be accomplished via two methods:</p>
+                    <ol>
+                        <li><strong>Pure CSS `:hover` Selector:</strong>
+                            <pre class="code-box"><code>.text-hover-item:hover {
+    color: #38bdf8;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+}</code></pre>
+                        </li>
+                        <li><strong>JavaScript Dynamic Event Listeners:</strong> Listening for <code>mouseover</code> and <code>mouseout</code> allows computing dynamic coordinates, triggering external audio/analytics, or modifying styles programmatically.</li>
+                    </ol>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>3. Provide code examples for both functionalities. (4 Marks)</h3>
+                <div class="theory-body">
+                    <div class="code-box">
+                        <pre><code>// 1. Image Toggle Logic
+let isDay = true;
+imageCard.addEventListener('click', () => {
+    isDay = !isDay;
+    imgA.classList.toggle('hidden', !isDay);
+    imgB.classList.toggle('hidden', isDay);
+});
+
+// 2. Text Hover Style Logic
+headline.addEventListener('mouseenter', () => {
+    headline.style.color = '#f59e0b';
+    headline.style.transform = 'translateX(8px)';
+});
+headline.addEventListener('mouseleave', () => {
+    headline.style.color = '';
+    headline.style.transform = '';
+});</code></pre>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <div class="container footer-content">
+            <p>Internet Programming Lab | CSA43 Experiment 18 &bull; DHTML Image Toggling & Text Hover Effects</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

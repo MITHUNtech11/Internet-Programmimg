@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 19 - DOM Events & AJAX Auto-Complete</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="app-header">
+        <div class="container header-inner">
+            <div class="logo-group">
+                <span class="badge">Experiment 19</span>
+                <h1>DOM Events (focus, blur, keydown) & AJAX Auto-Complete</h1>
+            </div>
+            <nav class="tab-nav">
+                <button class="tab-btn active" data-tab="demo">Interactive Features</button>
+                <button class="tab-btn" data-tab="theory">Questions & Theory</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <!-- TAB 1: DEMO -->
+        <section id="demo" class="tab-panel active">
+            <div class="grid-2">
+                <!-- FEATURE 1: DOM EVENTS LOGGER -->
+                <div class="card event-card">
+                    <h3>1. DOM Event Listeners (onfocus, onblur, onkeydown)</h3>
+                    <p class="desc">Interact with the input fields below to observe events captured in real-time by JavaScript handlers.</p>
+
+                    <div class="form-group">
+                        <label for="eventInput">Target Interactive Input Field:</label>
+                        <input type="text" id="eventInput" placeholder="Click to focus, type keys, or click outside to blur...">
+                    </div>
+
+                    <div class="event-hud">
+                        <div class="hud-chip" id="chipFocus">onfocus: <span>Inactive</span></div>
+                        <div class="hud-chip" id="chipBlur">onblur: <span>Inactive</span></div>
+                        <div class="hud-chip" id="chipKeydown">onkeydown: <span>Inactive</span></div>
+                    </div>
+
+                    <div class="log-container">
+                        <div class="log-header">
+                            <span>Live Event Stream Log</span>
+                            <button id="btnClearLog" class="btn-clear">&#128465; Clear</button>
+                        </div>
+                        <div id="eventLogList" class="log-list"></div>
+                    </div>
+                </div>
+
+                <!-- FEATURE 2: AJAX AUTO-COMPLETE SEARCH -->
+                <div class="card event-card">
+                    <h3>2. AJAX / Fetch Dynamic Auto-Complete</h3>
+                    <p class="desc">Asynchronous suggestions queried from <code>data.json</code> as the user types with keyboard arrow navigation.</p>
+
+                    <div class="search-wrapper">
+                        <label for="ajaxSearch">Search Web Technologies:</label>
+                        <div class="input-with-spinner">
+                            <input type="text" id="ajaxSearch" placeholder="Start typing (e.g. 'Java', 'CSS', 'DOM')..." autocomplete="off">
+                            <span id="searchSpinner" class="spinner hidden"></span>
+                        </div>
+                        <!-- Suggestions Dropdown -->
+                        <div id="suggestionsList" class="suggestions-dropdown hidden"></div>
+                    </div>
+
+                    <div id="selectionCard" class="selection-card idle">
+                        <strong>Selected Technology:</strong>
+                        <p id="selectionText">No item chosen yet. Type above to see suggestions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: THEORY -->
+        <section id="theory" class="tab-panel">
+            <div class="section-header">
+                <h2>Answers to Questions (Marks Distribution: 10 Marks)</h2>
+            </div>
+
+            <article class="theory-card">
+                <h3>1. Explain the DOM events onfocus, onblur, and onkeydown. (3 Marks)</h3>
+                <div class="theory-body">
+                    <ul>
+                        <li><strong>`onfocus`:</strong> Dispatched when an element receives focus (via keyboard navigation via <kbd>Tab</kbd> or mouse click). Often used to show helpful hints, activate autocomplete menus, or apply distinct visual glows.</li>
+                        <li><strong>`onblur`:</strong> Dispatched immediately when an element loses focus. Essential for instant client-side field validation and hiding dropdown menus.</li>
+                        <li><strong>`onkeydown`:</strong> Dispatched the instant a physical keyboard key is depressed while the element is active. Unlike `input`, it captures navigation and system keys (<kbd>ArrowDown</kbd>, <kbd>Escape</kbd>, <kbd>Enter</kbd>).</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>2. Describe how AJAX can enable auto-complete. (3 Marks)</h3>
+                <div class="theory-body">
+                    <p>AJAX (Asynchronous JavaScript and XML) enables dynamic search querying without disrupting the user's active page state:</p>
+                    <ol>
+                        <li><strong>Event Listening & Debouncing:</strong> The input listens to <code>input</code> or <code>keyup</code> events, buffering keystrokes with a 200–300ms debounce delay to avoid spamming network requests.</li>
+                        <li><strong>Asynchronous Dispatch:</strong> Uses <code>fetch('/api/search?q=' + query)</code> or <code>XMLHttpRequest</code> to retrieve relevant JSON payload records from server endpoints or static storage.</li>
+                        <li><strong>DOM Rendering:</strong> The returned records are dynamically formatted into an interactive <code>&lt;div class="suggestions-dropdown"&gt;</code> positioned beneath the input field.</li>
+                    </ol>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>3. Provide code to handle events and implement auto-complete. (4 Marks)</h3>
+                <div class="theory-body">
+                    <div class="code-box">
+                        <pre><code>// 1. Handling DOM Events
+input.addEventListener('focus', () => log('onfocus fired'));
+input.addEventListener('blur', () => log('onblur fired'));
+input.addEventListener('keydown', (e) => log(`onkeydown: Key=${e.key}, Code=${e.code}`));
+
+// 2. AJAX Auto-Complete
+async function searchTechnologies(query) {
+    const res = await fetch('data.json');
+    const data = await res.json();
+    return data.filter(item => item.toLowerCase().includes(query.toLowerCase()));
+}
+
+searchInput.addEventListener('input', async (e) => {
+    const q = e.target.value.trim();
+    if (!q) return hideDropdown();
+    const matches = await searchTechnologies(q);
+    renderDropdown(matches);
+});</code></pre>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <div class="container footer-content">
+            <p>Internet Programming Lab | CSA43 Experiment 19 &bull; DOM Events & Asynchronous Auto-Complete</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

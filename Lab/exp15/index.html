@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 15 - Dynamic DOM Creation & Tree Traversal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="app-header">
+        <div class="container header-inner">
+            <div class="logo-group">
+                <span class="badge">Experiment 15</span>
+                <h1>DOM Element Creation & Nested Tree Traversal</h1>
+            </div>
+            <nav class="tab-nav">
+                <button class="tab-btn active" data-tab="demo">Interactive DOM Lab</button>
+                <button class="tab-btn" data-tab="theory">Questions & Theory</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <!-- TAB 1: DEMO -->
+        <section id="demo" class="tab-panel active">
+            <div class="grid-2">
+                <!-- 1. DYNAMIC ELEMENT CREATION -->
+                <div class="card dom-card">
+                    <h3>1. Dynamic Element Creation & Insertion</h3>
+                    <p class="desc">Create and append new HTML elements programmatically using <code>document.createElement()</code> and DOM insertion primitives.</p>
+
+                    <div class="form-group">
+                        <label for="elTag">Select Tag Type:</label>
+                        <select id="elTag">
+                            <option value="div">div (Card Container)</option>
+                            <option value="li">li (List Item)</option>
+                            <option value="p">p (Paragraph)</option>
+                            <option value="button">button (Interactive Element)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="elContent">Element Text Content:</label>
+                        <input type="text" id="elContent" placeholder="e.g. Newly Appended Node Item">
+                    </div>
+
+                    <div class="btn-group">
+                        <button id="btnAppend" class="btn btn-primary">Append Child</button>
+                        <button id="btnPrepend" class="btn btn-secondary">Prepend</button>
+                        <button id="btnClearDyn" class="btn btn-outline">Clear Added</button>
+                    </div>
+
+                    <div class="dyn-container" id="dynContainer">
+                        <span class="placeholder-text">Dynamic container is empty. Append elements above!</span>
+                    </div>
+                </div>
+
+                <!-- 2. NESTED DOM TRAVERSAL -->
+                <div class="card dom-card">
+                    <h3>2. Nested DOM Tree Traversal</h3>
+                    <p class="desc">Navigate relationships between ancestor, child, and sibling nodes using traversal APIs.</p>
+
+                    <div class="traversal-nav-btns">
+                        <button id="tParent" class="t-btn">Parent Node (&uarr;)</button>
+                        <button id="tFirstChild" class="t-btn">First Child (&darr;)</button>
+                        <button id="tNextSib" class="t-btn">Next Sibling (&rarr;)</button>
+                        <button id="tPrevSib" class="t-btn">Prev Sibling (&larr;)</button>
+                        <button id="tResetNode" class="t-btn btn-reset">Reset Selection</button>
+                    </div>
+
+                    <!-- Nested Hierarchy Representation -->
+                    <div class="tree-root" id="treeRoot">
+                        <div class="tree-node node-level-1" id="nodeA">
+                            <span class="node-tag">&lt;div id="nodeA"&gt; Parent Cluster</span>
+                            <div class="tree-children">
+                                <div class="tree-node node-level-2" id="nodeB1">
+                                    <span class="node-tag">&lt;section id="nodeB1"&gt;</span>
+                                    <p class="tree-leaf" id="leafC1">&lt;p id="leafC1"&gt; Leaf Item 1 &lt;/p&gt;</p>
+                                    <p class="tree-leaf" id="leafC2">&lt;p id="leafC2"&gt; Leaf Item 2 &lt;/p&gt;</p>
+                                </div>
+                                <div class="tree-node node-level-2" id="nodeB2">
+                                    <span class="node-tag">&lt;aside id="nodeB2"&gt;</span>
+                                    <p class="tree-leaf" id="leafC3">&lt;p id="leafC3"&gt; Leaf Item 3 &lt;/p&gt;</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="inspector-badge">
+                        Currently Focused Node: <strong id="activeNodeLabel">#nodeA (&lt;div&gt;)</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: THEORY -->
+        <section id="theory" class="tab-panel">
+            <div class="section-header">
+                <h2>Answers to Questions (Marks Distribution: 10 Marks)</h2>
+            </div>
+
+            <article class="theory-card">
+                <h3>1. Explain the concept of the DOM and its role in dynamic content manipulation. (3 Marks)</h3>
+                <div class="theory-body">
+                    <p>The <strong>Document Object Model (DOM)</strong> is an in-memory, tree-structured object representation of an HTML document generated by the browser's rendering engine. Every element, attribute, and text snippet forms a distinct node.</p>
+                    <ul>
+                        <li><strong>Live Programmable Interface:</strong> Bridges HTML markup with programming languages like JavaScript.</li>
+                        <li><strong>Dynamic Content Manipulation:</strong> Enables modification of attributes, classes, content, and inline CSS in response to user events without re-fetching or reloading the document from the server.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>2. Provide instructions for dynamically creating and appending elements. (4 Marks)</h3>
+                <div class="theory-body">
+                    <ol>
+                        <li><strong>Create:</strong> Use <code>document.createElement(tagName)</code> to instantiate an unattached element in memory.</li>
+                        <li><strong>Configure:</strong> Assign attributes, IDs, classes, and text:
+                            <pre><code>const card = document.createElement('div');
+card.className = 'dynamic-card';
+card.textContent = 'Asynchronously Generated Content';</code></pre>
+                        </li>
+                        <li><strong>Attach / Insert:</strong> Target a parent container and append the new node:
+                            <ul>
+                                <li><code>parent.appendChild(card)</code>: Appends node as the last child.</li>
+                                <li><code>parent.prepend(card)</code>: Inserts node as the first child.</li>
+                                <li><code>referenceNode.insertAdjacentElement('beforebegin', card)</code>: Precise positioning.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>3. Describe DOM traversal techniques with examples. (3 Marks)</h3>
+                <div class="theory-body">
+                    <p>DOM traversal allows navigating through relative nodes in the document tree:</p>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Method / Property</th>
+                                    <th>Direction</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>node.parentElement</code></td>
+                                    <td>Upwards</td>
+                                    <td>Returns the direct parent element node.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>node.firstElementChild</code></td>
+                                    <td>Downwards</td>
+                                    <td>Selects first child ignoring whitespace/text nodes.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>node.nextElementSibling</code></td>
+                                    <td>Sideways</td>
+                                    <td>Traverses to the immediate adjacent sibling following this node.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>node.closest('selector')</code></td>
+                                    <td>Upwards (Search)</td>
+                                    <td>Traverses up ancestors to locate nearest matching selector.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <div class="container footer-content">
+            <p>Internet Programming Lab | CSA43 Experiment 15 &bull; DOM Manipulation & Traversal Primitives</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

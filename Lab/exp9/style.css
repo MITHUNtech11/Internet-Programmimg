@@ -1,0 +1,88 @@
+/* Resets & Mobile-First Foundation */
+:root {
+    --primary: #3b82f6;
+    --primary-hover: #1d4ed8;
+    --bg-dark: #0a0f1d;
+    --card-bg: #131b2e;
+    --border: #23314d;
+    --text-primary: #f8fafc;
+    --text-muted: #94a3b8;
+    --radius: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text-primary); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
+.container { width: 92%; max-width: 1200px; margin: 0 auto; }
+
+/* Header */
+.app-header { background: rgba(19, 27, 46, 0.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.header-inner { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; flex-wrap: wrap; gap: 0.8rem; }
+.badge { background: var(--primary); color: white; font-size: 0.75rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 999px; }
+.logo-group h1 { font-size: 1.3rem; font-weight: 700; }
+.tab-nav { display: flex; gap: 0.5rem; }
+.tab-btn { background: transparent; border: 1px solid var(--border); color: var(--text-muted); padding: 0.45rem 1rem; border-radius: 8px; cursor: pointer; }
+.tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+/* HUD */
+.viewport-hud { background: #1e293b; border-bottom: 1px solid var(--border); padding: 0.5rem 1rem; display: flex; justify-content: center; gap: 2rem; font-family: 'Fira Code', monospace; font-size: 0.8rem; color: #94a3b8; flex-wrap: wrap; }
+.viewport-hud strong { color: #38bdf8; }
+
+.main-content { flex: 1; padding: 2rem 0; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Responsive Navigation Bar */
+.responsive-navbar { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.8rem 1.5rem; display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; }
+.nav-brand { font-size: 1.2rem; font-weight: 800; color: #60a5fa; letter-spacing: 0.05em; }
+.menu-toggle { display: none; background: transparent; border: 1px solid var(--border); color: white; font-size: 1.25rem; padding: 0.3rem 0.7rem; border-radius: 6px; cursor: pointer; }
+.nav-menu { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
+.nav-menu a { color: #cbd5e1; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+.nav-menu a:hover { color: var(--primary); }
+.btn-nav { background: var(--primary); color: white !important; padding: 0.4rem 0.9rem; border-radius: 6px; }
+
+/* Hero with clamp */
+.hero-section { background: linear-gradient(135deg, #1e3a8a, #0f172a); border: 1px solid var(--border); border-radius: var(--radius); padding: clamp(2rem, 5vw, 4rem); text-align: center; margin-bottom: 2rem; }
+.hero-title { font-size: clamp(1.8rem, 4.5vw, 3.2rem); font-weight: 800; margin-bottom: 1rem; line-height: 1.2; }
+.hero-sub { font-size: clamp(0.95rem, 1.8vw, 1.2rem); color: #cbd5e1; max-width: 700px; margin: 0 auto 1.5rem; }
+.hero-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+.btn { padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem; cursor: pointer; border: none; }
+.btn-primary { background: var(--primary); color: white; }
+.btn-outline { background: transparent; border: 1px solid var(--border); color: white; }
+
+/* Unit Matrix */
+.unit-matrix-section { margin-bottom: 2.5rem; }
+.unit-matrix-section h3, .features-section h3 { font-size: 1.4rem; margin-bottom: 1rem; color: #93c5fd; }
+.unit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+.unit-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
+.unit-badge { background: #1e293b; color: #38bdf8; font-size: 0.75rem; font-family: 'Fira Code', monospace; padding: 0.2rem 0.5rem; border-radius: 4px; display: inline-block; margin-bottom: 0.5rem; font-weight: 600; }
+.unit-card h4 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+.unit-card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem; }
+.unit-box { background: #090e17; border: 1px dashed #38bdf8; border-radius: 6px; text-align: center; color: #38bdf8; font-family: 'Fira Code', monospace; font-size: 0.8rem; }
+.box-rem { padding: 1.5rem; }
+.box-vw { padding: 1rem; width: 100%; }
+.box-clamp { padding: 1rem; font-size: clamp(0.8rem, 2vw, 1.1rem); }
+
+/* Features Grid */
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+.feature-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.8rem; transition: transform 0.2s; }
+.feature-card:hover { transform: translateY(-4px); }
+.f-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+.feature-card h4 { font-size: 1.1rem; margin-bottom: 0.5rem; color: #60a5fa; }
+.feature-card p { font-size: 0.85rem; color: var(--text-muted); }
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .menu-toggle { display: block; }
+    .nav-menu { display: none; width: 100%; flex-direction: column; gap: 1rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+    .nav-menu.active { display: flex; }
+}
+
+/* Theory styles */
+.theory-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; margin-bottom: 1.5rem; }
+.theory-card h3 { color: #60a5fa; margin-bottom: 1rem; }
+.theory-body p, .theory-body ul, .theory-body ol { margin-bottom: 1rem; color: #cbd5e1; }
+.theory-body ul, .theory-body ol { padding-left: 1.5rem; }
+.code-box { background: #090e17; border: 1px solid var(--border); padding: 1rem; border-radius: 8px; font-family: 'Fira Code', monospace; color: #38bdf8; font-size: 0.85rem; overflow-x: auto; }
+
+.app-footer { background: #0b1120; border-top: 1px solid var(--border); padding: 1.5rem 0; text-align: center; color: var(--text-muted); font-size: 0.85rem; }

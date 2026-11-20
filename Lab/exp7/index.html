@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 7 - User Registration Form & Validation</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="app-header">
+        <div class="container header-inner">
+            <div class="logo-group">
+                <span class="badge">Experiment 07</span>
+                <h1>User Registration Form with Validation</h1>
+            </div>
+            <nav class="tab-nav">
+                <button class="tab-btn active" data-tab="demo">Interactive Form</button>
+                <button class="tab-btn" data-tab="theory">Questions & Theory</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <!-- TAB 1: FORM DEMO -->
+        <section id="demo" class="tab-panel active">
+            <div class="section-header">
+                <h2>Registration Form (Name, Email, Message)</h2>
+                <p>Client-side validation using HTML5 constraint API combined with real-time JavaScript regular expressions.</p>
+            </div>
+
+            <div class="grid-layout">
+                <div class="card form-container">
+                    <form id="regForm" novalidate>
+                        <div class="form-group" id="group-name">
+                            <label for="userName">Full Name <span class="req">*</span></label>
+                            <input type="text" id="userName" name="userName" placeholder="John Doe" required autocomplete="name">
+                            <span class="input-status-icon"></span>
+                            <div class="error-text">Please enter a valid name (at least 3 alphabetic characters).</div>
+                        </div>
+
+                        <div class="form-group" id="group-email">
+                            <label for="userEmail">Email Address <span class="req">*</span></label>
+                            <input type="email" id="userEmail" name="userEmail" placeholder="john.doe@example.com" required autocomplete="email">
+                            <span class="input-status-icon"></span>
+                            <div class="error-text">Please enter a valid email address (e.g. user@domain.com).</div>
+                        </div>
+
+                        <div class="form-group" id="group-message">
+                            <label for="userMessage">Your Message <span class="req">*</span></label>
+                            <textarea id="userMessage" name="userMessage" rows="5" placeholder="Write your inquiry or feedback here (min 20 characters)..." required></textarea>
+                            <div class="char-count-wrap">
+                                <span class="char-count"><span id="charCount">0</span> / 500 characters</span>
+                            </div>
+                            <div class="error-text">Message must be at least 20 characters long.</div>
+                        </div>
+
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-primary">Submit Application</button>
+                            <button type="button" id="btnCancel" class="btn btn-secondary">Reset / Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card feedback-container">
+                    <h3>Submission Payload & Status</h3>
+                    <div id="statusAlert" class="alert-box idle">
+                        <span class="alert-icon">&#9432;</span>
+                        <div class="alert-content">
+                            <strong>Awaiting Submission</strong>
+                            <p>Fill out all required fields. Real-time validation checks format, presence, and boundaries.</p>
+                        </div>
+                    </div>
+
+                    <div class="code-preview">
+                        <h4>Validated JSON Payload</h4>
+                        <pre id="jsonPreview">{
+  "status": "pending_submission"
+}</pre>
+                    </div>
+
+                    <div class="validation-checklist">
+                        <h4>Real-Time Validation Criteria</h4>
+                        <ul>
+                            <li id="chk-name">&#9675; Name: Letters only, min 3 chars</li>
+                            <li id="chk-email">&#9675; Email: RFC standard format</li>
+                            <li id="chk-message">&#9675; Message: Minimum 20 characters</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: THEORY & QUESTIONS -->
+        <section id="theory" class="tab-panel">
+            <div class="section-header">
+                <h2>Evaluation Questions & Solutions (Marks Distribution: 20 Marks)</h2>
+            </div>
+
+            <article class="theory-card">
+                <h3>1. Explain the essential fields and HTML structure of the registration form. (6 Marks)</h3>
+                <div class="theory-body">
+                    <p>A well-architected registration form balances user experience with rigorous data integrity. The essential fields and structure comprise:</p>
+                    <ul>
+                        <li><strong>Semantic `&lt;form&gt;` Container:</strong> Utilizes <code>method="POST"</code> for secure payload encapsulation and <code>novalidate</code> when JavaScript intercepts submission to handle custom error styling.</li>
+                        <li><strong>Full Name (`&lt;input type="text"&gt;`):</strong> Includes <code>required</code>, <code>minlength="3"</code>, and <code>autocomplete="name"</code>. Captures the identity of the registrant.</li>
+                        <li><strong>Email Address (`&lt;input type="email"&gt;`):</strong> Leverages native RFC email syntactical validation and invokes the `@` keyboard layout on touch devices.</li>
+                        <li><strong>User Message (`&lt;textarea&gt;`):</strong> Captures multi-line textual feedback with defined <code>rows</code>, <code>maxlength</code>, and <code>minlength</code> constraints.</li>
+                        <li><strong>Explicit Form Controls:</strong> Submit (<code>&lt;button type="submit"&gt;</code>) to trigger validation and submission, alongside Cancel/Reset (<code>&lt;button type="button"&gt;</code>) to flush state gracefully.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>2. Describe how to implement client-side validation using HTML5 and JavaScript. (8 Marks)</h3>
+                <div class="theory-body">
+                    <p>A resilient web client uses a hybrid approach combining HTML5 declarative constraints with JavaScript's programmatic Constraint Validation API:</p>
+                    <ol>
+                        <li><strong>HTML5 Declarative Attributes:</strong> Setting attributes such as <code>required</code>, <code>type="email"</code>, <code>pattern</code>, and <code>minlength</code> offloads basic parsing to the browser engine before any JavaScript executes.</li>
+                        <li><strong>JavaScript Interception (`e.preventDefault()`):</strong> The form listener intercepts the <code>submit</code> event, halting the default HTTP dispatch until all validators evaluate to <code>true</code>.</li>
+                        <li><strong>Regex & Boundary Evaluation:</strong>
+                            <pre><code>const nameRegex = /^[A-Za-z\s]{3,50}$/;
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;</code></pre>
+                        </li>
+                        <li><strong>Dynamic Class Mutation:</strong> Toggling <code>.is-valid</code> and <code>.is-invalid</code> CSS classes dynamically highlights fields in green or red, accompanied by clear ARIA-compatible error notices.</li>
+                    </ol>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>3. Provide code snippets to illustrate the form design and validation implementation. (6 Marks)</h3>
+                <div class="theory-body">
+                    <div class="code-box">
+                        <pre><code>// JavaScript Validation Logic
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    return re.test(String(email).toLowerCase());
+}
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    let isNameValid = /^[A-Za-z\s]{3,}$/.test(userName.value.trim());
+    let isEmailValid = validateEmail(userEmail.value.trim());
+    let isMsgValid = userMessage.value.trim().length >= 20;
+
+    if (isNameValid && isEmailValid && isMsgValid) {
+        showSuccessModal();
+    } else {
+        highlightFieldErrors();
+    }
+});</code></pre>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <div class="container footer-content">
+            <p>Internet Programming Lab | CSA43 Experiment 07 &bull; Form Architecture & Validation</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

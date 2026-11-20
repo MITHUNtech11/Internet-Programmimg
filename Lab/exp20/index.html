@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 20 - External JavaScript Operations</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="app-header">
+        <div class="container header-inner">
+            <div class="logo-group">
+                <span class="badge">Experiment 20</span>
+                <h1>External JS Operations: Factorial, Sum of Digits & Palindrome</h1>
+            </div>
+            <nav class="tab-nav">
+                <button class="tab-btn active" data-tab="demo">Operations Dashboard</button>
+                <button class="tab-btn" data-tab="theory">Questions & Theory</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <!-- TAB 1: DEMO -->
+        <section id="demo" class="tab-panel active">
+            <div class="section-header">
+                <h2>Modular JavaScript Function Execution</h2>
+                <p>All core computational logic is completely isolated in an external script: <code>operations.js</code>.</p>
+            </div>
+
+            <div class="grid-3">
+                <!-- OPERATION 1: FACTORIAL -->
+                <div class="card op-card">
+                    <div class="op-header">
+                        <span class="op-num">Op 1</span>
+                        <h3>Factorial of a Number</h3>
+                    </div>
+                    <p class="desc">Calculates mathematical $n! = n \times (n-1) \times \dots \times 1$.</p>
+
+                    <div class="form-group">
+                        <label for="inputFact">Enter Integer (n &ge; 0):</label>
+                        <input type="number" id="inputFact" min="0" max="25" value="5" placeholder="e.g. 5">
+                    </div>
+
+                    <button id="btnRunFact" class="btn btn-primary">Calculate Factorial</button>
+
+                    <div class="result-box" id="resFact">
+                        <div class="res-label">Returned Value:</div>
+                        <div class="res-value" id="valFact">120</div>
+                        <small class="res-trace" id="traceFact">5! = 5 &times; 4 &times; 3 &times; 2 &times; 1</small>
+                    </div>
+                </div>
+
+                <!-- OPERATION 2: SUM OF DIGITS -->
+                <div class="card op-card">
+                    <div class="op-header">
+                        <span class="op-num">Op 2</span>
+                        <h3>Sum of Digits</h3>
+                    </div>
+                    <p class="desc">Extracts and computes the arithmetic sum of all numeric digits.</p>
+
+                    <div class="form-group">
+                        <label for="inputSum">Enter Number / String:</label>
+                        <input type="text" id="inputSum" value="12345" placeholder="e.g. 12345">
+                    </div>
+
+                    <button id="btnRunSum" class="btn btn-primary">Compute Sum of Digits</button>
+
+                    <div class="result-box" id="resSum">
+                        <div class="res-label">Returned Value:</div>
+                        <div class="res-value" id="valSum">15</div>
+                        <small class="res-trace" id="traceSum">1 + 2 + 3 + 4 + 5 = 15</small>
+                    </div>
+                </div>
+
+                <!-- OPERATION 3: PALINDROME CHECKER -->
+                <div class="card op-card">
+                    <div class="op-header">
+                        <span class="op-num">Op 3</span>
+                        <h3>Palindrome String</h3>
+                    </div>
+                    <p class="desc">Tests if a phrase reads identically forward and backward.</p>
+
+                    <div class="form-group">
+                        <label for="inputPalin">Enter String / Phrase:</label>
+                        <input type="text" id="inputPalin" value="A man a plan a canal Panama" placeholder="e.g. racecar">
+                    </div>
+
+                    <button id="btnRunPalin" class="btn btn-primary">Verify Palindrome</button>
+
+                    <div class="result-box" id="resPalin">
+                        <div class="res-label">Returned Value:</div>
+                        <div class="res-value ok" id="valPalin">true (PALINDROME)</div>
+                        <small class="res-trace" id="tracePalin">Normalized: "amanaplanacanalpanama"</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: THEORY -->
+        <section id="theory" class="tab-panel">
+            <div class="section-header">
+                <h2>Answers to Questions (Marks Distribution: 10 Marks)</h2>
+            </div>
+
+            <article class="theory-card">
+                <h3>1. Explain the logic for each operation. (3 Marks)</h3>
+                <div class="theory-body">
+                    <ul>
+                        <li><strong>Factorial ($n!$):</strong> Mathematical product of all positive integers less than or equal to $n$. The boundary condition is $0! = 1$. The iterative algorithm initializes an accumulator at $1$ and multiplies by $i$ for $i \in [2, n]$.</li>
+                        <li><strong>Sum of Digits:</strong> Can be solved either via arithmetic modulo/division (extracting digits via <code>n % 10</code> and reducing via <code>Math.floor(n / 10)</code>) or by converting the number to a string, stripping non-digit symbols, and accumulating the integer value of each character.</li>
+                        <li><strong>Palindrome String:</strong> A string that remains invariant when reversed. The optimal $O(n)$ two-pointer algorithm strips non-alphanumeric punctuation, normalizes case, and advances pointers from both ends (`left` and `right`) comparing characters until they meet.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>2. Write reusable JavaScript functions for all operations. (4 Marks)</h3>
+                <div class="theory-body">
+                    <p>Implemented in external <code>operations.js</code> with return values:</p>
+                    <div class="code-box">
+                        <pre><code>// 1. Factorial
+function calculateFactorial(n) {
+    if (n < 0) return "Invalid input";
+    let res = 1;
+    for (let i = 2; i <= n; i++) res *= i;
+    return res;
+}
+
+// 2. Sum of Digits
+function sumOfDigits(num) {
+    return String(num).replace(/\D/g, '').split('').reduce((sum, d) => sum + (+d), 0);
+}
+
+// 3. Palindrome Check
+function isPalindrome(str) {
+    const s = str.toLowerCase().replace(/[^a-z0-9]/g, '');
+    return s === s.split('').reverse().join('');
+}</code></pre>
+                    </div>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>3. Provide code to demonstrate calling these functions. (3 Marks)</h3>
+                <div class="theory-body">
+                    <div class="code-box">
+                        <pre><code>&lt;!-- HTML script tag importing external file --&gt;
+&lt;script src="operations.js"&gt;&lt;/script&gt;
+&lt;script src="script.js"&gt;&lt;/script&gt;
+
+// script.js (UI Controller invoking external functions)
+btnFact.addEventListener('click', () => {
+    const n = document.getElementById('numInput').value;
+    const answer = calculateFactorial(n); // Call external function
+    displayResult(answer);
+});</code></pre>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <div class="container footer-content">
+            <p>Internet Programming Lab | CSA43 Experiment 20 &bull; Modular External JavaScript Algorithms</p>
+        </div>
+    </footer>
+
+    <!-- EXTERNAL OPERATIONS SCRIPT FIRST AS REQUIRED -->
+    <script src="operations.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

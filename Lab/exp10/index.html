@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 10 - Webpage Design & HTTP Lifecycle</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="app-header">
+        <div class="container header-inner">
+            <div class="logo-group">
+                <span class="badge">Experiment 10</span>
+                <h1>Product Showcase & HTTP Lifecycle Inspector</h1>
+            </div>
+            <nav class="tab-nav">
+                <button class="tab-btn active" data-tab="product">Product Page Demo</button>
+                <button class="tab-btn" data-tab="http">HTTP Lifecycle Inspector</button>
+                <button class="tab-btn" data-tab="theory">Questions & Theory</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <!-- TAB 1: PRODUCT SHOWCASE -->
+        <section id="product" class="tab-panel active">
+            <article class="product-article card">
+                <div class="product-grid">
+                    <div class="product-media">
+                        <!-- SVG Vector Representation for guaranteed rendering -->
+                        <div class="svg-device">
+                            <svg viewBox="0 0 400 300" width="100%" height="auto" class="device-svg">
+                                <rect x="30" y="20" width="340" height="220" rx="16" fill="#1e293b" stroke="#3b82f6" stroke-width="4"/>
+                                <rect x="50" y="40" width="300" height="170" rx="8" fill="#090e17"/>
+                                <circle cx="200" cy="225" r="5" fill="#64748b"/>
+                                <path d="M140 260 L260 260 L240 240 L160 240 Z" fill="#334155"/>
+                                <rect x="120" y="260" width="160" height="8" rx="4" fill="#475569"/>
+                                <text x="200" y="130" fill="#38bdf8" font-family="'Fira Code', monospace" font-size="16" text-anchor="middle">&#9889; HyperCore Pro X1</text>
+                            </svg>
+                        </div>
+                        <div class="badge-row">
+                            <span class="chip">Flagship Series</span>
+                            <span class="chip chip-success">In Stock</span>
+                        </div>
+                    </div>
+
+                    <div class="product-info">
+                        <h2>HyperCore Pro X1 Developer Workstation</h2>
+                        <p class="tagline">Engineered for asynchronous computing, web scaling, and high-throughput data processing.</p>
+                        
+                        <div class="price-box">
+                            <span class="price">$1,499.00</span>
+                            <span class="price-tax">USD (Free Global Shipping)</span>
+                        </div>
+
+                        <h4>Core Capabilities</h4>
+                        <ul class="feature-list">
+                            <li>16-Core 32-Thread NextGen Processor with 4.8GHz Max Boost.</li>
+                            <li>64GB Unified DDR5 RAM clocked at 6400MHz for instantaneous compiling.</li>
+                            <li>2TB NVMe PCIe 5.0 SSD delivering up to 12,000 MB/s sequential reads.</li>
+                            <li>Dual 10GbE SFP+ networking interfaces for extreme local server throughput.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Structured Technical Specifications Table -->
+                <div class="specs-section">
+                    <h3>Technical Specifications Matrix</h3>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Component</th>
+                                    <th>Specification Details</th>
+                                    <th>Benchmark Score</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>CPU Architecture</td>
+                                    <td>Zenith Octa-Core 6nm Cluster</td>
+                                    <td>32,450 pts (Geekbench)</td>
+                                    <td><span class="badge-status ok">Optimal</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Graphics Accelerator</td>
+                                    <td>Integrated Vector Ray-Tracing Core</td>
+                                    <td>14,200 pts (Timespy)</td>
+                                    <td><span class="badge-status ok">Optimal</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Cooling Subsystem</td>
+                                    <td>Vapor Chamber + Dual Mag-Lev Fans</td>
+                                    <td>&lt; 38 dBA under full load</td>
+                                    <td><span class="badge-status ok">Verified</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <!-- TAB 2: HTTP LIFECYCLE -->
+        <section id="http" class="tab-panel">
+            <div class="section-header">
+                <h2>Interactive HTTP Request & Response Sequence</h2>
+                <p>Step through the exact network lifecycle from user navigation to complete DOM asset paint.</p>
+                <div class="http-controls">
+                    <button class="btn btn-primary" id="btnRunHttp">Simulate Full HTTP Sequence</button>
+                    <button class="btn btn-secondary" id="btnStepHttp">Step Forward (Next Stage)</button>
+                    <button class="btn btn-outline" id="btnResetHttp">Reset</button>
+                </div>
+            </div>
+
+            <div class="http-inspector-grid">
+                <!-- Waterfall stages -->
+                <div class="card timeline-card">
+                    <h3>Network Request Waterfall</h3>
+                    <div class="waterfall-list" id="waterfallList">
+                        <div class="waterfall-item" data-step="1">
+                            <div class="w-meta">
+                                <span class="step-num">1</span>
+                                <span class="step-name">DNS Resolution</span>
+                            </div>
+                            <div class="w-bar-wrap"><div class="w-bar" style="width: 25%;"></div></div>
+                            <span class="w-time">18ms</span>
+                        </div>
+                        <div class="waterfall-item" data-step="2">
+                            <div class="w-meta">
+                                <span class="step-num">2</span>
+                                <span class="step-name">TCP 3-Way Handshake</span>
+                            </div>
+                            <div class="w-bar-wrap"><div class="w-bar" style="width: 40%;"></div></div>
+                            <span class="w-time">32ms</span>
+                        </div>
+                        <div class="waterfall-item" data-step="3">
+                            <div class="w-meta">
+                                <span class="step-num">3</span>
+                                <span class="step-name">TLS / SSL Negotiation</span>
+                            </div>
+                            <div class="w-bar-wrap"><div class="w-bar" style="width: 55%;"></div></div>
+                            <span class="w-time">45ms</span>
+                        </div>
+                        <div class="waterfall-item" data-step="4">
+                            <div class="w-meta">
+                                <span class="step-num">4</span>
+                                <span class="step-name">HTTP GET /index.html (HTML)</span>
+                            </div>
+                            <div class="w-bar-wrap"><div class="w-bar" style="width: 70%;"></div></div>
+                            <span class="w-time">28ms</span>
+                        </div>
+                        <div class="waterfall-item" data-step="5">
+                            <div class="w-meta">
+                                <span class="step-num">5</span>
+                                <span class="step-name">External Assets (CSS, JS, SVG)</span>
+                            </div>
+                            <div class="w-bar-wrap"><div class="w-bar" style="width: 95%;"></div></div>
+                            <span class="w-time">64ms</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Header Inspector -->
+                <div class="card header-card">
+                    <h3>Header Packet Inspector</h3>
+                    <div class="tab-subnav">
+                        <span class="active">HTTP Request</span>
+                        <span>HTTP Response</span>
+                    </div>
+                    <pre class="header-pre" id="headerCode"><code>GET /products/hypercore-x1 HTTP/1.1
+Host: api.techflow.io
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)
+Accept: text/html,application/xhtml+xml
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Connection: keep-alive</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: QUESTIONS & THEORY -->
+        <section id="theory" class="tab-panel">
+            <div class="section-header">
+                <h2>Answers to Questions (Marks Distribution: 20 Marks)</h2>
+            </div>
+
+            <article class="theory-card">
+                <h3>1. Explain the design elements (tables, lists, images) used for readability. (6 Marks)</h3>
+                <div class="theory-body">
+                    <ul>
+                        <li><strong>Structured Tables (`&lt;table&gt;`):</strong> Ideal for comparing multidimensional tabular data (such as technical specifications, memory clock speeds, and benchmarks). Headers (`&lt;th&gt;`) with distinct styling give cognitive anchor points.</li>
+                        <li><strong>Bulleted & Numbered Lists (`&lt;ul&gt;`, `&lt;ol&gt;`):</strong> Breaks monolithic walls of text into scannable chunks, allowing users to quickly assess core features and sequential guides.</li>
+                        <li><strong>Semantic Visuals (`&lt;img&gt;`, `&lt;svg&gt;`):</strong> High-fidelity vector visuals provide immediate contextual cues without causing layout shifts when combined with explicit aspect ratios.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>2. Describe the sequence of HTTP requests and responses for loading a webpage. (8 Marks)</h3>
+                <div class="theory-body">
+                    <ol>
+                        <li><strong>DNS Resolution:</strong> Browser maps hostname (e.g., `techflow.io`) to an IP address (`104.21.42.12`).</li>
+                        <li><strong>TCP Connection Handshake:</strong> SYN -> SYN-ACK -> ACK establishes a reliable TCP socket over port 80/443.</li>
+                        <li><strong>TLS Cryptographic Handshake:</strong> ClientHello, ServerHello, certificate validation, and key exchange establish symmetric encryption.</li>
+                        <li><strong>Initial HTTP GET Request:</strong> Browser sends HTTP request for the base resource (`/index.html`).</li>
+                        <li><strong>Parsing & Dependent Resource Discovery:</strong> Browser parses the received HTML DOM; encounters linked CSS, JS, and image tags.</li>
+                        <li><strong>Multiplexed Asset Fetching:</strong> Under HTTP/2 and HTTP/3, secondary assets stream concurrently over the single connection.</li>
+                    </ol>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>3. Provide an example of an HTTP request and its corresponding response. (6 Marks)</h3>
+                <div class="theory-body">
+                    <div class="code-box">
+                        <pre><code>/* Sample HTTP Request */
+GET /products/hypercore-x1 HTTP/1.1
+Host: api.techflow.io
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)
+Accept: text/html,application/json
+Connection: keep-alive
+
+/* Sample HTTP Response */
+HTTP/1.1 200 OK
+Date: Fri, 20 Nov 2026 07:45:00 GMT
+Content-Type: text/html; charset=UTF-8
+Content-Length: 14280
+Cache-Control: public, max-age=3600
+Server: cloudflare
+
+&lt;!DOCTYPE html&gt;&lt;html&gt;...&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <div class="container footer-content">
+            <p>Internet Programming Lab | CSA43 Experiment 10 &bull; Web Readability & HTTP Architecture</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

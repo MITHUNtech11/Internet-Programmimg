@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 16 - JavaScript Regular Expressions & Password Validator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="app-header">
+        <div class="container header-inner">
+            <div class="logo-group">
+                <span class="badge">Experiment 16</span>
+                <h1>JavaScript Regular Expressions & Password Security</h1>
+            </div>
+            <nav class="tab-nav">
+                <button class="tab-btn active" data-tab="demo">Regex Lab</button>
+                <button class="tab-btn" data-tab="theory">Questions & Theory</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <!-- TAB 1: DEMO -->
+        <section id="demo" class="tab-panel active">
+            <div class="grid-2">
+                <!-- FEATURE 1: PASSWORD VALIDATOR -->
+                <div class="card module-card">
+                    <h3>1. Real-Time Regex Password Validator</h3>
+                    <p class="desc">Tests password entropy against strict security criteria (min length, uppercase, numbers, symbols).</p>
+
+                    <div class="form-group">
+                        <label for="pwdInput">Enter Password:</label>
+                        <div class="input-wrap">
+                            <input type="password" id="pwdInput" placeholder="Enter secure password...">
+                            <button type="button" id="togglePwd" class="btn-toggle-pwd">&#128065;</button>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Strength Meter -->
+                    <div class="meter-wrapper">
+                        <div class="meter-bar"><div id="strengthFill" class="meter-fill"></div></div>
+                        <span id="strengthLabel" class="strength-text">Password Strength: None</span>
+                    </div>
+
+                    <!-- Checklist -->
+                    <ul class="criteria-list">
+                        <li id="c-len">&#9675; At least 8 characters long (<code>.{8,}</code>)</li>
+                        <li id="c-upper">&#9675; Contains uppercase letter (<code>[A-Z]</code>)</li>
+                        <li id="c-lower">&#9675; Contains lowercase letter (<code>[a-z]</code>)</li>
+                        <li id="c-num">&#9675; Contains numeric digit (<code>[0-9]</code>)</li>
+                        <li id="c-sym">&#9675; Contains special symbol (<code>[!@#$%^&*]</code>)</li>
+                    </ul>
+                </div>
+
+                <!-- FEATURE 2: REGEXP METHODS TESTER -->
+                <div class="card module-card">
+                    <h3>2. RegExp Object Methods Explorer</h3>
+                    <p class="desc">Interactive evaluation of <code>test()</code>, <code>exec()</code>, and String RegExp methods.</p>
+
+                    <div class="form-group">
+                        <label for="patternInput">Regular Expression Pattern:</label>
+                        <input type="text" id="patternInput" value="\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sampleText">Test Target String:</label>
+                        <textarea id="sampleText" rows="3">Contact team leads at support@techflow.io and admin@domain.org for queries.</textarea>
+                    </div>
+
+                    <div class="btn-group">
+                        <button id="btnTest" class="btn btn-primary">RegExp.test()</button>
+                        <button id="btnExec" class="btn btn-secondary">RegExp.exec()</button>
+                        <button id="btnMatch" class="btn btn-secondary">String.match()</button>
+                    </div>
+
+                    <div class="output-console">
+                        <label>Console Execution Output:</label>
+                        <pre id="consoleOut">Select a RegExp method above to evaluate results.</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: THEORY -->
+        <section id="theory" class="tab-panel">
+            <div class="section-header">
+                <h2>Answers to Questions (Marks Distribution: 10 Marks)</h2>
+            </div>
+
+            <article class="theory-card">
+                <h3>1. Explain regular expressions and their importance in JavaScript. (3 Marks)</h3>
+                <div class="theory-body">
+                    <p>A <strong>Regular Expression (RegExp)</strong> is an object representing a formal sequence of characters defining a search pattern. They are fundamental in JavaScript engineering for:</p>
+                    <ul>
+                        <li><strong>Input Sanitization & Validation:</strong> Enforcing strict syntactic rules on user submissions (such as emails, telephone numbers, postal codes, and credit cards) prior to server dispatch.</li>
+                        <li><strong>String Searching & Substitution:</strong> Searching complex token sequences and replacing matching substrings via <code>String.prototype.replace()</code>.</li>
+                        <li><strong>Performance:</strong> RegExp engines in modern V8/SpiderMonkey run compiled C++ native automata, delivering sub-millisecond pattern matching.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>2. Write a regex pattern to validate passwords. (3 Marks)</h3>
+                <div class="theory-body">
+                    <p>A robust password validation regex pattern using positive lookahead assertions:</p>
+                    <pre class="code-box"><code>const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;</code></pre>
+                    <p><strong>Pattern Anatomy:</strong></p>
+                    <ul>
+                        <li><code>^</code> and <code>$</code>: Asserts beginning and end of string.</li>
+                        <li><code>(?=.*[a-z])</code>: Positive lookahead asserting at least one lowercase letter.</li>
+                        <li><code>(?=.*[A-Z])</code>: Positive lookahead asserting at least one uppercase letter.</li>
+                        <li><code>(?=.*\d)</code>: Positive lookahead asserting at least one numeric digit.</li>
+                        <li><code>(?=.*[@$!%*?&])</code>: Positive lookahead asserting at least one special character.</li>
+                        <li><code>{8,}</code>: Minimum character length boundary of 8.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>3. List and describe three methods of the RegExp object with examples. (4 Marks)</h3>
+                <div class="theory-body">
+                    <ol>
+                        <li><strong>`RegExp.prototype.test(string)`:</strong> Executes a search for a match between a regular expression and a specified string. Returns <code>true</code> or <code>false</code>.
+                            <pre class="code-box"><code>const pattern = /\d{3}/;
+console.log(pattern.test("Item 123")); // true</code></pre>
+                        </li>
+                        <li><strong>`RegExp.prototype.exec(string)`:</strong> Executes a search for a match in a specified string. Returns a detailed result array containing the matched text, capturing groups, index position, and original input, or <code>null</code> if no match was found.
+                            <pre class="code-box"><code>const pattern = /(\w+)@(\w+)/;
+const match = pattern.exec("user@tech");
+console.log(match[0]); // "user@tech"
+console.log(match[1]); // "user" (group 1)</code></pre>
+                        </li>
+                        <li><strong>`RegExp.prototype.toString()`:</strong> Returns a string representing the specified regular expression literal including its pattern and attached flags.
+                            <pre class="code-box"><code>const regex = new RegExp("abc", "gi");
+console.log(regex.toString()); // "/abc/gi"</code></pre>
+                        </li>
+                    </ol>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <div class="container footer-content">
+            <p>Internet Programming Lab | CSA43 Experiment 16 &bull; Regular Expressions & Password Security</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

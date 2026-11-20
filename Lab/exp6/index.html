@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 6 - Legacy to HTML5 Modernization</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="app-header">
+        <div class="container header-inner">
+            <div class="logo-group">
+                <span class="badge">Experiment 06</span>
+                <h1>HTML5 Web Application Modernization</h1>
+            </div>
+            <nav class="tab-nav">
+                <button class="tab-btn active" data-tab="demo">Interactive Demo</button>
+                <button class="tab-btn" data-tab="comparison">HTML4 vs HTML5</button>
+                <button class="tab-btn" data-tab="theory">Questions & Theory</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <!-- TAB 1: DEMO -->
+        <section id="demo" class="tab-panel active">
+            <div class="section-header">
+                <h2>Modern HTML5 Web Form & Semantic Architecture</h2>
+                <p>Experience native HTML5 validation, modern input types, progress bars, and datalists without external libraries.</p>
+            </div>
+
+            <div class="grid-2">
+                <div class="card form-card">
+                    <h3>HTML5 Interactive Registration</h3>
+                    <form id="modernForm" novalidate>
+                        <div class="form-group">
+                            <label for="fullName">Full Name <span class="req">*</span></label>
+                            <input type="text" id="fullName" name="fullName" placeholder="e.g. Mithun Kumar" required minlength="3" autocomplete="name">
+                            <small class="hint">Min 3 characters (HTML5 `minlength` & `required`)</small>
+                            <div class="error-msg"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="userEmail">Email Address <span class="req">*</span></label>
+                            <input type="email" id="userEmail" name="userEmail" placeholder="mithun@example.com" required autocomplete="email">
+                            <small class="hint">Native RFC compliant email pattern checking</small>
+                            <div class="error-msg"></div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="userAge">Age (18 - 80)</label>
+                                <input type="number" id="userAge" name="userAge" min="18" max="80" value="21" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="birthDate">Date of Birth</label>
+                                <input type="date" id="birthDate" name="birthDate" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="techStack">Preferred Web Stack</label>
+                            <input list="stacks" id="techStack" name="techStack" placeholder="Type or select a stack...">
+                            <datalist id="stacks">
+                                <option value="LAMP (Linux, Apache, MySQL, PHP)">
+                                <option value="MERN (MongoDB, Express, React, Node)">
+                                <option value="JAMstack (JS, APIs, Markup)">
+                                <option value="Django + PostgreSQL">
+                                <option value="Spring Boot + Angular">
+                            </datalist>
+                            <small class="hint">Powered by HTML5 <code>&lt;datalist&gt;</code> element</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="experienceLevel">Experience Level: <span id="rangeVal">5</span> / 10</label>
+                            <input type="range" id="experienceLevel" min="1" max="10" value="5">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="favColor">Brand Accent Color</label>
+                            <div class="color-picker-wrap">
+                                <input type="color" id="favColor" value="#3b82f6">
+                                <span id="colorHex">#3b82f6</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit HTML5 Form</button>
+                        <button type="reset" class="btn btn-secondary">Reset</button>
+                    </form>
+                </div>
+
+                <div class="card live-preview-card">
+                    <h3>Native HTML5 Indicators & State</h3>
+                    <div class="metric-block">
+                        <label>Form Completion Progress</label>
+                        <progress id="formProgress" value="20" max="100"></progress>
+                        <span id="progressText">20% Completed</span>
+                    </div>
+
+                    <div class="metric-block">
+                        <label>Password Strength Meter (HTML5 &lt;meter&gt;)</label>
+                        <meter id="passMeter" min="0" max="100" low="33" high="66" optimum="80" value="30"></meter>
+                        <span id="meterText">Weak (Add length & special characters)</span>
+                    </div>
+
+                    <div class="preview-output">
+                        <h4>Live Form Data Object</h4>
+                        <pre id="outputJson">{
+  "status": "Waiting for input..."
+}</pre>
+                    </div>
+
+                    <div id="toastSuccess" class="toast hidden">
+                        &#10004; HTML5 Form validated and submitted successfully!
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: COMPARISON -->
+        <section id="comparison" class="tab-panel">
+            <div class="section-header">
+                <h2>Legacy HTML (HTML 4.01 / XHTML) vs Modern HTML5</h2>
+                <p>Architectural breakdown of how HTML5 simplified development, enhanced semantics, and removed plugin dependencies.</p>
+            </div>
+
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Feature Dimension</th>
+                            <th>Legacy HTML 4.01 / XHTML 1.0</th>
+                            <th>Modern HTML5</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>DOCTYPE Declaration</strong></td>
+                            <td>Long, complex SGML-based DTD:<br><code>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"...&gt;</code></td>
+                            <td>Minimal, case-insensitive, simple:<br><code>&lt;!DOCTYPE html&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Page Structure & Semantics</strong></td>
+                            <td>Generic `&lt;div id="header"&gt;`, `&lt;div class="nav"&gt;`, `&lt;div class="footer"&gt;` ("div soup")</td>
+                            <td>Native semantic elements: <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Form Controls & Inputs</strong></td>
+                            <td>Only text, password, checkbox, radio, file, submit. No native validation; relied heavily on complex JavaScript.</td>
+                            <td>Rich native inputs: <code>email</code>, <code>tel</code>, <code>url</code>, <code>number</code>, <code>date</code>, <code>color</code>, <code>range</code>, <code>search</code> with <code>required</code>, <code>pattern</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Multimedia Support</strong></td>
+                            <td>Required third-party plugins (Adobe Flash, Silverlight) via <code>&lt;embed&gt;</code> and <code>&lt;object&gt;</code>.</td>
+                            <td>Direct, plugin-free native playback using <code>&lt;video&gt;</code> and <code>&lt;audio&gt;</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Graphics & Drawing</strong></td>
+                            <td>VML, Flash, or pre-rendered images.</td>
+                            <td>High-performance 2D/3D graphics via <code>&lt;canvas&gt;</code> and inline <code>&lt;svg&gt;</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Client-Side Storage</strong></td>
+                            <td>HTTP Cookies (limited to 4KB per cookie, sent on every HTTP request).</td>
+                            <td><code>localStorage</code> and <code>sessionStorage</code> (5MB - 10MB structured storage) and IndexedDB.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- TAB 3: QUESTIONS & THEORY -->
+        <section id="theory" class="tab-panel">
+            <div class="section-header">
+                <h2>Answers to Questions (Marks Distribution: 20 Marks)</h2>
+            </div>
+
+            <article class="theory-card">
+                <h3>Question 1: Explain the key differences between earlier HTML versions and HTML5. (6 Marks)</h3>
+                <div class="theory-body">
+                    <p>Earlier HTML specifications (such as HTML 4.01 and XHTML 1.0) were strictly derived from SGML (Standard Generalized Markup Language) or XML, enforcing strict syntax rules that were brittle and poorly suited for modern web applications. The key differences are:</p>
+                    <ul>
+                        <li><strong>Simplified Syntax & DOCTYPE:</strong> HTML5 replaces cumbersome SGML DTDs with a clean <code>&lt;!DOCTYPE html&gt;</code> declaration and simplifies charset encoding to <code>&lt;meta charset="UTF-8"&gt;</code>.</li>
+                        <li><strong>Semantic Structural Elements:</strong> Replaced excessive `&lt;div&gt;` nesting with purpose-built semantic elements (<code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code>), boosting accessibility (ARIA) and search engine indexing.</li>
+                        <li><strong>Deprecation of Presentational Tags:</strong> Tags that coupled structure to styling (e.g., <code>&lt;font&gt;</code>, <code>&lt;center&gt;</code>, <code>&lt;big&gt;</code>, <code>&lt;strike&gt;</code>, <code>&lt;frameset&gt;</code>) were completely deprecated in favor of CSS.</li>
+                        <li><strong>Error Handling Resilience:</strong> HTML5 specifies deterministic parsing algorithms for malformed syntax, ensuring cross-browser consistency rather than browser crashes or unrendered pages.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>Question 2: Describe the new features of HTML5 that improve web forms and development practices. (8 Marks)</h3>
+                <div class="theory-body">
+                    <p>HTML5 revolutionized web forms by introducing native capabilities that previously required dozens of kilobytes of custom JavaScript libraries:</p>
+                    <ol>
+                        <li><strong>New Semantic Input Types:</strong> Types including <code>email</code>, <code>url</code>, <code>number</code>, <code>tel</code>, <code>date</code>, <code>color</code>, <code>range</code>, and <code>search</code> automatically invoke appropriate on-screen mobile virtual keyboards (e.g., numeric pads, `@` email key).</li>
+                        <li><strong>Built-in Constraint Validation Attributes:</strong>
+                            <ul>
+                                <li><code>required</code>: Blocks submission if field is empty.</li>
+                                <li><code>pattern="[A-Za-z]{3,}"</code>: Enforces Regex expressions natively.</li>
+                                <li><code>min</code>, <code>max</code>, <code>step</code>: Sets numerical and date boundary constraints.</li>
+                                <li><code>placeholder</code> & <code>autofocus</code>: Improves visual affordance and accessibility.</li>
+                            </ul>
+                        </li>
+                        <li><strong>New Form Helper Elements:</strong>
+                            <ul>
+                                <li><code>&lt;datalist&gt;</code>: Provides native autocomplete search suggestions for inputs.</li>
+                                <li><code>&lt;progress&gt;</code> and <code>&lt;meter&gt;</code>: Visual indicators for task progress and fractional values.</li>
+                                <li><code>&lt;output&gt;</code>: Represents mathematical or script calculation results directly tied to form controls.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>Question 3: Provide examples of how HTML5 can be implemented in the legacy application. (6 Marks)</h3>
+                <div class="theory-body">
+                    <p>To upgrade a legacy application, we replace obsolete layout conventions and manual JavaScript validation scripts with modern HTML5 primitives:</p>
+                    <div class="code-compare-grid">
+                        <div class="code-box">
+                            <h4>Legacy HTML 4.01 Code</h4>
+                            <pre><code>&lt;!-- Div-based layout --&gt;
+&lt;div id="header"&gt;
+  &lt;div id="logo"&gt;Site Title&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Manual JS validated form --&gt;
+&lt;form onsubmit="return validateEmail();"&gt;
+  &lt;input type="text" name="email" id="txtEmail" /&gt;
+&lt;/form&gt;</code></pre>
+                        </div>
+                        <div class="code-box">
+                            <h4>Modern HTML5 Implementation</h4>
+                            <pre><code>&lt;!-- Semantic layout --&gt;
+&lt;header&gt;
+  &lt;h1&gt;Site Title&lt;/h1&gt;
+  &lt;nav&gt;...links...&lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;!-- Native validation --&gt;
+&lt;form action="/submit" method="POST"&gt;
+  &lt;input type="email" name="email" required placeholder="name@domain.com" /&gt;
+&lt;/form&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <div class="container footer-content">
+            <p>Internet Programming Lab | CSA43 Experiment 06 &bull; HTML5 Architecture</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

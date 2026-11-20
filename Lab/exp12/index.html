@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 12 - Number Equality & Word Index Search</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="app-header">
+        <div class="container header-inner">
+            <div class="logo-group">
+                <span class="badge">Experiment 12</span>
+                <h1>Number Comparison & Array Word Index Finder</h1>
+            </div>
+            <nav class="tab-nav">
+                <button class="tab-btn active" data-tab="demo">Interactive Tools</button>
+                <button class="tab-btn" data-tab="theory">Questions & Theory</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <!-- TAB 1: DEMO -->
+        <section id="demo" class="tab-panel active">
+            <div class="grid-2">
+                <!-- MODULE 1: NUMBER EQUALITY -->
+                <div class="card module-card">
+                    <div class="card-header">
+                        <span class="mod-badge">Feature 1</span>
+                        <h3>Number Equality Comparison</h3>
+                    </div>
+                    <p class="card-desc">Compares two inputs for numerical equality, handling both strict (`===`) and type coercion (`==`).</p>
+
+                    <div class="form-group">
+                        <label for="num1">First Number:</label>
+                        <input type="number" id="num1" step="any" placeholder="Enter first number (e.g. 42)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="num2">Second Number:</label>
+                        <input type="number" id="num2" step="any" placeholder="Enter second number (e.g. 42)">
+                    </div>
+
+                    <div class="btn-group">
+                        <button id="btnCompare" class="btn btn-primary">Compare Numbers</button>
+                        <button id="btnFloatTest" class="btn btn-secondary">Test Precision (0.1+0.2 vs 0.3)</button>
+                    </div>
+
+                    <div id="equalityResult" class="result-box idle">
+                        <strong>Result:</strong>
+                        <p id="equalityMsg">Awaiting input numbers...</p>
+                    </div>
+                </div>
+
+                <!-- MODULE 2: ARRAY WORD SEARCH -->
+                <div class="card module-card">
+                    <div class="card-header">
+                        <span class="mod-badge">Feature 2</span>
+                        <h3>Sentence Array Word Index Finder</h3>
+                    </div>
+                    <p class="card-desc">Tokenizes a sentence into a JavaScript array and locates the exact element index.</p>
+
+                    <div class="form-group">
+                        <label for="sentenceInput">Sentence String:</label>
+                        <input type="text" id="sentenceInput" value="The quick brown fox jumps over the lazy dog" placeholder="Type a sentence...">
+                    </div>
+
+                    <div class="array-preview">
+                        <label>Array Representation:</label>
+                        <div id="arrayChips" class="chip-container"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="searchWord">Word to Search:</label>
+                        <input type="text" id="searchWord" placeholder="e.g. fox">
+                    </div>
+
+                    <div class="btn-group">
+                        <button id="btnSearchWord" class="btn btn-primary">Search Array Index</button>
+                    </div>
+
+                    <div id="searchResult" class="result-box idle">
+                        <strong>Search Outcome:</strong>
+                        <p id="searchMsg">Enter a word to find its array index.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: THEORY -->
+        <section id="theory" class="tab-panel">
+            <div class="section-header">
+                <h2>Answers to Questions (Marks Distribution: 10 Marks)</h2>
+            </div>
+
+            <article class="theory-card">
+                <h3>1. Explain the logic to compare two numbers and determine equality. (3 Marks)</h3>
+                <div class="theory-body">
+                    <p>Comparing numbers in JavaScript requires understanding type coercion, identity, and floating-point precision:</p>
+                    <ul>
+                        <li><strong>Strict Equality Operator (`===`):</strong> Compares both value and type without coercion. If either operand is of different types (e.g. <code>42 === "42"</code>), it evaluates to <code>false</code>.</li>
+                        <li><strong>Loose Equality (`==`):</strong> Coerces operands to a common type prior to comparison, which can introduce subtle bugs.</li>
+                        <li><strong>IEEE 754 Floating-Point Precision:</strong> In JS, <code>0.1 + 0.2 === 0.3</code> is <code>false</code> due to binary floating-point rounding errors (results in <code>0.30000000000000004</code>). The robust equality check uses <code>Number.EPSILON</code>:
+                            <pre><code>function areAlmostEqual(a, b) {
+    return Math.abs(a - b) < Number.EPSILON;
+}</code></pre>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>2. Describe how to search for a specific word in an array and return its index. (3 Marks)</h3>
+                <div class="theory-body">
+                    <p>To search for a word in an array, the process follows these algorithmic steps:</p>
+                    <ol>
+                        <li><strong>Tokenization:</strong> Split the sentence string into an array of words using <code>sentence.split(/\s+/)</code>.</li>
+                        <li><strong>Index Lookup:</strong>
+                            <ul>
+                                <li><code>Array.prototype.indexOf(target)</code>: Returns the zero-based index of the first occurrence of the element, or <code>-1</code> if the word is not found.</li>
+                                <li><code>Array.prototype.findIndex()</code>: Enables case-insensitive searches by passing a predicate function:
+                                    <pre><code>const idx = wordsArray.findIndex(w => w.toLowerCase() === target.toLowerCase());</code></pre>
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </article>
+
+            <article class="theory-card">
+                <h3>3. Provide code snippets to implement both features. (4 Marks)</h3>
+                <div class="theory-body">
+                    <div class="code-box">
+                        <pre><code>// 1. Number Equality Logic
+function compareNumbers(a, b) {
+    if (isNaN(a) || isNaN(b)) return "Invalid numeric input";
+    if (a === b) return `${a} and ${b} are strictly EQUAL (===).`;
+    return `${a} and ${b} are NOT EQUAL.`;
+}
+
+// 2. Word Search in Array Logic
+function findWordIndex(sentence, targetWord) {
+    const words = sentence.trim().split(/\s+/);
+    const index = words.findIndex(word => 
+        word.toLowerCase().replace(/[^a-z0-9]/g, '') === targetWord.toLowerCase()
+    );
+    return index !== -1 ? `Found "${targetWord}" at index [${index}] (Word #${index + 1})` : `Word "${targetWord}" not found.`;
+}</code></pre>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <div class="container footer-content">
+            <p>Internet Programming Lab | CSA43 Experiment 12 &bull; Numerical Logic & Array Index Algorithms</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
