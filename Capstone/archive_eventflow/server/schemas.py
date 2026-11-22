@@ -27,7 +27,7 @@ class EventCreateSchema(BaseModel):
     date: str
     start_time: str
     end_time: str
-    registration_deadline: str
+    registration_deadline: Optional[str] = ""
     capacity: int
     coordinator_name: Optional[str] = ""
     coordinator_contact: Optional[str] = ""

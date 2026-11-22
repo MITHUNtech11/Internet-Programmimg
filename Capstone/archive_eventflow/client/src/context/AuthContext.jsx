@@ -167,6 +167,7 @@ export function AuthProvider({ children }) {
    * Log out active user and transition to guest mode
    */
   const logout = () => {
+    api.logout();
     saveUserSession(null);
     setIsProfileModalOpen(false);
   };

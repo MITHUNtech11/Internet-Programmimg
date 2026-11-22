@@ -208,6 +208,32 @@ export const api = {
   },
 
   // ---------------------------------------------------------------------------
+  // Algorithmic Interval Scheduling & Collision Detection
+  // ---------------------------------------------------------------------------
+  async checkEventConflict(conflictPayload) {
+    const res = await fetch(`${BASE_URL}/events/check-conflict`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(conflictPayload),
+    });
+    return handleResponse(res);
+  },
+
+  async optimizeBatchSchedule(requests) {
+    const res = await fetch(`${BASE_URL}/events/optimize-batch`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requests),
+    });
+    return handleResponse(res);
+  },
+
+  async fetchVenueTimeline(date) {
+    const res = await fetch(`${BASE_URL}/events/venue-timeline/${date}`);
+    return handleResponse(res);
+  },
+
+  // ---------------------------------------------------------------------------
   // Registrations & Passes
   // ---------------------------------------------------------------------------
   async registerForEvent(eventId, participantData) {

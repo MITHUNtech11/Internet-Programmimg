@@ -1,11 +1,21 @@
 import time
 from typing import Any, Dict, List, Optional
 from fastapi import APIRouter, HTTPException, Query
+from pydantic import BaseModel
 
 from server.database import get_db
 from server.schemas import EventCreateSchema, EventUpdateSchema
+from server.services.interval_scheduler import IntervalScheduler
 
 router = APIRouter(prefix="/api/events", tags=["events"])
+
+
+class ConflictCheckRequest(BaseModel):
+    venue: str
+    date: str
+    start_time: str
+    end_time: str
+    exclude_event_id: Optional[str] = None
 
 
 @router.get("")
@@ -89,12 +99,90 @@ def get_event(id: str) -> Dict[str, Any]:
         return data
 
 
+@router.post("/check-conflict")
+def check_event_conflict(payload: ConflictCheckRequest) -> Dict[str, Any]:
+    """
+    Pre-flight interval collision inspection endpoint.
+    Returns collision status, conflicting event details, and intelligent slot/venue recommendations.
+    """
+    with get_db() as conn:
+        conflict = IntervalScheduler.check_venue_collision(
+            conn,
+            venue=payload.venue,
+            date=payload.date,
+            start_time=payload.start_time,
+            end_time=payload.end_time,
+            exclude_event_id=payload.exclude_event_id,
+        )
+        if conflict:
+            return conflict
+        return {
+            "is_collision": False,
+            "message": f"Venue resource '{payload.venue}' is verified completely available for [{payload.start_time}, {payload.end_time}) on {payload.date}.",
+            "venue": payload.venue,
+            "date": payload.date,
+        }
+
+
+@router.post("/optimize-batch")
+def optimize_batch_schedule(requests: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """
+    Execute greedy Earliest Finish Time (EFT) batch scheduling algorithm.
+    Selects the maximum compatible event subset in O(M log M) time.
+    """
+    return IntervalScheduler.greedy_earliest_finish_time(requests)
+
+
+@router.get("/venue-timeline/{date}")
+def get_venue_timeline(date: str) -> Dict[str, Any]:
+    """
+    Retrieve all booked temporal intervals across campus venues for a specific date.
+    """
+    with get_db() as conn:
+        cursor = conn.cursor()
+        cursor.execute(
+            """
+            SELECT id, title, category, venue, start_time, end_time, capacity, registered_count
+            FROM events
+            WHERE date = ? AND status != 'cancelled'
+            ORDER BY venue ASC, start_time ASC
+            """,
+            (date,),
+        )
+        events = [dict(r) for r in cursor.fetchall()]
+        grouped: Dict[str, List[Dict[str, Any]]] = {}
+        for ev in events:
+            v = ev["venue"]
+            if v not in grouped:
+                grouped[v] = []
+            grouped[v].append(ev)
+        return {
+            "date": date,
+            "venues": grouped,
+            "total_events": len(events),
+        }
+
+
 @router.post("", status_code=201)
 def create_event(payload: EventCreateSchema) -> Dict[str, Any]:
     event_id = f"evt-{int(time.time() * 1000)}"
     org_id = payload.organizer_id or "org-1"
 
     with get_db() as conn:
+        # Preemptively verify half-open interval collision on requested venue
+        conflict = IntervalScheduler.check_venue_collision(
+            conn,
+            venue=payload.venue,
+            date=payload.date,
+            start_time=payload.start_time or "09:00 AM",
+            end_time=payload.end_time or "05:00 PM",
+        )
+        if conflict:
+            raise HTTPException(
+                status_code=409,
+                detail=conflict,
+            )
+
         cursor = conn.cursor()
         cursor.execute(
             """
@@ -176,10 +264,27 @@ def create_event(payload: EventCreateSchema) -> Dict[str, Any]:
 def update_event(id: str, payload: EventUpdateSchema) -> Dict[str, str]:
     with get_db() as conn:
         cursor = conn.cursor()
-        cursor.execute("SELECT id, venue FROM events WHERE id = ?", (id,))
+        cursor.execute("SELECT id, venue, date, start_time, end_time FROM events WHERE id = ?", (id,))
         existing = cursor.fetchone()
         if not existing:
             raise HTTPException(status_code=404, detail="Event not found")
+
+        # If timing or venue updated, re-verify collision
+        target_venue = payload.venue if payload.venue is not None else existing["venue"]
+        target_date = payload.date if payload.date is not None else existing["date"]
+        target_start = payload.start_time if payload.start_time is not None else existing["start_time"]
+        target_end = payload.end_time if payload.end_time is not None else existing["end_time"]
+
+        conflict = IntervalScheduler.check_venue_collision(
+            conn,
+            venue=target_venue,
+            date=target_date,
+            start_time=target_start,
+            end_time=target_end,
+            exclude_event_id=id,
+        )
+        if conflict:
+            raise HTTPException(status_code=409, detail=conflict)
 
         cursor.execute(
             """

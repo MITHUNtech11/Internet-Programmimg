@@ -5,6 +5,10 @@ import RegistrationModal from './components/RegistrationModal.jsx';
 import TicketPassModal from './components/TicketPassModal.jsx';
 import MyTicketsModal from './components/MyTicketsModal.jsx';
 
+// Dedicated Auth Pages
+import LoginPage from './pages/LoginPage.jsx';
+import SignupPage from './pages/SignupPage.jsx';
+
 // Admin Components
 import AdminLayout from './components/admin/AdminLayout.jsx';
 import AnalyticsOverview from './components/admin/AnalyticsOverview.jsx';
@@ -33,7 +37,15 @@ export default function App() {
   } = useAuth();
   const toast = useToast();
 
-  const [role, setRole] = useState('participant'); // 'participant' | 'admin'
+  // Navigation View: 'events' | 'admin' | 'login' | 'signup'
+  const [currentView, setCurrentView] = useState(() => {
+    const hash = window.location.hash.replace('#/', '').replace('#', '');
+    if (['events', 'admin', 'login', 'signup'].includes(hash)) {
+      return hash;
+    }
+    return 'events';
+  });
+
   const [adminTab, setAdminTab] = useState('overview'); // 'overview' | 'events' | 'registrations' | 'announcements' | 'scanner'
   const [adminEventFilter, setAdminEventFilter] = useState('All');
 
@@ -42,12 +54,37 @@ export default function App() {
   const [activeTicketPass, setActiveTicketPass] = useState(null);
   const [isMyTicketsOpen, setIsMyTicketsOpen] = useState(false);
 
-  // If user signs out while in admin view, revert to participant view
+  // Sync hash with browser URL
+  const handleNavigate = (view) => {
+    setCurrentView(view);
+    window.location.hash = `#/${view}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Listen to popstate (browser back/forward buttons)
   useEffect(() => {
-    if (authRole !== 'admin' && role === 'admin') {
-      setRole('participant');
+    const handlePopState = () => {
+      const hash = window.location.hash.replace('#/', '').replace('#', '');
+      if (['events', 'admin', 'login', 'signup'].includes(hash)) {
+        setCurrentView(hash);
+      } else {
+        setCurrentView('events');
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    window.addEventListener('hashchange', handlePopState);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+      window.removeEventListener('hashchange', handlePopState);
+    };
+  }, []);
+
+  // If user signs out while in admin view, revert to events view
+  useEffect(() => {
+    if (authRole !== 'admin' && currentView === 'admin') {
+      handleNavigate('events');
     }
-  }, [authRole, role]);
+  }, [authRole, currentView]);
 
   const handleRegisterEvent = (event) => {
     setRegisteringEvent(event);
@@ -76,47 +113,66 @@ export default function App() {
     setAdminTab('registrations');
   };
 
+  const handleAuthSuccess = (authedUser) => {
+    toast.success(
+      `Signed in as ${authedUser.name} (${authedUser.role === 'admin' ? (authedUser.roleTitle || 'Organizer') : 'Student'})`,
+      'Welcome to EventFlow'
+    );
+    if (authedUser.role === 'admin') {
+      handleNavigate('admin');
+    } else {
+      handleNavigate('events');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-slate-100 flex flex-col font-sans text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
       
-      {role === 'participant' ? (
-        <>
-          {/* Public Top Navbar with Akira Logo and Role Toggle */}
-          <Navbar
-            currentRole={role}
-            setRole={setRole}
+      {/* Show Top Navbar on all views except full admin dashboard which has its own sidebar layout */}
+      {currentView !== 'admin' && (
+        <Navbar
+          currentView={currentView}
+          onNavigate={handleNavigate}
+          onOpenMyTickets={handleOpenMyTickets}
+        />
+      )}
+
+      {/* Main View Router */}
+      {currentView === 'events' && (
+        <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-6">
+          <ParticipantPortal
+            onRegisterEvent={handleRegisterEvent}
             onOpenMyTickets={handleOpenMyTickets}
           />
+        </main>
+      )}
 
-          {/* Main Participant Portal */}
-          <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-6">
-            <ParticipantPortal
-              onRegisterEvent={handleRegisterEvent}
-              onOpenMyTickets={handleOpenMyTickets}
-            />
-          </main>
+      {currentView === 'login' && (
+        <main className="flex-1 w-full">
+          <LoginPage
+            onNavigate={handleNavigate}
+            onSuccess={handleAuthSuccess}
+          />
+        </main>
+      )}
 
-          {/* Footer */}
-          <footer className="bg-navy-950 border-t border-slate-800 text-slate-400 py-8 px-4 text-center text-xs space-y-2 mt-auto">
-            <div className="flex items-center justify-center gap-2">
-              <span className="font-display text-xs tracking-wider text-slate-200">EVENTFLOW</span>
-              <span>•</span>
-              <span className="font-heading font-medium text-slate-400">Campus Event Coordination Operating System</span>
-            </div>
-            <p className="text-slate-400 text-xs">
-              Built for TechTrove Hackathon 2026. Empowering college organizers, department societies, and student attendees.
-            </p>
-          </footer>
-        </>
-      ) : (
-        /* Organizer & Admin SaaS Command Center */
+      {currentView === 'signup' && (
+        <main className="flex-1 w-full">
+          <SignupPage
+            onNavigate={handleNavigate}
+            onSuccess={handleAuthSuccess}
+          />
+        </main>
+      )}
+
+      {currentView === 'admin' && (
         <AdminLayout
           activeTab={adminTab}
           setActiveTab={(tab) => {
             if (tab !== 'registrations') setAdminEventFilter('All');
             setAdminTab(tab);
           }}
-          onSwitchToParticipant={() => setRole('participant')}
+          onSwitchToParticipant={() => handleNavigate('events')}
         >
           {adminTab === 'overview' && <AnalyticsOverview />}
           {adminTab === 'events' && (
@@ -128,6 +184,20 @@ export default function App() {
           {adminTab === 'announcements' && <AnnouncementBroadcast />}
           {adminTab === 'scanner' && <TicketScannerModal />}
         </AdminLayout>
+      )}
+
+      {/* Footer (shown on non-admin views) */}
+      {currentView !== 'admin' && (
+        <footer className="bg-navy-950 border-t border-slate-800 text-slate-400 py-8 px-4 text-center text-xs space-y-2 mt-auto">
+          <div className="flex items-center justify-center gap-2">
+            <span className="font-display text-xs tracking-wider text-slate-200">EVENTFLOW</span>
+            <span>•</span>
+            <span className="font-heading font-medium text-slate-400">Campus Event Coordination Operating System</span>
+          </div>
+          <p className="text-slate-400 text-xs">
+            Smart Campus Event Registration & Management Portal. Built for college organizers, department societies, and student attendees.
+          </p>
+        </footer>
       )}
 
       {/* Shared Modals */}
@@ -150,20 +220,14 @@ export default function App() {
         onViewPass={handleViewPassFromLookup}
       />
 
-      {/* Global Auth Modal */}
+      {/* Contextual Auth Modal for in-place actions (e.g. clicking Register while logged out) */}
       <AuthModal
         isOpen={isAuthModalOpen}
         onClose={closeAuthModal}
         initialTab={authModalTab}
         onSuccess={(authedUser) => {
           closeAuthModal();
-          toast.success(
-            `Logged in as ${authedUser.name} (${authedUser.role === 'admin' ? (authedUser.roleTitle || 'Organizer') : 'Student'})`,
-            'Authentication Success'
-          );
-          if (authedUser.role === 'admin') {
-            setRole('admin');
-          }
+          handleAuthSuccess(authedUser);
         }}
       />
 
@@ -174,7 +238,7 @@ export default function App() {
         onOpenMyTickets={handleOpenMyTickets}
         onSwitchUser={() => {
           closeProfileModal();
-          openAuthModal('student');
+          handleNavigate('login');
         }}
       />
 

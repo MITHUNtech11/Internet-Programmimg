@@ -33,6 +33,45 @@ export default function EventFormModal({ isOpen, onClose, onEventSaved, initialE
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [conflictInfo, setConflictInfo] = useState(null);
+  const [checkingConflict, setCheckingConflict] = useState(false);
+
+  // Pre-flight Interval Collision Inspector
+  useEffect(() => {
+    if (!formData.venue || !formData.date || !formData.start_time || !formData.end_time) {
+      setConflictInfo(null);
+      return;
+    }
+
+    const timer = setTimeout(async () => {
+      if (conflictInfo && conflictInfo.is_collision) {
+      setError(`Cannot publish event: Double-booking collision detected on resource '${formData.venue}'. Please select an alternative slot or venue below.`);
+      return;
+    }
+
+    try {
+        setCheckingConflict(true);
+        const res = await api.checkEventConflict({
+          venue: formData.venue,
+          date: formData.date,
+          start_time: formData.start_time,
+          end_time: formData.end_time,
+          exclude_event_id: initialEvent?.id,
+        });
+        if (res && res.is_collision) {
+          setConflictInfo(res);
+        } else {
+          setConflictInfo(null);
+        }
+      } catch (e) {
+        // Silent catch for pre-flight
+      } finally {
+        setCheckingConflict(false);
+      }
+    }, 450);
+
+    return () => clearTimeout(timer);
+  }, [formData.venue, formData.date, formData.start_time, formData.end_time, initialEvent]);
 
   useEffect(() => {
     if (initialEvent) {
@@ -125,6 +164,11 @@ export default function EventFormModal({ isOpen, onClose, onEventSaved, initialE
 
     if (!formData.title.trim() || !formData.description.trim() || !formData.venue.trim()) {
       setError('Please fill all mandatory fields (Title, Description, Venue).');
+      return;
+    }
+
+    if (conflictInfo && conflictInfo.is_collision) {
+      setError(`Cannot publish event: Double-booking collision detected on resource '${formData.venue}'. Please select an alternative slot or venue below.`);
       return;
     }
 
@@ -319,6 +363,79 @@ export default function EventFormModal({ isOpen, onClose, onEventSaved, initialE
               />
             </div>
           </div>
+
+          {/* Real-time Interval Scheduling Conflict Banner */}
+          {conflictInfo && conflictInfo.is_collision && (
+            <div className="p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-900 space-y-3 animate-in fade-in">
+              <div className="flex items-start gap-2.5">
+                <AlertCircle className="w-5 h-5 text-rose-600 shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="font-heading font-bold text-xs sm:text-sm text-rose-900">
+                    Double-Booking Conflict Detected (Interval Scheduling Engine)
+                  </h4>
+                  <p className="text-xs text-rose-700 mt-0.5 font-normal">
+                    {conflictInfo.reason}
+                  </p>
+                </div>
+              </div>
+
+              {/* Alternative Idle Slots */}
+              {conflictInfo.alternative_slots && conflictInfo.alternative_slots.length > 0 && (
+                <div className="pt-2 border-t border-rose-200/60">
+                  <span className="text-[11px] font-heading font-semibold text-rose-800 uppercase tracking-wider block mb-1.5">
+                    Nearest Available Idle Slots on {formData.venue}:
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {conflictInfo.alternative_slots.map((slot, sIdx) => (
+                      <button
+                        key={sIdx}
+                        type="button"
+                        onClick={() => {
+                          setFormData({
+                            ...formData,
+                            start_time: slot.start_time,
+                            end_time: slot.end_time,
+                          });
+                          setConflictInfo(null);
+                        }}
+                        className="px-2.5 py-1.5 rounded-xl bg-white border border-rose-300 hover:border-brand-500 hover:bg-brand-50 text-xs font-semibold text-slate-800 transition-all shadow-sm flex items-center gap-1.5"
+                      >
+                        <Clock className="w-3.5 h-3.5 text-brand-500" />
+                        <span>{slot.start_time} - {slot.end_time}</span>
+                        <span className="text-[10px] text-brand-600 font-bold">(Apply Slot)</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Alternative Campus Venues */}
+              {conflictInfo.alternative_venues && conflictInfo.alternative_venues.length > 0 && (
+                <div className="pt-2 border-t border-rose-200/60">
+                  <span className="text-[11px] font-heading font-semibold text-rose-800 uppercase tracking-wider block mb-1.5">
+                    Alternative Available Campus Venues for this Time:
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {conflictInfo.alternative_venues.map((v, vIdx) => (
+                      <button
+                        key={vIdx}
+                        type="button"
+                        onClick={() => {
+                          setFormData({ ...formData, venue: v.venue });
+                          setConflictInfo(null);
+                        }}
+                        className="px-2.5 py-1.5 rounded-xl bg-white border border-rose-300 hover:border-indigo-500 hover:bg-indigo-50 text-xs font-semibold text-slate-800 transition-all shadow-sm flex items-center gap-1.5"
+                      >
+                        <MapPin className="w-3.5 h-3.5 text-indigo-500" />
+                        <span>{v.venue}</span>
+                        <span className="text-[10px] text-indigo-600 font-bold">(Switch Venue)</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
 
           {/* Coordinator Details */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
